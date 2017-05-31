@@ -1,0 +1,212 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="lib/html5shiv.js"></script>
+	<script type="text/javascript" src="lib/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+	<!--[if IE 6]>
+	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<title>建材列表</title>
+	<link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+<body class="pos-r">
+
+<div style="">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 服务中心 <span class="c-gray en">&gt;</span> 学习课堂 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="page-container">
+		<form action="<{:U('ReleaseAudit/index')}>" method="post">
+			<div class="text-c">
+				<!--日期范围：
+				<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">
+				-
+				<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;">
+				-->
+				类别：
+				<select name="study_type" class="input-text" style="width:100px;">
+					<option value="">请选择</option>
+					<option value="1" <{$status == 1 ? 'selected="selected"':''}>>产品知识讲堂</option>
+					<option value="2" <{$status == 2 ? 'selected="selected"':''}>>销售技巧</option>
+					<option value="3" <{$status == 3 ? 'selected="selected"':''}>>保险知识</option>
+					<option value="4" <{$status == 4 ? 'selected="selected"':''}>>名人讲堂</option>
+				</select>
+				<input type="text" name="title" value="<{$title}>" placeholder=" 文章标题" style="width:250px" class="input-text">
+				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+			</div>
+		</form>
+		<div class="cl pd-5 bg-1 bk-gray mt-20">
+			<span class="l">
+				<!--<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
+				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
+				</a>-->
+				<a class="btn btn-primary radius" onclick="product_add('上传课堂','<{:U('ReleaseAudit/studyAdd')}>')" href="javascript:;">
+					<i class="Hui-iconfont">&#xe600;</i> 上传课堂
+				</a>
+			</span>
+			<span class="r">共有数据：<strong><{$count}></strong> 条</span> </div>
+		<div class="mt-20">
+			<!--table-sort-->
+			<table class="table table-border table-bordered table-bg table-hover table-sort ">
+				<thead>
+				<tr class="text-c">
+					<!--<th width="40"><input name="" type="checkbox" value=""></th>-->
+					<th>序号</th>
+					<th>标题</th>
+					<th>类别</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+
+				<foreach name="list" item="v" >
+					<tr class="text-c va-m">
+						<!--<td><input name="" type="checkbox" value=""></td>-->
+						<td><{$v.id}></td>
+						<td><{$v.title}></td>
+						<td>
+							<switch name="v.study_type" >
+								<case value="1"><span >产品知识讲堂</span></case>
+								<case value="2"><span >销售技巧</span></case>
+								<case value="3"><span >保险知识</span></case>
+								<case value="4"><span >名人讲堂</span></case>
+							</switch>
+						</td>
+
+						<td class="td-manage">
+
+							<a style="text-decoration:none" href="<{:U('ReleaseAudit/detailed',array('id'=>$v['id']))}>"title="详情">
+								<i class="Hui-iconfont">&#xe720;</i>
+							</a>
+							<a style="text-decoration:none" href="<{:U('ReleaseAudit/studyEdit',array('id'=>$v['id']))}>"title="编辑">
+								<i class="Hui-iconfont">&#xe6df;</i>
+							</a>
+							<a style="text-decoration:none" class="ml-5" onClick="product_del(this,-2,<{$v['id']}>)" href="javascript:;" title="删除">
+								<i class="Hui-iconfont">&#xe6e2;</i>
+							</a>
+
+						</td>
+					</tr>
+				</foreach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+	var setting = {
+		view: {
+			dblClickExpand: false,
+			showLine: false,
+			selectedMulti: false
+		},
+		data: {
+			simpleData: {
+				enable:true,
+				idKey: "id",
+				pIdKey: "pId",
+				rootPId: ""
+			}
+		},
+		callback: {
+			beforeClick: function(treeId, treeNode) {
+				var zTree = $.fn.zTree.getZTreeObj("tree");
+				if (treeNode.isParent) {
+					zTree.expandNode(treeNode);
+					return false;
+				} else {
+					//demoIframe.attr("src",treeNode.file + ".html");
+					return true;
+				}
+			}
+		}
+	};
+
+
+	$('.table-sort').dataTable({
+		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+			{"orderable":false,"aTargets":[3]}// 制定列不参与排序
+//			{"orderable":false,"aTargets":[0,8]}// 制定列不参与排序
+		]
+	});
+	/*产品-添加*/
+	function product_add(title,url){
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url
+		});
+		layer.full(index);
+	}
+
+
+
+	/*产品-编辑*/
+	function product_edit(title,url,id){
+		alert(123);die;
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url
+		});
+		layer.full(index);
+	}
+
+
+	/*删除*/
+	function product_del(obj,status,id){
+		layer.confirm('确认要删除吗？',function(index){
+			$.ajax({
+				type: 'POST',
+				url: "<{:U('ReleaseAudit/delete_study')}>",
+				dataType: 'json',
+				data: {"status":status,"id":id},
+				success: function(json){
+					switch (json.status)
+					{
+						case 1:
+							$(obj).parents("tr").remove();
+							layer.msg('删除成功!',{icon:6,time:1000});
+							setTimeout("location.reload()",1000);
+							break;
+						case 2:
+							$(obj).parents("tr").remove();
+							layer.msg('删除失败!',{icon:5,time:1000});
+							setTimeout("location.reload()",1000);
+							break;
+					}
+				},
+			});
+		});
+	}
+
+
+</script>
+</body>
+</html>

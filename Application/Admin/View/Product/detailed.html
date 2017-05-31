@@ -1,0 +1,226 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<!--
+	作者：1102546708@qq.com
+	时间：2017-05-12
+	描述：添加 样式
+-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/style.css" />
+</head>
+<body>
+<div class="page-container">
+
+		<li class="clearfloat">
+			<div class="left">产品编号</div>
+			<div class="right"><{$list.id}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">产品标题</div>
+			<div class="right"><{$list.product_title}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">产品名称</div>
+			<div class="right"><{$list.product_name}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">产品简介</div>
+			<div class="right"><{$list.content}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">产品详细</div>
+			<div class="right">
+				<{$list.details}>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">投保年龄</div>
+			<div class="right">
+				<{$list.size.min(age)}>--<{$list.size.max(age)}>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">产品标识</div>
+			<div class="right">
+				<switch name="list.product_label">
+					<case value="1">新品</case>
+					<case value="2">热销</case>
+					<case value="3">人气</case>
+					<default/>
+						独家
+				</switch>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">供应商名称</div>
+			<div class="right"><{$list.supplier.full_name}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">适用人群</div>
+			<div class="right">
+				<{$list.fit_member}>
+			</div>
+		</li>
+		<if condition="$list['product_type'] eq 1">
+			<li class="clearfloat">
+				<div class="left">非寿险签约比例</div>
+				<div class="right"><{$list.initial_contract_ratio}></div>
+			</li>
+		</if>
+
+		<li class="clearfloat">
+			<div class="left">产品图片</div>
+			<div class="right">
+				<if condition="$list.product_img neq ''">
+					<img src="__IMG__/<{$list.product_img}>" width="70px" height="50px"/>
+				</if>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">产品类型</div>
+			<div class="right">
+				<switch name="list.product_type">
+					<case value="1">非寿险</case>
+					<default/>
+					寿险
+				</switch>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">线上线下状态</div>
+			<div class="right">
+				<switch name="list.product_state">
+					<case value="1">线下</case>
+					<default/>
+					线上
+				</switch>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">销售产品分类</div>
+			<div class="right"><{$list.type_name}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">非销售产品分类</div>
+			<div class="right"><{$list.product_unsales}></div>
+		</li>
+		<!--<li class="clearfloat">
+			<p class="left">费率表名称</p>
+			<p class="right"><{$list.rate_name}></p>
+		</li>-->
+		<li class="clearfloat">
+			<div class="left">保额整数倍</div>
+			<div class="right"><{$list.amount_insured}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">保额起步价</div>
+			<div class="right"><{$list.initial_price}></div>
+		</li>
+		<if condition="$list['product_type'] eq 1">
+			<li class="clearfloat">
+				<div class="left">佣金比例(非寿)</div>
+				<div class="right"><{$list.commission_rate}></div>
+			</li>
+		</if>
+		<li class="clearfloat">
+			<div class="left">折标系数</div>
+			<div class="right"><{$list.fold_factor}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">折价系数</div>
+			<div class="right"><{$list.discount_coefficient}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">规模保费</div>
+			<div class="right"><{$list.premium}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">成交量</div>
+			<div class="right"><{$list.turnover}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">产品状态</div>
+			<div class="right">
+				<switch name="list.status">
+					<case value="1">下架</case>
+					<case value="-1">删除</case>
+					<default/>
+					上架
+				</switch>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">投保提示</div>
+			<div class="right"><{$list.product_rules.insurance_tips}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">理赔提示</div>
+			<div class="right"><{$list.product_rules.claim_tips}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">条款阅读</div>
+			<div class="right"><{$list.product_rules.clause_reading}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">典型案例</div>
+			<div class="right"><{$list.product_rules.classic_case}></div>
+		</li>
+		<!--<li class="clearfloat">
+			<p class="left">产品保障期限</p>
+			<p class="right"><{$list.safeguard.period}></p>
+		</li>
+		<li class="clearfloat">
+			<p class="left">产品保障内容</p>
+			<p class="right"><{$list.safeguard.content}></p>
+		</li>-->
+		<li class="clearfloat">
+			<div class="left">管理员名称</div>
+			<div class="right"><{$list.manager_name}></div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">修改时间</div>
+			<div class="right">
+				<if condition="$list['last_update_time'] neq ''">
+					<{$list.last_update_time|date ="Y-m-d H:i:s",###}>
+				</if>
+			</div>
+		</li>
+		<li class="clearfloat">
+			<div class="left">添加时间</div>
+			<div class="right">
+				<if condition="$list['create_time'] neq ''">
+					<{$list.create_time|date ="Y-m-d H:i:s",###}>
+				</if>
+			</div>
+		</li>
+</div>
+
+
+</body>
+</html>

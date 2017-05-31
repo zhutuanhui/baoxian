@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="__PUBLIC__/lib/html5shiv.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="__PUBLIC__/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>团队业绩管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 业绩管理 <span class="c-gray en">&gt;</span> 团队业绩管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+    <form action="<{:U('Performance/teamCore')}>" method="post">
+        <div class="text-c">
+            <span class="select-box inline">
+                <select name="branch_shop_number" id="branch_shop_number" onchange="branch_flag()" class="select">
+                    <option value="">请选择分公司</option>
+                    <volist name=":shopMenu(1)" id="branchId">
+                        <if condition="$branch_id eq $branchId['branch_shop_code']">
+                            <option value="<{$branchId.branch_shop_code}>" selected><{$branchId.name}></option>
+                        <else />
+                            <option value="<{$branchId.branch_shop_code}>"><{$branchId.name}></option>
+                        </if>
+                    </volist>
+                </select>
+                <select name="flag_shop_number" id="flag_shop_number" onchange="flag_stand()" class="select">
+                    <if condition="$branch_id">
+                        <option value="">请选择旗舰店</option>
+                        <volist name=":shopMenu(2,$branch_id)" id="flagId">
+                            <if condition="$flag_id eq $flagId['flagship_code']">
+                                <option value="<{$flagId.flagship_code}>" selected><{$flagId.name}></option>
+                            <else />
+                                <option value="<{$flagId.flagship_code}>"><{$flagId.name}></option>
+                            </if>
+
+                        </volist>
+                    <else/>
+                    <option value="">请选择旗舰店</option>
+                    </if>
+                </select>
+                <select name="stand_shop_number" id="stand_shop_number" class="select">
+                    <if condition="$branch_id && $flag_id">
+                    <option value="">请选择标准店</option>
+                    <volist name=":shopMenu(3,$branch_id,$flag_id)" id="standId">
+                        <if condition="$stand_id eq $standId['org_code']">
+                            <option value="<{$standId.org_code}>" selected><{$standId.name}></option>
+                        <else />
+                            <option value="<{$standId.org_code}>"><{$standId.name}></option>
+                        </if>
+
+                    </volist>
+                    <else />
+                    <option value="">请选择标准店</option>
+                    </if>
+                </select>
+            </span>
+            <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+        </div>
+    </form>
+
+    <div class="mt-20">
+        <table class="table table-border table-bordered table-bg table-hover table-sort">
+            <thead>
+            <tr class="text-c">
+                <!--<th width="25"><input type="checkbox" name="" value=""></th>-->
+                <th width="60">代码</th>
+                <th width="60">名称</th>
+                <th width="60">当日业绩</th>
+                <th width="60">本月业绩</th>
+                <th width="60">规模人力</th>
+                <th width="60">开单人力</th>
+                <th width="60">开单率</th>
+                <th width="60">昨日月排名</th>
+                <th width="60">本季度业绩</th>
+                <th width="60">规模人力</th>
+                <th width="60">开单人力</th>
+                <th width="60">开单率</th>
+                <th width="60">昨日季度排名</th>
+                <th width="60">半年业绩</th>
+                <th width="60">规模人力</th>
+                <th width="60">开单人力</th>
+                <th width="60">开单率</th>
+                <th width="60">昨日半年排名</th>
+                <th width="60">全年业绩</th>
+                <th width="60">规模人力</th>
+                <th width="60">开单人力</th>
+                <th width="60">开单率</th>
+                <th width="60">昨日年排名</th>
+                <th width="60">目标达成率</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-c">
+                <if condition="$branchInfo">
+                <volist name="branchInfo" id="branchV">
+                    <td><{$branchV.id}></td>                <!--ID-->
+                    <td><{$branchV.name}></td>              <!--名称-->
+                    <td><{$branchV.day_achieve}></td>       <!--当天业绩-->
+                    <td><{$branchV.mon_achieve}></td>       <!--当月业绩-->
+                    <td><{$branchV.num_count}></td>         <!--规模人力-->
+                    <td><{$branchV.policy_mon}></td>        <!--月开单人力-->
+                    <td><{$branchV['policy_mon']/$branchV['num_count']*100}>%</td>  <!--开单率-->
+                    <td><{$branchV.mon_ranking}></td>       <!--昨日月排名-->
+                    <td><{$branchV.quar_achieve}></td>      <!--本季度业绩-->
+                    <td><{$branchV.num_count}></td>         <!--规模人力-->
+                    <td><{$branchV.policy_quar}></td>       <!--季度开单人力-->
+                    <td><{$branchV['policy_quar']/$branchV['num_count']*100}>%</td>
+                    <td><{$branchV.quar_ranking}></td>      <!--昨日季度排名-->
+                    <td><{$branchV.half_achieve}></td>      <!--半年业绩-->
+                    <td><{$branchV.num_count}></td>         <!--规模人力-->
+                    <td><{$branchV.policy_half}></td>       <!--半年开单人力-->
+                    <td><{$branchV['policy_half']/$branchV['num_count']*100}>%</td> <!--开单率-->
+                    <td><{$branchV.half_ranking}></td>      <!--昨日半年排名-->
+                    <td><{$branchV.year_achieve}></td>      <!--全年业绩-->
+                    <td><{$branchV.num_count}></td>         <!--规模人力-->
+                    <td><{$branchV.policy_year}></td>       <!--本年开单人力-->
+                    <td><{$branchV['policy_year']/$branchV['num_count']*100}>%</td> <!--开单率-->
+                    <td><{$branchV.year_ranking}></td>      <!--昨日年排名-->
+                    <td><{$branchV.branch_gouls}></td>      <!--目标达成率-->
+                </volist>
+                </if>
+
+                <!--<td>10001</td>
+                &lt;!&ndash;<td><input type="checkbox" value="" name=""></td>&ndash;&gt;
+                <td>10001</td>
+                <td>10001</td>
+                <td>行业动态1</td>
+                <td>H-ui</td>
+                <td>2014-6-11 11:11:42</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>
+                <td>21212</td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+    /*$('.table-sort').dataTable({
+        "aaSorting": [[ 1, "desc" ]],//默认第几个排序
+        "bStateSave": true,//状态保存
+        "aoColumnDefs": [
+            //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+            {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
+        ]
+    });*/
+//查询分公司下的旗舰店
+   function branch_flag(){
+       var branchid = $('#branch_shop_number').val();
+       var url = "<{:U('Performance/branchAjax')}>";
+       var string = "旗舰店";
+       $.post(
+           url,
+           {
+               'branchid':branchid,
+               'level':2,
+               'string':string
+           },
+           function(data){
+                if(data){
+                    $('#flag_shop_number').html(data);
+                }else{
+                    $('#flag_shop_number').html("<option value=''>请选择旗舰店</option>");
+                    $('#stand_shop_number').html("<option value=''>请选择标准店</option>");
+                }
+           }
+       );
+   }
+    //查询旗舰店下的标准店
+    function flag_stand(){
+        var branchid = $('#branch_shop_number').val();
+        var flagid = $('#flag_shop_number').val();
+        var url = "<{:U('Performance/branchAjax')}>";
+        var string = "标准店";
+        $.post(
+                url,
+                {
+                    'branchid':branchid,
+                    'flagid':flagid,
+                    'level':3,
+                    'string':string
+                },
+                function(data){
+                    if(data){
+                        $('#stand_shop_number').html(data);
+                    }
+                }
+        );
+    }
+
+</script>
+</body>
+</html>

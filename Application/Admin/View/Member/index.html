@@ -1,0 +1,141 @@
+
+<include file="Public/_meta" title="" />
+<title>会员列表</title>
+<link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+<body class="pos-r">
+
+<div style="">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 会员管理 <span class="c-gray en">&gt;</span> 会员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="page-container">
+		<div class="text-c">
+			<!--<a href="javascript:;" > <button class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 资格证号查询</button></a>-->
+			<form  action="<{:U('member/index')}>" enctype="multipart/form-data" method="post">
+				注册时间范围：<input type="text" onClick="WdatePicker()" id="logmin" name="logmin" class="input-text Wdate" style="width:120px;">
+				-
+				<input type="text" onClick="WdatePicker()" id="logmax" name="logmax" class="input-text Wdate" style="width:120px;">
+				<input type="text" name="name" id="name" placeholder=" 姓名" style="width:150px" class="input-text">
+				<input type="number" name="mobile" id="mobile" placeholder=" 手机号" style="width:150px" maxlength="11" class="input-text">
+				<input type="number" name="identity_card" id="identity_card" placeholder=" 身份证号" maxlength="18" style="width:150px" class="input-text">
+				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+			</form>
+		</div>
+		<div class="cl pd-5 bg-1 bk-gray mt-20">
+			<span class="l">
+				<a class="btn btn-primary radius" onclick="member_add()" href="javascript:;">
+					<i class="Hui-iconfont">&#xe600;</i> 添加会员
+				</a>
+			</span>
+			<span class="l">
+			<a href="javascript:;" >
+				<button class="btn btn-success" type="submit" style="border-radius: 5px;margin-left: 10px;margin-right:10px ;">
+					<i class="Hui-iconfont">&#xe665;</i> 资格证号查询
+				</button>
+			</a>
+			</span>
+			<span class="l">
+				<a class="btn btn-primary radius" href="<{:U('member/export')}>">
+					<i class="Hui-iconfont">&#xe600;</i>导出会员
+				</a>
+			</span>
+		</div>
+		<div class="mt-20">
+			<table class="table table-border table-bordered table-bg table-hover ">
+				<thead>
+				<tr class="text-c">
+					<th width="40"><input name="" type="checkbox" value=""></th>
+					<th width="40">业务代码</th>
+					<th width="60">姓名</th>
+					<th width="100">性别</th>
+					<th width="60">电话</th>
+					<th width="100">资格证号</th>
+					<th width="100">身份证号</th>
+					<th width="60">职级</th>
+					<th width="100">新契约品质系数</th>
+					<th width="100">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name='info' id='vo'>
+					<tr class="text-c va-m t_<{$vo.m_number}>" >
+
+						<td><input name="m_number" type="checkbox" value="<{$vo.m_number}>"></td>
+						<td><{$vo.m_number}></td>
+						<td><{$vo.name}></td>
+						<td>
+							<eq name="vo.gender" value="1">男<else/>女</eq>
+						</td>
+						<td class="text-l"><{$vo.mobile}></td>
+						<td class="text-l"><{$vo.member_num}></td>
+						<td class="text-l"><{$vo.identity_card}></td>
+						<td>
+							<switch name="vo.member_level" >
+								<case value="0">普通会员</case>
+								<case value="1">资深会员</case>
+								<case value="2">标准店店长</case>
+								<case value="3">旗舰店店长</case>
+							</switch>
+						</td>
+						<td class="td-status"><{$vo.new_cont_cone}></td>
+						<td class="td-manage">
+							<a style="text-decoration:none" class="ml-5" onClick="product_edit('会员编辑','<{:U('member/addedit')}>','<{$vo.m_number}>')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+							<a style="text-decoration:none" class="ml-5" onClick="product_del('<{$vo.m_number}>')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						</td>
+
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<include file="Public/_footer" title="" />
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+	/*会员-添加*/
+	function member_add(){
+		var index = layer.open({
+			type: 2,
+			title: '会员添加',
+			content: "<{:U('member/addedit')}>"
+		});
+		layer.full(index);
+	}
+	/*会员-编辑*/
+	function product_edit(title,url,id){
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url+"&m_number="+id
+		});
+		layer.full(index);
+	}
+
+	/*会员-删除*/
+	function product_del(id){
+		layer.confirm('真的要删除？', {
+			btn: ['确定','取消'], //按钮
+			shade: false //不显示遮罩
+		}, function(){
+			console.log(id);
+			$.post('<{:U("member/delete")}>',{'m_number':id},function(data){
+				if(data==1){
+					layer.msg('删除成功！',{icon: 1});
+					$(".t_"+id).remove();
+				}else{
+					layer.msg('操作失败', {icon: 2});
+				}
+			})
+		});
+	}
+
+</script>
+</body>
+</html>

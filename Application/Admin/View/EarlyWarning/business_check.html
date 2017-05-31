@@ -1,0 +1,417 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__lib/html5shiv.js"></script>
+<script type="text/javascript" src="__PUBLIC__lib/respond.min.js"></script>
+<![endif]-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="__PUBLIC__lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>考核结果-经营期</title>
+    <link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <style type="text/css">
+    	.btnHtml{display: none;}
+    	p.btn{margin-bottom: 0;}
+    </style>
+</head>
+
+<body class="pos-r">
+    <div style="">
+        <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 考核预警管理 <span class="c-gray en">&gt;</span> 考核结果-经营期 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+        <div class="page-container">
+
+                <div class="text-c">
+                   <span class="select-box inline">
+                        <select name="mode" class="select" >
+                             <option value="0" selected="selected">维持</option>
+                              <option value="2">降级</option>
+                              <option value="3">观察</option>
+                        </select>
+                    </span>
+                店铺代码：<input type="text" name="order_num" class="input-text" style="width:200px" placeholder="输入店铺代码" >
+                   <span class="select-box inline">
+                        <select name="shop_type" class="select" >
+                             <option value="0" selected="selected">店铺类型</option>
+                              <option value="2">旗舰店</option>
+                              <option value="3">标准店</option>
+                        </select>
+                    </span>
+                    <span class="select-box inline">
+                        <select name="branch" class="select" >
+                             <option value="0" selected="selected">分公司查询</option>
+                            <volist name="branch_office" id="data">
+
+                                        <option value="<{$data.org_code}>"><{$data.name}></option>
+
+                            </volist>
+                        </select>
+                    </span>
+                     <span class="select-box inline">
+                     <select name="shop_type" class="select" >
+                             <option value="0" selected="selected">日期范围</option>
+                              <volist name="check_time" id="vo">
+                                    <option value="<{$vo}>"><{$vo|date='Y-m-d',###}></option>
+                            </volist>
+                        </select>
+                    </span>
+
+                    <button name="search" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+                </div>
+                 <div class="cl pd-5 bg-1 bk-gray mt-20">
+               <span class="l">
+                    <a class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe644;</i> 导出结果</a></span>
+                </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-bg table-hover table-sort" >
+                    <thead>
+                        <tr>
+
+                            <th width="40" rowspan="2">店铺代码</th>
+                            <th width="80" rowspan="2">店铺</th>
+                            <th width="50" rowspan="2">店铺阶段</th>
+                            <th width="50" rowspan="2">考核类型</th>
+                            <th width="50" rowspan="2">业指参考</th>
+                            <th width="40" rowspan="2">达成</th>
+                            <th width="40" rowspan="2">差距</th>
+                            <th width="60" colspan="9">人指参考</th>
+                            <th width="60" rowspan="2">继续率参考</th>
+                            <th width="40" rowspan="2">达成</th>
+                            <th width="40" rowspan="2">差距</th>
+                            <th width="40" rowspan="2">结果</th>
+                            <th width="40" rowspan="2">操作</th>
+                        </tr>
+                        <tr>
+                            <th width="90">直接推荐会员</th>
+                            <th width="40">达成</th>
+                            <th width="40">差距</th>
+                            <th width="60">所辖会员</th>
+                            <th width="40">达成</th>
+                            <th width="40">差距</th>
+                            <th width="100">直接推荐标准店</th>
+                            <th width="40">达成</th>
+                            <th width="40">差距</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.15/jquery.dataTables1.5.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript">
+
+        var table;
+        $(function(){
+
+              table = $('.table-sort').DataTable({
+                    "lengthChange": false, //是否允许用户改变表格每页显示的记录数
+                    serverSide: true, //启用服务器端分页
+
+
+                   "language": {
+                            "processing": "加载中...",
+                            "lengthMenu": "每页显示 _MENU_ 条数据",
+                            "zeroRecords": "没有匹配结果",
+                            "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                            "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                            "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                            "infoPostFix": "",
+                            "search": "搜索:",
+                            "url": "",
+                            "emptyTable": "没有匹配结果",
+                            "loadingRecords": "载入中...",
+                            "thousands": ",",
+                            "paginate": {
+                                "first": "首页",
+                                "previous": "上一页",
+                                "next": "下一页",
+                                "last": "末页"
+                            }},
+                    searching: false, //禁用原生搜索
+                    order: [], //取消默认排序查询,否则复选框一列会出现小箭头
+                    pagingType: "full_numbers", //分页样式：simple,simple_numbers,full,full_numbers
+                    "aaSorting": [
+                        [1, "desc"]
+                    ], //默认第几个排序
+                    "autoWidth": false,
+
+                    "bStateSave": false, //状态保存
+                    "aoColumnDefs": [{// 制定列不参与排序
+                        "orderable": false,
+                        "aTargets": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+                    }],
+                    ajax: function (data, callback, settings) {
+                            //封装请求参数
+                        var param = {};
+
+                        param.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                        param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
+                        param.start = data.start;//开始的记录序号
+                        param.condition   = $("select[name='branch']").val();
+                        param.shop_number   = $("input[name='shop_number']").val();
+
+                        param.shop_type   = $("select[name='shop_type'] ").val();
+                        param.date_scope  = $("select[name='date_scope'] ").val();
+                        param.page = (data.start / data.length)+1;//当前页码
+                        //param.page = (data.start / data.length)+1;//当前页码
+                        //console.log(param);
+                        //ajax请求数据
+                        $.ajax({
+                            type: "GET",
+                            url: "<{:U('Admin/EarlyWarning/check_result_business')}>",
+                            cache: false,  //禁用缓存
+                            data: param,  //传入组装的参数
+                            dataType: "json",
+                            success: function (result) {
+                                //console.log(result);
+                                //setTimeout仅为测试延迟效果
+                                setTimeout(function () {
+                                    //封装返回数据
+                                    var returnData = {};
+                                    returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                                    returnData.recordsTotal = result.total;//返回数据全部记录
+                                    returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                                    returnData.data = result.data;//返回的数据列表
+                                    //console.log(returnData);
+                                    //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                                    //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                                    callback(returnData);
+                                }, 200);
+                            }
+                        });
+                    },
+                columns:[
+                {"data":'shop_number'},
+                {"data":'shop_name'},
+                {"data":'shop_type',render:function(data,type){
+                    if(data==1){
+                        return '分公司';
+                    }else if(data==2){
+                        return '旗舰店';
+                    }else if(data==3){
+                        return '标准店';
+                    }
+                }
+                },
+                {"data":'shop_stage',render:function(data,type){
+
+                    if(data==1){
+                        return '经营期';
+                    }else if(data==0){
+                        return '筹备期';
+                    }else{
+                        return '观察期';
+                    }
+
+
+                }},
+                {"data": 'achievement_target'},
+                {"data": 'achievement_target_reached'},
+                {"data":'achievement_target_gap',render:function(data,type){
+                    if(data > 0){
+                        return 0;
+                    }else if(data < 0){
+                        return -data;
+                    }else{
+                        return '0';
+                    }
+                }},
+                {"data": 'direct_recom_people'},
+                {"data": 'direct_recom_people_reached'},
+                {"data":'direct_recom_people_gap',render:function(data,type){
+                    if(data>0){
+                        return 0;
+                    }else if(data < 0){
+                        return -data;
+                    }else{
+                        return '0';
+                    }
+                }},
+                {"data": 'sub_manpower'},
+                {"data": 'sub_manpower_reached'},
+                {"data":'sub_manpower_gap',render:function(data,type){
+
+                    if(data>0){
+                        return 0;
+                    }else if(data < 0){
+                        return -data;
+                    }else{
+                        return '0';
+                    }
+                }},
+
+                {"data": 'direct_recom_shop'},
+                {"data": 'direct_recom_shop_reached'},
+                {"data": 'direct_recom_shop_gap',render:function(data,type){
+
+                    if(data>0){
+                        return 0;
+                    }else if(data < 0){
+                        return -data;
+                    }else{
+                        return '0';
+                    }
+                }},
+                {"data": 'continuation_rate',"render":function(data,type){
+                    var param =  data*100;
+                    return param+'%';
+                }},
+                {"data":'continuation_rate_rea',"render":function(data,type){
+                    var param =  data*100;
+                    return param+'%';
+                }},
+                {"data":'continuation_rate_gap',"render":function(data,type){
+                    var param = data*100;
+                    return param+'%';
+                }},
+                {"data":'check_status',"render":function(data,type){
+                        var htmls = '';
+                    if(data==1){
+
+                        htmls+='<span class="label label-success radius" data-value="1">成功</span>';
+                        return htmls;
+                    }else{
+                        htmls+= '<span style="background-color:#E61A1A" class="label radius" data-value="2">失败</span>';
+                         return htmls;
+                    }
+                }},
+               {"data":'id',"render" : function(data,type) {
+                               var id = '"' + data+ '"';
+                                var html ='<ul>';
+                                 html += "<p id='btn-success' class='btn  btn-success successHtml'><i class='Hui-iconfont'>&#xe63c;</i>修改结果</p>"
+                                 html += "<p class='btn btn-xs btnHtml'><span id='su' class='label label-success radius'"+' data-id='+id+" data-value='1'>成功</span></p>"
+
+                                 html += "<p class='btn btn-xs btnHtml'><span id='er' style='background-color:#E61A1A' class='label radius'"+' data-id='+id+" data-value='2'>失败</span></p>"
+
+                                html+='</ul>';
+
+                                return html;
+                 }},
+            ],
+
+
+
+            }); //TABLE闭合标签
+
+        $('#search').click(function() {
+
+            table.ajax.reload();
+        });
+         $(document).on('mouseover','#btn-success ',function(){
+                $('.btnHtml').show()
+            })
+           $(document).on('click','#btn-success + p span',function(){
+                var param_org_code  = $(this).attr('data-id');
+                var param_type      = $(this).attr('data-value');
+                var prepare_results = $(this).parents('td').prev('td').children('.prepare-results').attr('data-value');
+                var mythis = $(this);
+                //询问框
+                layer.confirm('  确认修改结果为成功？', {
+                  btn: ['是','取消'] //按钮
+                }, function(){
+
+                    $.ajax({
+                        url: "<{:U('Admin/EarlyWarning/change_check_business_result')}>",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            org_code: param_org_code,
+                            type:param_type
+                        },
+                        success: function(data){
+
+                            if(data.error==0){
+                                var html =''
+                                html+='<span class="prepare-results label label-success radius" data-value="1">成功</span>';
+                                mythis.parents('td').prev('td').empty().append(html);
+                                layer.msg(data.msg,{icon:1});
+
+                            }else if(data.error==1){
+
+                               layer.msg(data.msg, {icon: 2});
+
+                            }
+
+                        }
+                    })
+
+
+
+                }, function(){
+
+                });
+            })
+           $(document).on('click','#er',function(){
+                var param_org_code  = $(this).attr('data-id');
+                var param_type      = $(this).attr('data-value');
+                var prepare_results = $(this).parents('td').prev('td').children('.prepare-results').attr('data-value');
+                var mythis = $(this);
+                //询问框
+                layer.confirm('  确认修改结果为失败？', {
+                  btn: ['是','取消'] //按钮
+                }, function(){
+
+                   $.ajax({
+                        url: "<{:U('Admin/EarlyWarning/change_check_business_result')}>",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            org_code: param_org_code,
+                            type:param_type
+                        },
+                        success: function(data){
+
+                            if(data.error==0){
+                                var html =''
+                                html+='<span style="background-color:#E61A1A" class="prepare-results label radius" data-value="2">失败</span>';
+                                mythis.parents('td').prev('td').empty().append(html);
+                                layer.msg(data.msg,{icon:1});
+
+                            }else if(data.error==1){
+
+                               layer.msg(data.msg, {icon: 2});
+
+                            }
+                        }
+                    })
+                }, function(){
+
+                });
+            })
+
+            $(document).on('click','#btn-success ',function(){
+                $('#btn-success').text($(this).text())
+                $('.btnHtml').hide()
+            })
+    }) //jquery闭合标签
+    </script>
+
+</body>
+
+</html>

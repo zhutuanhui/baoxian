@@ -1,0 +1,106 @@
+
+<include file="Public/_meta" title="" />
+<title>会员列表</title>
+<link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+<body class="pos-r">
+
+<div style="">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 会员管理 <span class="c-gray en">&gt;</span> 会员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="page-container">
+		<!--<div class="cl pd-5 bg-1 bk-gray mt-20">-->
+			<!--<span class="l">-->
+				<!--<a class="btn btn-primary radius" onclick="member_add()" href="javascript:;">-->
+					<!--<i class="Hui-iconfont">&#xe600;</i> 提交财务-->
+				<!--</a>-->
+			<!--</span>-->
+		<!--</div>-->
+		<div class="mt-20">
+			<table class="table table-border table-bordered table-bg table-hover ">
+				<thead>
+				<tr class="text-c">
+					<th width="40">序号</th>
+					<th width="60">公司代码</th>
+					<th width="100">公司名称</th>
+					<th width="100">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name='info' id='vo'>
+					<tr class="text-c va-m t_<{$vo.m_number}>" >
+						<td><{$vo.org_id}></td>
+						<td><{$vo.org_code}></td>
+						<td><{$vo.name}></td>
+						<td class="td-manage">
+							<a style="text-decoration:none" href="<{:U('Product/detailed',array('id'=>$v['id']))}>"title="查看详情">
+								<i class="Hui-iconfont">&#xe720;</i>
+							</a>
+							<a style="text-decoration:none" class="ml-5" onclick="Calculate('<{$vo.org_code}>')" href="<{:U('MemSerFee/Calculate',array('id'=>$v['id']))}>" title="一键计算">
+								<i class="Hui-iconfont">&#xe6df;</i>
+							</a>
+						</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<include file="Public/_footer" title="" />
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+	/*会员服务费计算*/
+	function Calculate(code){
+		layer.confirm('确定计算吗？', {
+			btn: ['确定','取消'], //按钮
+			shade: false //不显示遮罩
+		}, function(){
+			console.log(code);
+			$.post('<{:U("MemSerFee/Calculate")}>',{'code':code},function(data){
+				if(data==1){
+					layer.msg('计算成功！',{icon: 1});
+				}else{
+					layer.msg('计算失败', {icon: 2});
+				}
+			})
+		});
+	}
+
+	/*会员-编辑*/
+	function product_edit(title,url,id){
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url+"&m_number="+id
+		});
+		layer.full(index);
+	}
+
+	/*会员-删除*/
+	function product_del(id){
+		layer.confirm('真的要删除？', {
+			btn: ['确定','取消'], //按钮
+			shade: false //不显示遮罩
+		}, function(){
+			console.log(id);
+			$.post('<{:U("member/delete")}>',{'m_number':id},function(data){
+				if(data==1){
+					layer.msg('删除成功！',{icon: 1});
+					$(".t_"+id).remove();
+				}else{
+					layer.msg('操作失败', {icon: 2});
+				}
+			})
+		});
+	}
+
+</script>
+</body>
+</html>

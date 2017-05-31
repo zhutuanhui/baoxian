@@ -1,0 +1,223 @@
+
+<include file="Public/_meta" title="" />
+<title>会员异动</title>
+<link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<style type="text/css">
+	.show_hide{display: none;margin-top: 10px;}
+	.select{height: 30px;}
+</style>
+</head>
+<body class="pos-r">
+
+<div style="">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 会员管理 <span class="c-gray en">&gt;</span> 会员异动 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="page-container">
+		<div class="text-c">
+			<form  action="<{:U('MemChange/index')}>" enctype="multipart/form-data" method="post">
+				<input type="number" name="m_number" id="m_number" placeholder=" 业务代码" style="width:150px" class="input-text">
+				<input type="number" name="mobile" id="mobile" placeholder=" 手机号" style="width:150px" class="input-text">
+				<input type="number" name="identity_card" id="identity_card" placeholder=" 身份证号" style="width:150px" class="input-text">
+				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+			</form>
+		</div>
+
+		<div class="mt-20">
+			会员基本信息
+			<input type="hidden"   value="<{$info.m_number}>"  id="number" name="number">
+			<table class="table table-border table-bordered table-bg table-hover ">
+				<thead>
+				<tr class="text-c">
+					<th width="40">业务代码</th>
+					<th width="60">姓名</th>
+					<th width="60">性别</th>
+					<th width="60">电话</th>
+					<th width="100">身份证号</th>
+					<th width="100">资格证号</th>
+					<th width="60">新契约品质系数</th>
+					<th width="60">会员积分</th>
+					<th width="60">注册时间</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="text-c va-m " >
+					<td><{$info.m_number}></td>
+					<td><{$info.name}></td>
+					<td ><{$info.gender}></td>
+					<td ><{$info.mobile}></td>
+					<td ><{$info.identity_card}></td>
+					<td><{$info.member_num}></td>
+					<td><{$info.new_cont_cone}></td>
+					<td><{$info.integral}></td>
+					<td><notempty name="info.register_times"><{$info.register_time|date='Y-m-d H:i:s',###}></notempty></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="mt-20">
+			会员异动前
+			<table class="table table-border table-bordered table-bg table-hover ">
+				<thead>
+				<tr class="text-c">
+					<th width="40">职级</th>
+					<th width="60">推荐人代码</th>
+					<th width="60">推荐人姓名</th>
+					<th width="60">标准店代码</th>
+					<th width="100">标准店名称</th>
+					<th width="100">旗舰店代码</th>
+					<th width="60">旗舰店名称</th>
+					<th width="60">分公司代码</th>
+					<th width="60">分公司名称</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="text-c va-m " >
+					<td>
+						<switch name="info.member_level" >
+							<case value="0">普通会员</case>
+							<case value="1">资深会员</case>
+							<case value="2">标准店店长</case>
+							<case value="3">旗舰店店长</case>
+						</switch>
+					</td>
+					<td><{$info.recommend_member_id}></td>
+					<td ><{:GetMemberName($info['recommend_member_id'])}></td>
+					<td ><{$info.shop_number}></td>
+					<td ><{:GetStoreName($info['shop_number'],3)}></td>
+					<td ><{$info.flagship_number}></td>
+					<td ><{:GetStoreName($info['flagship_number'],2)}></td>
+					<td ><{$info.branch_shop_number}></td>
+					<td ><{:GetStoreName($info['branch_shop_number'],1)}></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="mt-20" style="overflow: hidden;">
+
+			<input type="button" value="职级异动" class="btn btn-success btn_zj"/>
+			<input type="button" value="推荐人异动" class="btn btn-success btn_tj"/>
+
+
+			<div class="row cl show_hide btn_zjDiv " style="width: 50%;" >
+				<label class="form-label col-xs-4 col-sm-2">职级修改：</label>
+				<div class="formControls col-xs-5 col-sm-3" style="width: 60%;">
+					<select name="member_level" class="select" id="member_level">
+						<!--所有会员只能看到自己以上的职级-->
+						<option value="aaa"  >请选择职级</option>
+						<in name="info.member_level" value="0"><option value="1"  >资深会员</option></in>
+						<in name="info.member_level" value="0,1"><option value="2"  >标准店店长</option></in>
+						<in name="info.member_level" value="0,1,2"><option value="3"  >旗舰店店长</option></in>
+					</select>
+				</div>
+				<input type="button" value="确定异动" class="btn btn-success " onclick="Change(1)" style="background-color: #d6487e"/>
+			</div>
+			<div class="row cl show_hide btn_tjDiv " style="width: 50%;" >
+				<label class="form-label col-xs-4 col-sm-2">推荐人异动：</label>
+				<div class="formControls col-xs-5 col-sm-3" style="width: 60%;">
+					<input type="number" style="width: 474px" class="input-text" value="" placeholder="请填写推荐人代码" id="r_number" name="r_number">
+				</div>
+				<input type="button" value="确定异动" class="btn btn-success " onclick="Change(2)" style="background-color: #d6487e"/>
+			</div>
+		</div>
+		<!--<div class="mt-20">-->
+			<!--会员异动后-->
+			<!--<table class="table table-border table-bordered table-bg table-hover ">-->
+				<!--<thead>-->
+				<!--<tr class="text-c">-->
+					<!--<th width="40">职级</th>-->
+					<!--<th width="60">推荐人代码</th>-->
+					<!--<th width="60">推荐人姓名</th>-->
+					<!--<th width="60">标准店代码</th>-->
+					<!--<th width="100">标准店名称</th>-->
+					<!--<th width="100">旗舰店代码</th>-->
+					<!--<th width="60">旗舰店名称</th>-->
+					<!--<th width="60">分公司代码</th>-->
+					<!--<th width="60">分公司名称</th>-->
+				<!--</tr>-->
+				<!--</thead>-->
+				<!--<tbody>-->
+				<!--<tr class="text-c va-m t_<{$vo.m_number}>" >-->
+					<!--<td><{$vo.m_number}></td>-->
+					<!--<td><{$vo.name}></td>-->
+					<!--<td class="text-l"><{$vo.mobile}></td>-->
+					<!--<td class="text-l"><{$vo.member_num}></td>-->
+					<!--<td class="text-l"><{$vo.identity_card}></td>-->
+					<!--<td class="text-l"><{$vo.identity_card}></td>-->
+					<!--<td class="text-l"><{$vo.identity_card}></td>-->
+					<!--<td class="text-l"><{$vo.identity_card}></td>-->
+					<!--<td class="text-l"><{$vo.identity_card}></td>-->
+				<!--</tr>-->
+				<!--</tbody>-->
+			<!--</table>-->
+		<!--</div>-->
+	</div>
+</div>
+
+
+<include file="Public/_footer" title="" />
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+
+	/*会员确定异动*/
+	function Change(type){
+		layer.confirm('真的要异动？', {
+			btn: ['确定','取消'], //按钮
+			shade: false //不显示遮罩
+		}, function(){
+			var number=$('#number').val();
+			if(number == ""){
+				layer.msg('请选择会员', {icon: 2});
+				return false;
+			}
+//			判断异动类型
+			if(type == 1 ){
+				var content=$('#member_level').val();
+				if(content == "aaa"){
+					layer.msg('请选择职级', {icon: 2});
+					return false;
+				}
+			}else{
+				var content=$('#r_number').val();
+				if(content == ""){
+					layer.msg('请填写推荐人代码', {icon: 2});
+					return false;
+				}
+			}
+			var url = "<{:U('MemChange/change')}>";
+			$.post(url,{'m_number':number,'type':type,'content':content},function(data){
+				console.log(data);
+				switch(data){
+					case 1:
+						layer.msg('操作成功！',{icon: 1});
+						break;
+					case 2:
+						layer.msg('推荐人为旗下会员，失败', {icon: 2});
+						break;
+					default:
+						layer.msg('操作失败', {icon: 2});
+				}
+			})
+		});
+	}
+
+//会员异动，职级异动交互显示
+	$(function(){
+		$('.btn_zj').click(function(){
+			$('.btn_zjDiv').show();
+			$('.btn_tjDiv').hide()
+		});
+		$('.btn_tj').click(function(){
+			$('.btn_zjDiv').hide();
+			$('.btn_tjDiv').show()
+		})
+	})
+</script>
+</body>
+</html>

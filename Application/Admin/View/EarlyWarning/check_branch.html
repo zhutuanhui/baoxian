@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__lib/html5shiv.js"></script>
+<script type="text/javascript" src="__PUBLIC__lib/respond.min.js"></script>
+<![endif]-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="__PUBLIC__lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>考核预警首页</title>
+    <link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+
+<body class="pos-r">
+    <div style="">
+        <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 考核预警管理 <span class="c-gray en">&gt;</span> 考核预警首页 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+        <div class="page-container">
+
+                <div class="text-c">
+                   <span class="select-box inline">
+                        <select name="branch" class="select" >
+                             <option value="0" selected="selected">分公司查询</option>
+                            <volist name="branch_list" id="data">
+                                     <option value="<{$data.org_code}>"><{$data.name}></option>
+                            </volist>
+                        </select>
+                    </span>
+                    <button name="search" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+                </div>
+
+            <div class="cl pd-5 bg-1 bk-gray mt-20">
+               <span class="l">
+                    <a class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe644;</i> 导出结果</a></span>
+                </div>
+            <div class="mt-20">
+              <table class="table table-border table-bordered table-bg table-hover table-sort">
+                <thead>
+                    <tr>
+                        <th width="70" rowspan="2">分公司</th>
+                        <th width="60" colspan="3">旗舰店</th>
+                        <th width="60" colspan="3">标准店</th>
+                        <th width="60" colspan="3">会员</th>
+
+                    </tr>
+                    <tr>
+                        <th width="50"> 维持</th>
+                        <th width="50"> 降级</th>
+                        <th width="50"> 观察</th>
+                        <th width="50"> 维持</th>
+                        <th width="50"> 降级</th>
+                        <th width="50"> 观察</th>
+                        <th width="50">达标人数</th>
+                        <th width="50"> 申请人数</th>
+                        <th width="50">申请率</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.15/jquery.dataTables1.5.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript">
+        var table;
+
+
+        $(function(){
+
+              table = $('.table-sort').DataTable({
+                    "lengthChange": false, //是否允许用户改变表格每页显示的记录数
+                    serverSide: false, //启用服务器端分页
+                    "language": {
+                            "processing": "加载中...",
+                            "lengthMenu": "每页显示 _MENU_ 条数据",
+                            "zeroRecords": "没有匹配结果",
+                            "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                            "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                            "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                            "infoPostFix": "",
+                            "search": "搜索:",
+                            "url": "",
+                            "emptyTable": "没有匹配结果",
+                            "loadingRecords": "载入中...",
+                            "thousands": ",",
+                            "paginate": {
+                                "first": "首页",
+                                "previous": "上一页",
+                                "next": "下一页",
+                                "last": "末页"
+                            }},
+                    searching: false, //禁用原生搜索
+                    order: [], //取消默认排序查询,否则复选框一列会出现小箭头
+                    pagingType: "full_numbers", //分页样式：simple,simple_numbers,full,full_numbers
+                    "aaSorting": [
+                        [1, "desc"]
+                    ], //默认第几个排序
+                    "autoWidth": false,
+
+                    "bStateSave": false, //状态保存
+                    "aoColumnDefs": [{// 制定列不参与排序
+                        "orderable": false,
+                        "aTargets": [0,1,2,3,4,5,6,7,8,9]
+                    }],
+                 "ajax": {
+                        type: "GET",
+                        dataType:"json",
+                        data:function(){
+
+                            var branch = $('.select option:selected').val();
+                            var param;
+                            param ={'branch':branch};
+                            return param;
+                        },
+                        url: "<{:U('Admin/EarlyWarning/check_branch_result')}>",
+                        dataSrc: function(result) {
+
+                                        return result.data;
+                                    }
+                        },
+                        columns : [
+
+                                    {data : "name"},
+                                    {data : "flagship_maintain"},
+                                    {data : "flagship_demote"},
+                                    {data : "flagship_observed"},
+                                    {data : "shop_maintain"},
+                                    {data : "shop_observed"},
+                                    {data : "shop_demote"},
+                                    {data : "shop_demote"},
+                                    {data : "shop_demote"},
+                                    {data : "shop_demote"},
+
+
+                                ]
+
+            }); //TABLE闭合标签
+
+        $('#search').click(function() {
+           //  var branch = $('.select option:selected').val();
+
+            table.ajax.reload();
+        });
+
+    }) //jquery闭合标签
+    </script>
+
+</body>
+
+</html>

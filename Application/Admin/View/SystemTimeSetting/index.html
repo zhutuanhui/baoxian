@@ -1,0 +1,184 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+<!--
+	作者：1102546708@qq.com
+	时间：2017-05-24
+	描述：
+-->
+<style type="text/css">
+	#from p.p{
+		width: 100%;
+		font-size: 10px;
+		text-align: center;
+		line-height: 40px;
+		color: #CCCCCC;
+	}
+	#from li{
+		float: left;
+		width: 70%;
+		line-height: 50px;
+		box-sizing: border-box;
+	}
+	#from li.first{
+		width: 30%;
+	}
+	#from li p.right{
+		text-align: right;
+		line-height: 100px;
+		margin-right: 20px;
+	}
+	#from li input{
+		width: 100px;
+		height: 30px;
+	}
+	#from button{
+		margin: 0 auto;
+	}
+	#from input{
+		text-align: center;
+	}
+</style>
+<title>系统时间设置</title>
+</head>
+<body>
+<article class="page-container ">
+	<form action="#" method="post" class="form form-horizontal" id="from" enctype="multipart/form-data">
+		<p class="p">非寿险发佣时间分别为每月几号，最小为1号最大为28号</p>
+		<ul>
+			<li class="first">
+				<p class="right">非寿险发佣时间为每月</p>
+			</li>
+			<li>
+				<p>
+					<input type="text"  name="key[ONE_NUMBER]" value="<{$system.ONE_NUMBER}>"/> 号 <input type="text" name="key[TWO_NUMBER]" value="<{$system.TWO_NUMBER}>"/>
+					 号
+					<input type="text" name="key[THREE_NUMBER]" value="<{$system.THREE_NUMBER}>" /> 号 <input type="text" name="key[FOUR_NUMBER]" value="<{$system.FOUR_NUMBER}>" /> 号
+				</p>
+				<p>
+					<input type="text" name="key[FIVE_NUMBER]" value="<{$system.FIVE_NUMBER}>"/> 号 <input type="text" name="key[SIX_NUMBER]" value="<{$system.SIX_NUMBER}>"/>
+					 号
+					<input type="text" name="key[SEVEN_NUMBER]" value="<{$system.SEVEN_NUMBER}>"/> 号 <input type="text" name="key[EIGHT_NUMBER]" value="<{$system.EIGHT_NUMBER}>"/> 号
+				</p>
+			</li>
+		</ul>
+		<button style="display: table;text-align: center;" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+	</form>
+
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+	/*修改 */
+	$("#from").validate({
+		rules:{
+			'key[ONE_NUMBER]':{
+				digits:true,
+				range:[1,28],
+			},
+			'key[TWO_NUMBER]':{
+				digits:true,
+				range:[1,28],
+			},
+			'key[THREE_NUMBER]':{
+				digits:true,
+				range:[1,28],
+			},
+			'key[FOUR_NUMBER]':{
+				digits:true,
+				range:[1,28],
+			},
+			'key[FIVE_NUMBER]':{
+				digits:true,
+				range:[1,28],
+			},
+			'key[SIX_NUMBER]':{
+				digits:true,
+				range:[1,28],
+			},
+			'key[SEVEN_NUMBER]':{
+				digits:true,
+				range:[1,28],
+			},
+			'key[EIGHT_NUMBER]':{
+				digits:true
+			},
+		},
+		/*errorPlacement: function(error, element) { //错误信息位置设置方法
+
+			console.log(error.error)
+			error.appendTo( element.parent().next() ); //这里的element是录入数据的对象
+		},*/
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			var index =$("form").serialize();
+			$(form).ajaxSubmit({
+				type: 'POST',
+				url: "<{:U('SystemTimeSetting/sitemessage')}>",
+				dataType: 'json',
+				data:{index},
+				success: function(json){
+					switch (json.status)
+					{
+						case 1:
+							layer.msg('修改成功!',{icon:1,time:2000});
+//							window.setTimeout("self.location='<{:U(\"ProductType/index\")}>'",2000);
+							setTimeout("location.reload()",1000);
+							break;
+						case 2:
+							layer.msg('修改失败!',{icon:2,time:2000});
+							setTimeout("location.reload()",1000);
+							break;
+						case 3:
+							layer.msg('文件不存在或读取失败!',{icon:2,time:2000});
+							setTimeout("location.reload()",1000);
+							break;
+						case 4:
+							layer.msg('文件写入错误，请检查权限！!',{icon:2,time:2000});
+							setTimeout("location.reload()",1000);
+							break;
+					}
+				}
+			});
+		}
+	});
+
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

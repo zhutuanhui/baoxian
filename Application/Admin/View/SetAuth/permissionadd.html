@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/lib/html5shiv.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="__PUBLIC__/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加管理员 - 管理员管理 - H-ui.admin v2.4</title>
+<meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-admin-add" >
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限资源名称：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="<{$info[name]}>" placeholder="" id="name" name="name">
+		</div>
+	</div>
+	
+<input type="hidden" class="input-text" value="<{$info[id]}>" placeholder="" id="a_id" name="a_id">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">所属分组：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:40%;">
+			<select class="select" name="auth_group" id="auth_group" onchange="get_group_list($(this))">
+				<foreach name="group" item="vo">
+				<option value="<{$key}>" <if condition="$info['group'] eq $vo"> selected </if>  ><{$vo[name]}></option>
+			</foreach>
+			</select>
+			</select>
+			</span><span style="color:cyan"> &nbsp;&nbsp;&nbsp;@ &nbsp;&nbsp;&nbsp;</span>
+			<span class="select-box" style="width:150px;">
+			<select class="select"  size="1" id="auth_group_cat" name="auth_pid">
+			
+			</select>
+			</span> </div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">添加权限码：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:25%;">
+			<select class="select"  size="1" onchange="get_act_list($(this))" id="controller">
+			<foreach name="planList" item="vo">
+				<option value="<{$vo}>"><{$vo}></option>
+			</foreach>
+				
+			</select>
+			</span><span style="color:cyan"> &nbsp;&nbsp;&nbsp;@ &nbsp;&nbsp;&nbsp;</span>
+			<span class="select-box" style="width:150px;">
+			<select class="select"  size="1" id="act_list">
+			
+			</select>
+			</span><input class="btn radius btn-secondary" type="button" value="添加" onclick="add_right()">
+			</div>
+	</div>
+	<div class="row cl">
+	<label class="form-label col-xs-4 col-sm-3">权限列表：</label>
+	<div class="formControls col-xs-8 col-sm-9">
+		<table class="table table-border table-bordered table-bg">
+                                			 <thead><tr><th style="width:80%">权限码</th><th>操作</th></tr></thead>
+                                			 <tbody id="rightList">
+                                			 	<foreach name="info[right]" item="vo">
+                                			 	<tr><td><input name="right[]" type="text" value="<{$vo}>"  class="form-control input-text right_code " style="width:400px;"></td>
+                                			 	<td><a href="javascript:;" onclick="$(this).parent().parent().remove();">删除</a></td></tr>
+                                			 	</foreach>
+                                			 </tbody>
+                                		</table>
+	</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius"  onclick="submits()" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去--> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+});
+
+function submits(){
+	var a_id = $('#a_id').val();
+	var auth_group_cat = $('#auth_group_cat').val();
+	var name = $('#name').val();
+	if(!name){
+		layer.msg('请填写资源名称',{icon:2,time:2000});return false;
+	}
+	var auth_group = $('#auth_group').val();
+	if(!auth_group){
+		layer.msg('请填写所属分组',{icon:2,time:2000});return false;
+	}
+		var codes = [];
+		$('#rightList .form-control').each(function(i,o){
+		if($(o).val() != ''){
+			codes.push($(o).val());
+		}
+	})
+	if(codes==''){
+		layer.msg('请添加权限码',{icon:2,time:2000});return false;
+	}
+	if(name && auth_group && codes){
+		$.ajax({
+			url: "<{:U('SetAuth/permissionadd')}>",
+			type:'post',
+			data: {'name':name,'auth_code':codes,'auth_group':auth_group,'a_id':a_id,'auth_pid':auth_group_cat},
+			dataType:'json',
+			success:function(data){
+				if(data.code==1000){
+						layer.msg(data.msg,{icon:1,time:2000});
+						setTimeout(function () { 
+					        var index = parent.layer.getFrameIndex(window.name);
+							parent.$('.btn-refresh').click();
+							parent.layer.close(index);
+							window.location.href='<{:U(\"SetAuth/permission\")}>';
+   						 }, 2000);
+						
+					}else{
+						layer.msg(data.msg,{icon:2,time:2000});
+					}
+			}
+		});
+
+	}
+}
+function get_act_list(obj){
+	var ss = $(obj).val();
+	$.ajax({
+		url: "<{:U('SetAuth/ajax_get_action')}>",
+		type:'post',
+		data: {'controller':$(obj).val()},
+		dataType:'html',
+		success:function(res){
+			$('#act_list').empty().append(res);
+		}
+	});
+}
+function get_group_list(obj){
+	var ss = $(obj).val();
+	$.ajax({
+		url: "<{:U('SetAuth/ajax_group_action')}>",
+		type:'post',
+		data: {'controller':$(obj).val()},
+		dataType:'html',
+		success:function(res){
+			$('#auth_group_cat').empty().append(res);
+		}
+	});
+}
+function add_right(){
+	var a = [];
+	$('#rightList .form-control').each(function(i,o){
+		if($(o).val() != ''){
+			a.push($(o).val());
+		}
+	})
+	var ncode = $('#controller').val();
+	if(ncode !== ''){
+		var temp = ncode+'@'+ $('#act_list').val();
+		if($.inArray(temp,a) != -1){
+			layer.msg('此权限码已经添加！', {icon: 2,time: 1000});
+			return false;
+		}
+	}
+	var strtr = '<tr>';
+	if(ncode!= ''){
+		strtr += '<td><input type="text"  name="right[]" value="'+ncode+'@'+ $('#act_list').val()+'" class="form-control input-text right_code" style="width:400px;"></td>';
+	}else{
+		strtr += '<td><input type="text" name="right[]" value="" class="form-control" style="width:400px;"></td>';
+	}		
+	strtr += '<td><a href="javascript:;" onclick="$(this).parent().parent().remove();">删除</a></td>';
+	$('#rightList').append(strtr);	
+}
+</script>
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

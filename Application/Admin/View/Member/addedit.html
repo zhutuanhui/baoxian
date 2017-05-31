@@ -1,0 +1,346 @@
+
+<include file="Public/_meta" title="" />
+</head>
+<body>
+
+<div class="page-container">
+    <form action="<{:U('member/AddEditDo')}>"  method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
+
+        基本信息
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>姓名：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.name}>"  id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">业务代码：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.m_number}>" readonly="readonly" id="m_number" name="m_number">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">资格证号：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.member_num}>" id="member_num" name="member_num">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机号：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" style="width: 393.5px" maxlength="11" class="input-text" value="<{$info.mobile}>"  id="mobile" name="mobile">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">邮箱：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="email" class="input-text" value="<{$info.email}>" id="email" name="email">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">性别：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <select name="gender" class="select">
+                    <option value="1" <eq name="info.gender" value="1"> selected="selected" </eq> >男</option>
+                    <option value="0" <eq name="info.gender" value="0"> selected="selected" </eq> >女</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">生日：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" style="width: 393.5px" onClick="WdatePicker({ dateFmt: 'MMdd', isShowToday: false, isShowClear: false })" id="birthday" name="birthday" value="<{$info.birthday}>"  class="input-text Wdate" >
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">学历：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.education}>"  id="education" name="education">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" style="width: 393.5px" maxlength="18" class="input-text" value="<{$info.identity_card}>"  id="identity_card" name="identity_card">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">开户行：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.bank_name}>"  id="bank_name" name="bank_name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">银行卡号：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text"style="width: 393.5px" class="input-text" value="<{$info.bank_card}>"  id="bank_card" name="bank_card">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">积分：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.integral}>" disabled="disabled" id="integral" name="integral">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">审核状态：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <select name="check_status" class="select">
+                    <option value="1" <eq name="info.check_status" value="1"> selected="selected" </eq> >通过</option>
+                    <option value="0" <eq name="info.check_status" value="0"> selected="selected" </eq> >审核中</option>
+                    <option value="-1" <eq name="info.check_status" value="-1"> selected="selected" </eq> >未通过</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">会员状态：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <select name="status" class="select">
+                    <option value="1" <eq name="info.status" value="1"> selected="selected" </eq> >正常</option>
+                    <option value="0" <eq name="info.status" value="0"> selected="selected" </eq> >禁用</option>
+                    <option value="-1" <eq name="info.status" value="-1"> selected="selected" </eq> >删除</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">地址：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <select name="province" id='province' onchange='provinceChange()' style=" width:120px;">
+                    <option value="">请选择省份</option>
+
+                    <if condition="$info['province']">
+                        <volist name=":GetCity(0)" id='provo'>
+                            <if condition="$info['province'] eq $provo['id']">
+                                <option value="<{$provo.id}>" selected ><{$provo.name}></option>
+                                <else/>
+                                <option value="<{$provo.id}>" ><{$provo.name}></option>
+                            </if>
+                        </volist>
+                        <else />
+                        <volist name=':GetCity(0)' id='provo'>
+                            <option value="<{$provo.id}>"><{$provo.name}></option>
+                        </volist>
+                    </if>
+                </select>
+                <select name="city" id='city' onchange="cityChange()" style=" width:120px;">
+                    <option value="">请选择城市</option>
+
+                    <volist name=":GetCity($info['province'])" id='civo'>
+                        <if condition="$info['city'] eq $civo['id']">
+                            <option value="<{$civo.id}>" selected ><{$civo.name}></option>
+                            <else/>
+                            <option value="<{$civo.id}>" ><{$civo.name}></option>
+                        </if>
+                    </volist>
+
+                </select>
+                <select name="district" id='district'  style=" width:120px;">
+                    <option value="">请选择地区</option>
+                    <volist name=":GetCity($info['city'])" id='advo'>
+                        <if condition="$info['district'] eq $advo['id']">
+                            <option value="<{$advo.id}>" selected ><{$advo.name}></option>
+                            <else/>
+                            <option value="<{$advo.id}>" ><{$advo.name}></option>
+                        </if>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">详细地址：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.address}>"  id="address" name="address">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">微信号	：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.weixin}>"  id="weixin" name="weixin">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">QQ：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.qq}>"  id="qq" name="qq">
+            </div>
+        </div>
+
+        所属机构信息
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">会员级别：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <empty name="info.member_level">
+                    <select name="member_level" class="select">
+                        <option value="0" selected="selected" >普通会员</option>
+                        <option value="1" >资深会员</option>
+                        <option value="2" >标准店店长</option>
+                        <option value="3" >旗舰店店长</option>
+                    </select>
+                    <else/>
+                    <switch name="info.member_level" >
+                        <case value="0">普通会员</case>
+                        <case value="1">资深会员</case>
+                        <case value="2">标准店店长</case>
+                        <case value="3">旗舰店店长</case>
+                    </switch>
+                </empty>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>推荐人代码：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.recommend_member_id}>" <notempty name="info.recommend_member_id" > disabled="disabled" </notempty> id="recommend_member_id" name="recommend_member_id">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">我的店铺代码：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.m_number}>" disabled="disabled" id="my_shop_number" name="my_shop_number">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">所属标准店代码：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.shop_number}>" disabled="disabled" id="shop_number" name="shop_number">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">所属旗舰店代码 ：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.flagship_number}>" disabled="disabled" id="flagship_number" name="flagship_number">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">所属分公司代码 ：</label>
+            <div class="formControls col-xs-5 col-sm-3">
+                <input type="text" class="input-text" value="<{$info.branch_shop_number}>" disabled="disabled" id="branch_shop_number" name="branch_shop_number">
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+                <!--<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>-->
+                <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<include file="Public/_footer" title="" />
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/ueditor/1.4.3/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="__PUBLIC__/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    //查询地区市
+    function provinceChange(){
+        var pid=$('#province').val();
+        var url = "<{:U('Public/addajax')}>";
+        var str1='城市';
+        $.post(url,{'pid':pid,'string':str1},function(data){
+            if(data){
+                $("#city").html(data);
+                $("#area").html('<option value="">请选择地区</option>');
+            }
+        });
+    }
+    //查询地区县
+    function cityChange(){
+        var pid=$('#city').val();
+        var url = "<{:U('Public/addajax')}>";
+        var str1='地区';
+        $.post(url,{'pid':pid,'string':str1},function(data){
+            if(data){
+                $("#district").html(data);
+            }
+        });
+    }
+    //提交验证
+    //function addedit(){
+    //   // var val=$("#bank_name1").attr('checked');
+    //    var name = $('#name').val();//姓名
+    //    var mobile = $('#mobile').val();//手机号
+    //    var identity_card = $('#identity_card').val();//身份证号
+    //
+    //    if(!name){
+    //        layer.msg('请填写姓名');
+    //        return false;
+    //    }
+    //    if(!mobile){
+    //        layer.msg('请填写手机号');
+    //        return false;
+    //    }
+    //    if(!name){
+    //        layer.msg('请填写身份证号');
+    //        return false;
+    //    }
+    //
+    //}
+
+    /*
+     * 判断提交字段值是否为空
+     * required  必须填写
+     * digits	只可输入数字
+     * max       最大值
+     * min       最小值
+     * */
+    $(function(){
+        $("#form-article-add").validate({
+            rules:{
+                name:{
+                    required:true
+                },
+                mobile:{
+                    required:true,
+                    isMobile:true,
+                },
+                identity_card:{
+                    required:true,
+                    creditcard:true,
+                }
+            },
+            onkeyup:false,
+            focusCleanup:true,
+            success:"valid",
+            submitHandler:function(form){
+                var index =$("form").serialize();
+                $(form).ajaxSubmit({
+                    type: 'POST',
+                    url: "<{:U('member/AddEditDo')}>",
+                    dataType: 'json',
+                    data:{index},
+                    success: function(json){
+                        switch (json.status)
+                        {
+                            case 0:
+                                layer.msg('添加失败!',{icon:1,time:2000});
+                                // window.setTimeout("window.location.href='<{:U(\"member/index\")}>'",2000);
+//                            setTimeout("location.reload()",1000);
+                                break;
+                            case 1:
+                                layer.msg('添加成功!',{icon:1,time:2000});
+                                //   window.setTimeout("window.location.href='<{:U(\"member/index\")}>'",2000);
+//                            location.href('<{:U("Product/index")}>');
+
+                                break;
+                        }
+                    }
+                });
+//            var index = parent.layer.getFrameIndex(window.name);
+                //parent.$('.btn-refresh').click();
+//			parent.layer.close(index);
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

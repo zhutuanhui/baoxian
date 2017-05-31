@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="lib/html5shiv.js"></script>
+	<script type="text/javascript" src="lib/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+	<!--[if IE 6]>
+	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<title>考核设置</title>
+	<link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+<body class="pos-r">
+
+<div style="">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系统设置 <span class="c-gray en">&gt;</span> 考核设置 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="page-container">
+		<!--<div class="cl pd-5 bg-1 bk-gray mt-20">
+			<span class="l">
+				<a class="btn btn-primary radius" onclick="product_add('添加考核','<{:U('Systemcheck/checkadd')}>')" href="javascript:;">
+					<i class="Hui-iconfont">&#xe600;</i> 添加考核
+				</a>
+			</span>
+			<span class="r">共有数据：<strong><{$count}></strong> 条</span> 
+		</div>-->
+		<div class="mt-20">
+			<!--table-sort-->
+			<table class="table table-border table-bordered table-bg table-hover table-sort ">
+				<thead>
+						<tr class="text-c">
+					<th rowspan="2">地区</th>
+					<th rowspan="2">店铺类型</th>
+					<th rowspan="2">考核期</th>
+					<th rowspan="2">业务指标</th>
+					<!--<th rowspan="2">人力指标</th>-->
+					<th rowspan="2">直接推荐人数</th>
+					<th rowspan="2">所辖人数</th>
+					<th rowspan="2">13个月继续率</th>
+					<th rowspan="2">直接推荐标准店</th>
+					<th rowspan="2">业务指标基数(经营期)</th>
+					<th rowspan="2">考核业务指标倍数(经营期)</th>
+					<th rowspan="2">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+
+				<foreach name="datas" item="v" >
+					<tr class="text-c va-m">
+						<td>
+							<switch name="v.area_standard" >
+								<case value="1"><span >A</span></case>
+								<case value="2"><span >B</span></case>
+								<case value="3"><span >C</span></case>
+							</switch>
+						</td>
+						<td>
+							<switch name="v.shop_level" >
+								<case value="1"><span >标准店筹备期</span></case>
+								<case value="2"><span >标准店经营期和观察期</span></case>
+								<case value="3"><span >旗舰店筹备期</span></case>
+								<case value="4"><span >旗舰店经营期和观察期</span></case>
+							</switch>
+						</td>
+						<td>
+							<switch name="v.assess_range" >
+								<case value="0"><span >连续三个月</span></case>
+								<case value="1"><span >半年</span></case>
+							</switch>
+						</td>
+						<if condition="$v.business_ind eq null">
+							<td>--</td>
+						<else/>	
+						<td><{$v.business_ind}></td>
+						</if>
+						<if condition="$v.first_hand_human eq null">
+							<td>--</td>
+						<else/>	
+						<td><{$v.first_hand_human}></td>
+						</if>
+						<if condition="$v.subordinate eq null">
+							<td>--</td>
+						<else/>	
+						<td><{$v.subordinate}></td>
+						</if>
+					
+						<td><{$v.continuation_rate}></td>
+						<if condition="$v.first_hand_shop eq null">
+							<td>--</td>
+						<else/>	
+						<td><{$v.first_hand_shop}></td>
+						</if>
+						<if condition="$v.business_base eq null">
+							<td>--</td>
+						<else/>	
+						<td><{$v.business_base}></td>
+						</if>
+						<if condition="$v.business_multiple eq null">
+							<td>--</td>
+						<else/>	
+						<td><{$v.business_multiple}></td>
+						</if>
+						<td class="td-manage">
+<<<<<<< HEAD
+
+							<a style="text-decoration:none" href="<{:U('ReleaseAudit/detailed',array('id'=>$v['id']))}>"title="详情">
+								<i class="Hui-iconfont">&#xe720;</i>
+							</a>
+							<a style="text-decoration:none" href="<{:U('Systemcheck/checkadd',array('id'=>$v['id']))}>"title="编辑">
+=======
+							<a style="text-decoration:none" onclick="product_edit('编辑','<{:U('Systemcheck/edit',array('id'=>$v['id']))}>')" href="javascript:;"title="编辑">
+>>>>>>> 1c0bef7bab96b83f6b5021e7a0787df2e5de23a1
+								<i class="Hui-iconfont">&#xe6df;</i>
+							</a>
+							<!--<a style="text-decoration:none" class="ml-5" onClick="product_del(this,-2,<{$v['id']}>)" href="javascript:;" title="删除">
+								<i class="Hui-iconfont">&#xe6e2;</i>
+							</a>-->
+
+						</td>
+					</tr>
+				</foreach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+	/*添加*/
+	function product_add(title,url){
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url
+		});
+		layer.full(index);
+	}
+	/*编辑*/
+	function product_edit(title,url,id){
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url
+		});
+		layer.full(index);
+	}
+	/*删除*/
+	function product_del(obj,status,id){
+		layer.confirm('确认要删除吗？',function(index){
+			$.ajax({
+				type: 'POST',
+				url: "<{:U('Systemcheck/del')}>",
+				dataType: 'json',
+				data: {"status":status,"id":id},
+				success: function(json){
+					switch (json.status)
+					{
+						case 1:
+							$(obj).parents("tr").remove();
+							layer.msg('删除成功!',{icon:6,time:1000});
+							setTimeout("location.reload()",1000);
+							break;
+						case 2:
+							$(obj).parents("tr").remove();
+							layer.msg('删除失败!',{icon:5,time:1000});
+							setTimeout("location.reload()",1000);
+							break;
+					}
+				},
+			});
+		});
+	}
+
+
+</script>
+</body>
+</html>
