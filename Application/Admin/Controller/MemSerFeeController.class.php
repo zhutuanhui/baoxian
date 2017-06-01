@@ -40,24 +40,43 @@ class MemSerFeeController extends AdminbaseController
 		if($minfo['upt']){
 			//首期寿险服务费
 			$initial = $this->initial($minfo['upt'],$FeeCon['member'],$post['code'],'upt');
-			dump($initial);
+		//	dump($initial);
 			//续期寿险服务费
 			$renewal = $this->renewal($minfo['upt'],$post['code'],'upt');
-			dump($renewal);
+		//	dump($renewal);
 			//非寿险服务费
 			$nonlife = $this->nonlife($minfo['upt'],$post['code'],'upt');
 			//dump($nonlife);
-			//整合会员的服务费
-			$upt = array();
-			foreach ($initial as $k=>$v){
-				$upt[$k]['number'] = $v['number'];
-				$upt[$k]['initial'] = $v['initial'];
-				$upt[$k]['renewal'] = $renewal[$k]['renewal'];
-				$upt[$k]['nonli'] = $nonlife[$k]['nonli'];
-			}
-		  //dump($upt);
-			die;
+			//其他家扣款统计
+			$otherdeduc = $this->Otherdeduc($minfo['upt'],$post['code'],'upt');
+		//	dump($otherdeduc);
 			//计税（首期，续期，非寿）
+
+			//整合会员的服务费
+			$upt_save = array();
+			$time = time();
+			$month = mktime(0, 0 , 0,date("m")-1,1,date("Y"));
+			foreach ($initial as $k=>$v){
+				$upt_save[$k]['m_number'] = $v['number']; //会员代码
+				$upt_save[$k]['initial_service'] = $v['initial']; //首推服务费
+				$upt_save[$k]['renewal_service'] = $renewal[$k]['renewal']; //续期服务费
+				$upt_save[$k]['nonlife_service'] = $nonlife[$k]['nonli'];   //非寿险服务费
+				$upt_save[$k]['Debit'] = $otherdeduc[$k]["money"];   //其他加扣款
+				$upt_save[$k]['deduction'] = 0;   //扣税金额
+				$upt_save[$k]['already_pay'] = $nonlife[$k]['nonli'];   //已发工资
+				$upt_save[$k]['Should_pay'] = $v['initial']+ $renewal[$k]['renewal']+$nonlife[$k]['nonli'];   //应发工资
+				$upt_save[$k]['actual_pay'] = $upt_save[$k]['Should_pay']-$upt_save[$k]['deduction']+$upt_save[$k]['Debit']-$upt_save[$k]['already_pay'];   //实发工资
+				$upt_save[$k]['on_line'] = $upt_save[$k]['actual_pay'];   //线上发放
+				$upt_save[$k]['branch_shop'] = 1;   //分公司意见   1=>未通过 2=>通过
+				$upt_save[$k]['headquarters'] = 1;   //总公司意见 1=>未通过 2=>通过
+				$upt_save[$k]['month'] = $month;   //服务费计算时间  以月份为单位
+				$upt_save[$k]['time'] = $time;   //时间
+			}
+		 // dump($upt_save);
+			//数据库存储
+			$otherdeduc = $this->insertsql($minfo['upt'],$post['code'],'upt',$upt_save);
+			die;
+
 		}else{
 			$upt = 1;
 		}
@@ -152,13 +171,119 @@ class MemSerFeeController extends AdminbaseController
 
 	}
 	/*
+	*  功能：数据库操作
+	*  时间：2017-05-31
+	*  作者：lzt
+	*/
+	public function insertsql($member,$code,$type,$save){
+		//查询业务员所属店铺
+		//服务费计算表插入数据
+		$saveid =array();
+//		$ser_fee_calc = M('service_fee_calculation');
+//		foreach($save as $k=>$v){
+//			$saveid[$k]["number"] = $k;
+//			$res = $ser_fee_calc->data($v)->add();
+//			if($res){
+//				$saveid[$k]["id"] = $res;
+//			}else{
+//				dump($saveid);
+//				return 0;
+//			}
+//		}
+		$life = "aaaaaaaaaaaaaa";
+//		S($life,$saveid,14400);
+		$saveid = S($life);
+		dump($saveid);
+
+		//服务费于保单关系表插入数据（首期，续期，非寿）
+		$ser_fee_poli = M('service_fee_policy');
+		$time =time();
+		//获取首期缓存
+		$life1 = "initial_service_".$code."_".$type;
+		$initial = S($life1);
+		$initial2 = array();
+		//组装数据
+		foreach ($initial as $ki=>$vi){
+			$initial2[$vi['salesman_number']][$vi['policy_number']]['ser_feee_id'] =$saveid[$vi['salesman_number']]['id'];  //'服务费计算详情ID',
+			$initial2[$vi['salesman_number']][$vi['policy_number']]['m_number'] =$vi['salesman_number'];  //会员代码
+			$initial2[$vi['salesman_number']][$vi['policy_number']]['policy_number'] =$vi['policy_number']; // 保单号
+			$initial2[$vi['salesman_number']][$vi['policy_number']]['policy_value'] =$vi['value_premium']; // 价保
+			$initial2[$vi['salesman_number']][$vi['policy_number']]['policy_type'] =1; // '保险类型 1:首期，2续期，3非寿',
+			$initial2[$vi['salesman_number']][$vi['policy_number']]['time'] =$time; // 时间
+		}
+		//插入数据库
+		foreach ($initial2 as $ki2=>$vi2){
+			dump($vi2);
+			$ress = $ser_fee_poli->data($vi2)->addAll();
+			dump($ress);
+		}
+		//dump( Phpinfo());
+
+		//获取续期缓存
+		$life2 = "renewal_service_".$code."_".$type;
+		$renewal = S($life2);
+		$renewal2 = array();
+		foreach ($renewal as $kr=>$vr){
+			$renewal2[$vr['salesman_number']][$vr['policy_number']]['number'] =$vr['salesman_number'];  //会员代码
+			$renewal2[$vr['salesman_number']][$vr['policy_number']]['policy_number'] =$vr['policy_number']; // 保单号
+			$renewal2[$vr['salesman_number']][$vr['policy_number']]['fee'] =$vr['insurance_premium']; // 规保
+		}
+	//	dump($renewal2);
+		//获取非寿缓存
+		$life3 = "nonlife_service_".$code."_".$type;
+		$nonlife = S($life3);
+		$nonlife2 = array();
+		foreach ($nonlife as $kn=>$vn){
+			$nonlife2[$vn['salesman_number']][$vn['policy_number']]['number'] =$vn['salesman_number'];  //会员代码
+			$nonlife2[$vn['salesman_number']][$vn['policy_number']]['policy_number'] =$vn['policy_number']; // 保单号
+			$nonlife2[$vn['salesman_number']][$vn['policy_number']]['fee'] =$vn['insurance_premium']; // 规保
+		}
+	//	dump($nonlife2);
+		//其他加扣款表修改数据
+
+
+	}
+	/*
+	*  功能：其他加扣款统计
+	*  时间：2017-05-31
+	*  作者：lzt
+	*/
+	public function Otherdeduc($member,$code,$type){
+		//dump($member);
+		//判断缓存是否存在
+		$life = "otherdeduc_service_".$code."_".$type;
+		if(S($life)){
+			$otherdeduc = S($life);
+		}else{
+			//查询业务员所有加扣款
+			$where['salesman_number'] = array('in',$member);  //业务员代码
+			$where['condition'] = 1;  //失效状态 0=》失效 1=》有效
+			$otherdeduc = M('add_deductions')->where($where)->field('salesman_number,state,money')->select();
+			S($life,$otherdeduc,3600);
+		}
+
+		//dump($member);
+		$renewal = array();
+		//其他加扣款合计
+		foreach ($otherdeduc  as $k=>$v){
+			if($v['state'] == 1){
+				$renewal[$v['salesman_number']]['money'] -= $v['money'];
+			}else{
+				$renewal[$v['salesman_number']]['money'] += $v['money'];
+			}
+		}
+		//dump($renewal);
+		return $renewal;
+	}
+
+	/*
 	*  功能：续期服务费计算
 	*  时间：2017-05-26
 	*  作者：lzt
 	*/
 	public function renewal($member,$code,$type){
 		//dump($member);
-		//查询相关续期保单并对保单分类 13个月 //25个月。。。。
+		//查询相关续期保单。
 		//判断缓存是否存在
 		$life = "renewal_service_".$code."_".$type;
 		if(S($life)){
@@ -168,6 +293,17 @@ class MemSerFeeController extends AdminbaseController
 			$insu_re = $this->getinsure($member);
 			S($life,$insu_re,3600);
 		}
+
+		//保单拆分13个月和其他月份
+		$res = array();
+		foreach ($insu_re as $kb =>$vb){
+			if($vb['renew_count'] == 2 ){
+				$res[$vb['salesman_number']]['two'][] = $vb;
+			}else{
+				$res[$vb['salesman_number']]['other'][] = $vb;
+			}
+		}
+
 		//dump($insu_re);
 		//查询续期品质系数
 		$where['m_number'] = array('in',$member);  //业务员代码
@@ -175,7 +311,7 @@ class MemSerFeeController extends AdminbaseController
 	//	dump($coeffic);
 		//计算服务费
 		$renewal = array();
-		foreach ($insu_re as $k=>$v){
+		foreach ($res as $k=>$v){
 			//13个月服务费计算
 			foreach ($v['two']  as $kt=>$vt){
 				if(isset($renewal[$k])){
@@ -219,9 +355,9 @@ class MemSerFeeController extends AdminbaseController
 			->field('a.insurance_premium,a.policy_number,a.salesman_number,a.product_id,a.payment_limit,b.renew_count')->select();
 		//dump($ance_re);
 		//dump(11111111111);
-		if($ance_re){
-			$proid =array();
-			foreach ($ance_re as $k=>$v){
+		if($ance_re) {
+			$proid = array();
+			foreach ($ance_re as $k => $v) {
 				//统计产品
 				$proid[] = $v['product_id'];
 			}
@@ -229,35 +365,28 @@ class MemSerFeeController extends AdminbaseController
 			//产品id去重
 			$prodid = array_unique($proid);
 			//dump($prodid);
-		//	dump(222222222222222222);
-			$pwhere['product_id'] = array('in',$prodid);  //业务员代码
+			//	dump(222222222222222222);
+			$pwhere['product_id'] = array('in', $prodid);  //业务员代码
 			$pwhere['renewal_type'] = 1;  //续期类型，1=>业务员，2=>供应商
-			$settlement =M('settlement_renewal_contract')->where($pwhere)->field('product_id,length_of_renewal,payment_period,length_of_renewal,renewal_ratio')->select();
+			$settlement = M('settlement_renewal_contract')->where($pwhere)->field('product_id,length_of_renewal,payment_period,length_of_renewal,renewal_ratio')->select();
 			//dump($settlement);
 			//dump(33333333333333);
 			//组合服务保单与服务费率
 			$ance = array();
-			foreach ($ance_re as $k =>$v){
-				foreach ($settlement as $ka=>$va){
-					if(($v['product_id'] == $va['product_id'])&&($v['payment_limit'] == $va['payment_period'])&&($v['renew_count'] == ($va['length_of_renewal']+1))){
+			foreach ($ance_re as $k => $v) {
+				foreach ($settlement as $ka => $va) {
+					if (($v['product_id'] == $va['product_id']) && ($v['payment_limit'] == $va['payment_period']) && ($v['renew_count'] == ($va['length_of_renewal'] + 1))) {
 						$ance[$v['policy_number']] = $v;
 						$ance[$v['policy_number']]['renewal_ratio'] = $va['renewal_ratio'];
 					}
 				}
+
 			}
+		}
 			//dump($ance);
-			//保单拆分13个月和其他月份
-			$res = array();
-			foreach ($ance as $kb =>$vb){
-					if($vb['renew_count'] == 2 ){
-						$res[$vb['salesman_number']]['two'][] = $vb;
-					}else{
-						$res[$vb['salesman_number']]['other'][] = $vb;
-					}
-				}
-			}
+
 		//dump($res);
-		return $res;
+		return $ance;
 	}
 
 
@@ -455,7 +584,7 @@ class MemSerFeeController extends AdminbaseController
 		$data['return_visit_date'] = '';  //回访成功日期 5.19
 		$insurance=M("insurance");
 		$return = $insurance->data($data)->add();
-		dump($return);
+		//dump($return);
 
 	}
 	/*
@@ -493,8 +622,8 @@ class MemSerFeeController extends AdminbaseController
 		$data2['five_state'] = '1';  //五次是否成功 1成功 2失败
 		$data2['renew_count'] = 5;  //续期缴费次数
 		$return2 = M('renew')->data($data2)->add();
-		dump($return);
-		dump($return2);
+		//($return);
+		//dump($return2);
 
 	}
 	/*

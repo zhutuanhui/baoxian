@@ -3,11 +3,11 @@ namespace Admin\Controller;
 
 use Common\Controller\AdminbaseController;
 /**
-* 
+*
 */
 class SettleExcelController extends AdminbaseController
 {
-	
+
 	public function get_excel(){
 		/*判断时哪里的导出*/
 		$number = I("number");
@@ -20,29 +20,29 @@ class SettleExcelController extends AdminbaseController
             $arr      = explode("_", $index_sign);
             $date     = date("Y年m月",$arr[1]);
             $supplier = M("supplier")->where("sup_id = ".$arr[0])->field("full_name")->find();
-           
+
         }else if ($life_sign != "") {
             $arr      = explode("_", $life_sign);
             $date     = date("Y年m月",$arr[1]);
             $supplier = M("supplier")->where("sup_id = ".$arr[0])->field("full_name")->find();
-            
+
         }else if ($non_life_sign != "") {
             $arr      = explode("_", $non_life_sign);
             $date     = date("Y年m月",$arr[1]);
             $supplier = M("supplier")->where("sup_id = ".$arr[0])->field("full_name")->find();
-            
+
         }else if ($renewal_sign != "") {
             $arr      = explode("_", $renewal_sign);
             $date     = date("Y年m月",$arr[1]);
             $supplier = M("supplier")->where("sup_id = ".$arr[0])->field("full_name")->find();
-            
+
         }else{
             $this->error("未知错误，请重试");
-        }  
+        }
         $file_name = $supplier["full_name"].$date;
         /*判断时哪里想要导出什么页*/
 		if ($number == 1) {
-			/*所有页*/	
+			/*所有页*/
 			$this->get_all($index_sign,$life_sign,$non_life_sign,$renewal_sign,$file_name);
 		}else if ($number == 2) {
 			/*为寿险详细页*/
@@ -101,7 +101,7 @@ class SettleExcelController extends AdminbaseController
                     ->setCellValue('J'.$i, $index['aggregate_amount']);
 
         $objPHPExcel ->getActiveSheet(0)->setTitle("总计");
-        
+
         /*设置寿险详细页的工作sheet*/
         $life_result = S($life_sign);
         $objPHPExcel ->createSheet(1);
@@ -130,7 +130,7 @@ class SettleExcelController extends AdminbaseController
 
         $a=2;
         foreach ($life_result as $key => $value) {
-          
+
             $objPHPExcel->setActiveSheetIndex(1)
                         ->setCellValue('A'.$a, $value['policy_number'])
                         ->setCellValue('B'.$a, $value['full_name'])
@@ -168,10 +168,10 @@ class SettleExcelController extends AdminbaseController
         $objPHPExcel->getActiveSheet(2)->getColumnDimension('G')->setWidth(16);
         $objPHPExcel->getActiveSheet(2)->getColumnDimension('H')->setWidth(16);
 
-              
+
         $b=2;
         foreach ($non_life_result as $key => $value) {
-            
+
             $objPHPExcel->setActiveSheetIndex(2)
                         ->setCellValue('A'.$b, $value['policy_number'])
                         ->setCellValue('B'.$b, $value['full_name'])
@@ -231,13 +231,13 @@ class SettleExcelController extends AdminbaseController
 
         /*浏览器输出*/
         $filename = $file_name."结算表.xls";
-        header('Content-Type: application/vnd.ms-excel; charset=utf-8');  
-        header("Content-Disposition: attachment;filename=".$filename);  
-        header('Cache-Control: max-age=0');  
-        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
-        $objWriter->save('php://output'); 
+        header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+        header("Content-Disposition: attachment;filename=".$filename);
+        header('Cache-Control: max-age=0');
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
 
- 
+
 
     	}
 
@@ -246,7 +246,7 @@ class SettleExcelController extends AdminbaseController
 		header("Content-Typ:text/html;charset=utf-8");
         vendor('Excel.PHPExcel');
         vendor('Excel.PHPExcel.IOFactory');
- 
+
         $result = S($life_sign);
 
         $objPHPExcel = new \PHPExcel();
@@ -275,7 +275,7 @@ class SettleExcelController extends AdminbaseController
 
         $i=2;
         foreach ($result as $key => $value) {
-          
+
             $objPHPExcel->setActiveSheetIndex(0)
                         ->setCellValue('A'.$i, $value['policy_number'])
                         ->setCellValue('B'.$i, $value['full_name'])
@@ -291,8 +291,8 @@ class SettleExcelController extends AdminbaseController
         }
         $objPHPExcel->getActiveSheet(0)->setTitle('寿险结算详细表');
         $filename = $file_name."寿险结算详细表.xls";
-        header('Content-Type: application/vnd.ms-excel; charset=utf-8');  
-        header("Content-Disposition: attachment;filename=".$filename);  
+        header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+        header("Content-Disposition: attachment;filename=".$filename);
         header('Cache-Control: max-age=0');
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
@@ -303,7 +303,7 @@ class SettleExcelController extends AdminbaseController
 		header("Content-Typ:text/html;charset=utf-8");
         vendor('Excel.PHPExcel');
         vendor('Excel.PHPExcel.IOFactory');
- 
+
         $result = S($non_life_sign);
         $objPHPExcel = new \PHPExcel();
         $objPHPExcel->getActiveSheet()->setCellValue('A1', "保单号");//设置列的值
@@ -324,10 +324,10 @@ class SettleExcelController extends AdminbaseController
         $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(16);
         $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(16);
 
-              
+
         $i=2;
         foreach ($result as $key => $value) {
-			
+
 			$objPHPExcel->setActiveSheetIndex(0)
 	                    ->setCellValue('A'.$i, $value['policy_number'])
 	                    ->setCellValue('B'.$i, $value['full_name'])
@@ -341,19 +341,19 @@ class SettleExcelController extends AdminbaseController
 		}
 		$objPHPExcel->getActiveSheet(0)->setTitle('非寿险结算详细表');
         $filename = $file_name."非寿险结算详细表.xls";
-        header('Content-Type: application/vnd.ms-excel; charset=utf-8');  
-        header("Content-Disposition: attachment;filename=".$filename);  
+        header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+        header("Content-Disposition: attachment;filename=".$filename);
         header('Cache-Control: max-age=0');
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
         $objWriter->save('php://output');
-	} 
+	}
 	/*续期保单*/
 	public function get_renewal($renewal_sign,$file_name){
 		header("Content-Typ:text/html;charset=utf-8");
         vendor('Excel.PHPExcel');
         vendor('Excel.PHPExcel.IOFactory');
- 
+
         $result = S($renewal_sign);
 
         $objPHPExcel = new \PHPExcel();
@@ -397,15 +397,114 @@ class SettleExcelController extends AdminbaseController
 		}
 		$objPHPExcel->getActiveSheet(0)->setTitle('续期结算详细表');
         $filename = $file_name."续期结算详细表.xls";
-        header('Content-Type: application/vnd.ms-excel; charset=utf-8');  
-        header("Content-Disposition: attachment;filename=".$filename);  
+        header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+        header("Content-Disposition: attachment;filename=".$filename);
         header('Cache-Control: max-age=0');
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
         $objWriter->save('php://output');
 
 	}
+    /**
+     * 导出分公司考核结果到excel
+     * @return [type] [description]
+     */
+    public function get_check_branch_result(){
 
+        header("Content-Typ:text/html;charset=utf-8");
+        vendor('Excel.PHPExcel');
+        vendor('Excel.PHPExcel.IOFactory');
+        $objPHPExcel = new \PHPExcel();
+
+         /*设置首页的工作sheet*/
+        $objPHPExcel ->setActiveSheetIndex(0)
+                     ->setCellValue('A1', "分公司")//设置列的值
+                     ->setCellValue('B1', "旗舰店")//设置列的值
+                     ->setCellValue('E1', "标准店")//设置列的值
+                     ->setCellValue('H1', "会员")//设置列的值
+                     ->setCellValue('B2', "维持")//设置列的值
+                     ->setCellValue('C2', "降级")//设置列的值
+                     ->setCellValue('D2', "观察")//设置列的值
+                     ->setCellValue('E2', "维持")//设置列的值
+                     ->setCellValue('F2', "降级")//设置列的值
+                     ->setCellValue('G2', "观察")//设置列的值
+                     ->setCellValue('H2', "达标人数")//设置列的值
+                     ->setCellValue('I2', "申请人数")//设置列的值
+                     ->setCellValue('J2', "申请率");//设置列的值
+
+        //合并单元格
+        $objPHPExcel->getActiveSheet(0)->mergeCells('A1:A2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('B1:D1');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('E1:G1');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('H1:J1');
+        //设置居中
+
+        $objPHPExcel->getDefaultStyle()->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER)->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        //设置行高
+        $objPHPExcel->getActiveSheet(1)->getRowDimension(1)->setRowHeight(30);
+        $objPHPExcel->getActiveSheet(1)->getRowDimension(2)->setRowHeight(30);
+        $objPHPExcel->getActiveSheet(1)->getDefaultStyle()->getFont()->setName("微软雅黑");//设置默认字体大小和格式
+        $objPHPExcel->getActiveSheet(1)->getStyle('A1:A2')->getFont()->setName('微软雅黑') //字体
+        ->setBold(true); //字体加粗
+        $objPHPExcel->getActiveSheet(1)->getStyle('B1:D1')->getFont()->setBold(true); //字体加粗
+        $objPHPExcel->getActiveSheet(1)->getStyle('E1:G1')->getFont()->setBold(true); //字体加粗
+        $objPHPExcel->getActiveSheet(1)->getStyle('H1:J1')->getFont()->setBold(true); //字体加粗
+        $objPHPExcel->getActiveSheet(1)->getStyle('B2:J2')->getFont()->setBold(true); //字体加粗
+
+
+        /*设置字段宽度*/
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('A') ->setWidth(40);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('B') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('C') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('D') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('E') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('F') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('G') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('H') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('I') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('J') ->setWidth(18);
+        $data_cache = S('check_bracnh_data');
+        $branch_code = I('param.branch');
+
+        if($branch_code){
+            foreach ($data_cache as $key => $value) {
+                if($value['org_code'] != $branch_code){
+                        unset($data_cache[$key]);
+                }
+            }
+                $data_cache=array_values($data_cache);
+        }
+
+
+
+        $a = 3;
+         foreach ($data_cache as $key => $value) {
+                    $objPHPExcel->setActiveSheetIndex(0)
+                        ->setCellValue('A'.$a, $value['name'])
+                        ->setCellValue('B'.$a, $value['flagship_maintain'])
+                        ->setCellValue('C'.$a, $value['flagship_demote'])
+                        ->setCellValue('D'.$a, $value['flagship_observed'])
+                        ->setCellValue('E'.$a, $value['shop_maintain'])
+                        ->setCellValue('F'.$a, $value['shop_observed'])
+                        ->setCellValue('G'.$a, $value['shop_demote'])
+                        ->setCellValue('H'.$a, $value['member_standard'])
+                        ->setCellValue('I'.$a, $value['member_apply'])
+                        ->setCellValue('J'.$a, $value['member_apply_rate']);
+
+            $a++;
+        }
+        $objPHPExcel->getActiveSheet()->getStyle('A1:J'.--$a)->getBorders()->getAllBorders()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);  //设置表格边框
+
+        $objPHPExcel ->getActiveSheet(0)->setTitle("分公司考核结果");
+         /*浏览器输出*/
+            $filename = $file_name."分公司考核结果表_".time().".xls";
+            header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+            header("Content-Disposition: attachment;filename=".$filename);
+            header('Cache-Control: max-age=0');
+            $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+            $objWriter->save('php://output');
+
+    }
 }
 
 

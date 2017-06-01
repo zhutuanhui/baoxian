@@ -62,7 +62,7 @@
 
 							<dt>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-0" id="user-Character-0-0">
+									<input type="checkbox" value="<{$item[id]}>" name="user-Character-0-0[]" class="duoxuan-fu" id="user-Character-0-0" <if condition="$itemss['enable'] eq 1">checked</if> >
 									<{$item[name]}></label>
 							</dt>
 							<dd>
@@ -165,6 +165,14 @@ function submits(){
 			var ss = $(o).prop('checked');
 			if(ss){
 				codes.push($(o).val());
+			}
+		}
+	})
+	$('#rights_check .duoxuan-fu').each(function(is,os){
+		if($(os).val() != ''){
+			var sss = $(os).prop('checked');
+			if(sss){
+				codes.push($(os).val());
 			}
 		}
 	})

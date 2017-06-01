@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <!--[if lt IE 9]>
-<script type="text/javascript" src="__PUBLIC__lib/html5shiv.js"></script>
-<script type="text/javascript" src="__PUBLIC__lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/html5shiv.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/respond.min.js"></script>
 <![endif]-->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
     <!--[if IE 6]>
-<script type="text/javascript" src="__PUBLIC__lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript" src="__PUBLIC__/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
     <title>考核预警首页</title>
@@ -153,9 +153,10 @@
                                     {data : "shop_maintain"},
                                     {data : "shop_observed"},
                                     {data : "shop_demote"},
-                                    {data : "shop_demote"},
-                                    {data : "shop_demote"},
-                                    {data : "shop_demote"},
+                                    {data : "member_standard"},
+                                    {data : "member_apply"},
+                                    {data : "member_apply_rate"},
+
 
 
                                 ]
@@ -163,11 +164,17 @@
             }); //TABLE闭合标签
 
         $('#search').click(function() {
-           //  var branch = $('.select option:selected').val();
+          
 
             table.ajax.reload();
         });
+        $('.btn-primary').click(function(){
+            var branch_code = $('.select option:selected').val();
+            var url = "<{:U('Admin/SettleExcel/get_check_branch_result')}>";
 
+            window.location.href = url+'&branch='+branch_code;
+
+        })
     }) //jquery闭合标签
     </script>
 

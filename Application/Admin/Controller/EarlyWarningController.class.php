@@ -1334,13 +1334,40 @@ EOF;
                                                         ->where('check_results = 2 and level = 3')
                                                         ->group('branch_shop_code')
                                                         ->select(); //获取各分公司旗舰店观察数量
+                //获取分公司会员达标数
+                $now_month = date('n',time());  //当前月份
+                //判断当前月份是上半年还是下半年
+                if ($now_month>6) { //下半年
+                    $standard_map['standard']  = array(array('gt',strtotime(date('Y-7-20'))),array('lt',strtotime(date('Y-12-31'))));
+                    $shop_apply_map['create_apply']  = array(array('gt',strtotime(date('Y-7-20'))),array('lt',strtotime(date('Y-12-31'))));
+
+                } elseif($now_month<=6) {   //上半年
+                       $standard_map['standard']  = array(array('gt',strtotime(date('Y-1-1'))),array('lt',strtotime(date('Y-7-20'))));
+                       $shop_apply_map['create_apply']  = array(array('gt',strtotime(date('Y-1-1'))),array('lt',strtotime(date('Y-7-20'))));
+
+                }
+
+
+                $member_list =  M('member_standard')->field('branch_shop_number,count(*) as standards')
+                                                    ->group('branch_shop_number')
+                                                    ->where($standard_map)
+                                                    ->select();
+                //获取会员申请数
+                $shop_apply_list = M('shop_apply')->where($shop_apply_map)->group('branch_shop_number')->field('branch_shop_number,count(*) as shop_counts')->select();
+
                 foreach ($branch_list as $key => $value) {
-                    $branch_list[$key]['flagship_maintain'] = 0;
-                    $branch_list[$key]['flagship_observed'] = 0;
-                    $branch_list[$key]['flagship_demote']   = 0;
-                    $branch_list[$key]['shop_maintain']     = 0;
-                    $branch_list[$key]['shop_observed']     = 0;
-                    $branch_list[$key]['shop_demote']       = 0;
+                    $branch_list[$key]['flagship_maintain'] = 0; //旗舰店维持
+                    $branch_list[$key]['flagship_observed'] = 0; //旗舰店观察
+                    $branch_list[$key]['flagship_demote']   = 0; //旗舰店降级
+                    $branch_list[$key]['shop_maintain']     = 0; //标准店维持
+                    $branch_list[$key]['shop_observed']     = 0; //标准店观察
+                    $branch_list[$key]['shop_demote']       = 0; //标准店降级
+                    $branch_list[$key]['member_standard']   = 0;    //会员达标数
+                    $branch_list[$key]['member_apply']      = 0;    //会员申请数
+                    $branch_list[$key]['member_apply_rate'] = 0;    //会员申请率
+
+
+
                     foreach ($flagship_maintain as $k => $v) {
                         if ($value["org_code"] == $v["org_code"]) {
                             $branch_list[$key]['flagship_maintain'] = $v['flagship_maintain'];
@@ -1376,10 +1403,46 @@ EOF;
 
                         }
                     }
+                     foreach ($member_list as $k => $v7) {   //会员达标数
+                        if ($value["org_code"] == $v7["branch_shop_number"]) {
+                            $branch_list[$key]['member_standard'] = $v7['standards'];
+                        }
+                    }
+                    foreach ($shop_apply_list as $k => $v8) {   //会员申请数
+                        if ($value["org_code"] == $v8["branch_shop_number"]) {
+                            $branch_list[$key]['member_apply'] = $v8['shop_counts'];
+                        }
+                    }
+                    //会员申请率
+                    if( $branch_list[$key]['member_standard']==0){
+                        $branch_list[$key]['member_apply_rate'] = 0;
+                    }else{
+                        $branch_list[$key]['member_apply_rate'] = ($branch_list[$key]['member_apply'])/($branch_list[$key]['member_standard']);
+                    }
+
+              }
+                $arr_sum['org_code'] ='合计';
+                $arr_sum['name'] ='合计';
+                $arr_sum['flagship_maintain'] = array_sum(array_column($branch_list, 'flagship_maintain'));
+                $arr_sum['flagship_observed'] = array_sum(array_column($branch_list, 'flagship_observed'));
+                $arr_sum['flagship_demote']   = array_sum(array_column($branch_list, 'flagship_demote'));
+                $arr_sum['shop_maintain']     = array_sum(array_column($branch_list, 'shop_maintain'));
+                $arr_sum['shop_observed']     = array_sum(array_column($branch_list, 'shop_observed'));
+                $arr_sum['shop_demote']       = array_sum(array_column($branch_list, 'shop_demote'));
+                $arr_sum['member_standard']   = array_sum(array_column($branch_list, 'member_standard'));
+                $arr_sum['member_apply']      = array_sum(array_column($branch_list, 'shop_counts'));
+                if($arr_sum['member_standard']==0) {
+                    $arr_sum['member_apply_rate'] =  0;
+                }else{
+                    $arr_sum['member_apply_rate'] =  $arr_sum['member_apply']/$arr_sum['member_standard'];
                 }
 
+                array_push($branch_list, $arr_sum);
+
                 S('check_bracnh_data',$branch_list,3600);
+
                 $result = S('check_bracnh_data');
+
                 $arr["data"]=$result;
 
                 echo json_encode($arr);
@@ -1391,6 +1454,7 @@ EOF;
                 if($branch_code){
                     foreach ($result as $key => $value) {
                         if($value['org_code'] != $branch_code){
+
                             unset($result[$key]);
                         }
                     }

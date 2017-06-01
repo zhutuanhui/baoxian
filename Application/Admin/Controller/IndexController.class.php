@@ -17,9 +17,7 @@ class IndexController extends AdminbaseController
 	 //   $this->assign($user_info,'user_info',);
         $act_list = session('act_list');
         $menu_list = getMenuList($act_list);
-        // print("<pre>");
-        // print_r($menu_list);
-        // print("<pre>");die;
+       
         $this->assign('menu_list',$menu_list);
         $this->display();
     }

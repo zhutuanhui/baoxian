@@ -191,19 +191,149 @@ class PersonalPerformanceController extends AdminbaseController
 			//S($sign,NULL);
 			$result = S($sign);	
 		}
-
-
-
-
-
-
 		$res["data"] = $result;
-		$this->ajaxReturn($res);
-		
-
-
-
-		
+		$this->ajaxReturn($res);	
 	}
+
+
+	/*定时脚本*/
+	public function personal(){
+		/*获得当前时间0:0:0*/
+		$s_day = strtotime(date("Y-m-d",time()));
+		/*获得当月时间0:0:0*/
+		$s_month = strtotime(date("Y-m",time()));
+		/*获得当季度的开始时间0:0:0*/
+		if (date("m",time()) >= 1 && date("m",time()) <=3 ) {
+			$s_quar = strtotime(date("Y-1-1",time()));
+		}else if (date("m",time()) >= 4 && date("m",time()) <=6) {
+			$s_quar = strtotime(date("Y-4-1",time()));
+		}else if (date("m",time()) >= 7 && date("m",time()) <=9) {
+			$s_quar = strtotime(date("Y-7-1",time()));
+		}else if (date("m",time()) >= 10 && date("m",time()) <=12) {
+			$s_quar = strtotime(date("Y-10-1",time()));
+		}
+		/*获得当前半年的开始时间*/
+		if (date("m",time()) > 6) {
+			$s_half = strtotime(date("Y-7-1",time()));
+		}else{
+			$s_half = strtotime(date("Y-1-1",time()));
+		}
+		/*获得当前年的开始时间*/
+		$s_year = strtotime(date("Y-1-1",time()));
+
+		/*查询寿险*/
+		/*本月 保单类型为寿险，保单状态有效，承保时间在本月内*/
+		$this->get_arr($s_month,$s_day,1,1);
+		/*本季度*/
+		$this->get_arr($s_quar,$s_day,1,2);
+		/*本半年*/
+		$this->get_arr($s_half,$s_day,1,3);
+		/*本年*/
+		$this->get_arr($s_year,$s_day,1,4);
+
+		/*查询车险*/
+		/*本月*/
+		$this->get_arr($s_month,$s_day,2,1);
+		/*本季度*/
+		$this->get_arr($s_quar,$s_day,2,2);
+		/*本半年*/
+		$this->get_arr($s_half,$s_day,2,3);
+		/*本年*/
+		$this->get_arr($s_year,$s_day,2,4);
+		/*查询非寿不含车险*/
+		/*本月*/
+		$this->get_arr($s_month,$s_day,3,1);
+		/*本季度*/
+		$this->get_arr($s_quar,$s_day,3,2);
+		/*本半年*/
+		$this->get_arr($s_half,$s_day,3,3);
+		/*本年*/
+		$this->get_arr($s_year,$s_day,3,4);
+	}
+	 public function get_arr($start,$end,$type,$genre){
+	 	/*$start开始时间 $end结束时间 $type排名类型(寿险、非寿险，车险) $genre 时间范围(本月，本季度，本半年，本年)*/
+	 	if ($type == 1) {
+	 		$premium = "value_premium";
+	 	}else{
+	 		$premium = "insurance_premium";
+	 	}
+	 	if ($genre == 1) {
+	 		/*本月*/
+	 		$sum = "mon_sum";
+	 		$achieve = "mon_achieve";
+	 		$ranking = "mon_ranking";
+	 	}else if ($genre == 2) {
+	 		/*本季度*/
+	 		$sum = "quar_sum";
+	 		$achieve = "quar_achieve";
+	 		$ranking = "quar_ranking";
+	 	}else if ($genre == 3) {
+	 		/*本半年*/
+	 		$sum = "half_sum";
+	 		$achieve = "half_achieve";
+	 		$ranking = "half_ranking";
+	 	}else if ($genre == 4) {
+	 		/*本年*/
+	 		$sum = "year_sum";
+	 		$achieve = "year_achieve";
+	 		$ranking = "year_ranking";
+	 	}
+	 	$insurance = M("insurance");
+	 	$result = $insurance ->where("insurance_type = ".$type." && policy_status = 1 && insured_date between ".$start." and ".$end)
+					    	 ->field("salesman_number,SUM(".$premium.") as premium,count(policy_number) as number")
+							 ->group("salesman_number")
+							 ->select();	
+		$res  = $this->arrSort($result,"premium",$ranking);
+		/*重构数组*/
+		$info = array();
+		foreach ($res as $key => $value) {
+			$info[$key]["member_id"] = $value["salesman_number"];
+			$info[$key][$sum]     = $value["number"];
+			$info[$key][$achieve] = $value["premium"];
+			$info[$key][$ranking] = $value[$ranking];
+			$info[$key]["ranking_type"] = $type;
+			$info[$key]["ranking_time"] = time();
+		}
+		//dump($info);
+		$this->add_value($info,$type);
+	 }
+
+	 public function add_value($arr,$type){
+	 	/*实例化业绩表*/
+	 	$performance = M("insu_mem_performance");
+	 	foreach ($arr as $key => $value) {
+	 		$where["member_id"] = $value["member_id"];
+	 		$where["ranking_type"] = $value["ranking_type"];
+	 		/*查询数据库，如果有值则更新，没值则添加*/
+	 		$res = $performance->where($where)
+	 						   ->field("id")
+	 						   ->find();
+	 		if ($res != "") {
+	 			//如果在则更新
+	 			$re = $performance ->where($where)
+	 						       ->save($value);
+	 			//echo $re."<br/>";
+	 		}else{
+	 			//不在，添加
+	 			$re = $performance ->add($value);
+	 			//echo $re."<br/>";
+	 		}
+	 	}
+
+	 }
+	 /*排序方法*/
+	 public function arrSort($arr,$pay='premium',$ranking){
+        $addinfo = array();
+        foreach($arr as $v){
+            $addinfo[] = $v[$pay];  
+        }
+
+        array_multisort($addinfo,SORT_DESC,$arr);//数组排序
+        //将排名追加到数组中
+        foreach($arr as $key=>$val){
+            $arr[$key][$ranking] = $key+1;
+        }
+        return $arr;
+    }
 }
 ?>

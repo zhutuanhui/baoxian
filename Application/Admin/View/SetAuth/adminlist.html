@@ -26,43 +26,47 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="text-c"> 日期范围：
-		<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
+<!-- <form action="<{:U('SetAuth/adminlist')}>" class="form form-horizontal"  method="post"> -->
+	<div class="text-c"> 最后登录日期范围：
+		<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" name="start_time" id="datemin" class="input-text Wdate" style="width:120px;">
 		-
-		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
-		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" name="end_time" id="datemax" class="input-text Wdate" style="width:120px;">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="admin">
+		<button id="search" type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','<{:U('SetAuth/adminadd')}>','800','1000')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+<!-- </form> -->
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
+	<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>  -->
+	<a href="javascript:;" onclick="admin_add('添加管理员','<{:U('SetAuth/adminadd')}>','800','1000')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a></span> <span class="r">共有数据：<strong><{$data[count]}></strong> 条</span> </div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="9">员工列表</th>
+				<td scope="col" colspan="19"></td>
 			</tr>
 			<tr class="text-c">
-				<th width="25"><input type="checkbox" name="" value=""></th>
+				<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 				<th width="30">ID</th>
-				<th width="150">管理员代码</th>
-				<th width="150">登入名</th>
+				<th width="100">管理员代码</th>
+				<th width="100">登入名</th>
 				<th width="150">真实姓名</th>
-				<th width="150">性别</th>
-				<th width="150">年龄</th>
+				<th width="50">性别</th>
+				<th width="50">年龄</th>
 				<th width="180">邮箱</th>
 				<th width="150">手机号</th>
 				<th width="150">固定电话</th>
-				<th width="150">机构代码</th>
-				<th width="150">角色</th>
+				<th width="100">机构代码</th>
+				<th width="100">角色</th>
 				<th width="150">地址</th>
 				<th width="150">微信号</th>
 				<th width="120">qq号</th>
 				<th>状态</th>
-				<th width="130">加入时间</th>
-				<th width="100">最后登入时间</th>
+				<th width="180">加入时间</th>
+				<th width="180">最后登入时间</th>
 				<th width="100">操作</th>
 			</tr>
 		</thead>
 		<tbody>
-		<volist name="datas" id="vo">
+		<!-- <volist name="data[data]" id="vo">
 			<tr class="text-c">
 				<td><input type="checkbox" value="1" name=""></td>
 				<td><{$vo.id}></td>
@@ -92,20 +96,50 @@
 								<case value="0"><span class="label radius">禁用</span></case>
 							</switch>
 				</td>
-				<td><{$vo.create_time|date="Y-m-d H:i:s",###}></td>
+				<td><{$vo.create_time|date="Y-m-d H:i",###}></td>
 				<td>
-				 <if condition="$vo.last_login_time neq ''">
-				<{$vo.last_login_time|date="Y-m-d H:i:s",###}>
+				 <if condition="$vo.last_login_time neq '0'">
+				<{$vo.last_login_time|date="Y-m-d H:i",###}>
 					</if>
 				</td>
-				<!-- <td class="td-status"><span class="label label-success radius">已启用</span></td> -->
+				<td class="td-status"><span class="label label-success radius">已启用</span></td>
 				<td class="td-manage">
-				<!-- <a style="text-decoration:none" onClick="admin_stop(this,'<{$vo.id}>')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> -->
+				<a style="text-decoration:none" onClick="admin_stop(this,'<{$vo.id}>')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
 				 <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','<{:U('SetAuth/adminadd',array('admin_id'=>$vo['id']))}>','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,'<{$vo.id}>')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
-			</volist>
+			</volist> -->
 		</tbody>
+
 	</table>
+<!-- 	<style>
+	 .pagetestli{box-sizing: border-box;text-align: -webkit-match-parent;}
+        .pagetestli a{position: relative;
+              float: left;
+              padding: 6px 12px;
+              margin-left: -1px;
+              line-height: 1.42857143;
+              color: #428bca;
+              text-decoration: none;
+              background-color: #fff;
+              border: 1px solid #ddd;}
+      .pagetestli span{position: relative;
+              float: left;
+              padding: 6px 12px;
+              margin-left: -1px;
+              line-height: 1.42857143;
+              color: cyan;
+              text-decoration: none;
+              background-color: #fff;
+              border: 1px solid #ddd;}
+    </style>
+    <div style="float:right;padding-top:20px;padding-right:20px;">
+            <nav>
+            <ul class="pagetestli">
+                    <{$data[page]}>
+               </ul>
+               </nav>
+            </div> -->
+	
 </div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
@@ -117,7 +151,153 @@
 <script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
 <script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
+ <script type="text/javascript">
+        var table;
 
+
+        $(function(){
+
+              table = $('.table').DataTable({
+                    "lengthChange": false, //是否允许用户改变表格每页显示的记录数
+                    serverSide: false, //启用服务器端分页
+                    "language": {
+                            "processing": "加载中...",
+                            "lengthMenu": "每页显示 _MENU_ 条数据",
+                            "zeroRecords": "没有匹配结果",
+                            "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                            "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                            "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                            "infoPostFix": "",
+                            "search": "搜索:",
+                            "url": "",
+                            "emptyTable": "没有匹配结果",
+                            "loadingRecords": "载入中...",
+                            "thousands": ",",
+                            "paginate": {
+                                "first": "首页",
+                                "previous": "上一页",
+                                "next": "下一页",
+                                "last": "末页"
+                            }},
+                    searching: false, //禁用原生搜索
+                    order: [], //取消默认排序查询,否则复选框一列会出现小箭头
+                    pagingType: "full_numbers", //分页样式：simple,simple_numbers,full,full_numbers
+                    "aaSorting": [
+                        [0, "desc"]
+                    ], //默认第几个排序
+                    "autoWidth": false,
+
+                    "bStateSave": false, //状态保存
+                    "aoColumnDefs": [{// 制定列不参与排序
+                        "orderable": false,
+                        "aTargets": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+                    }],
+                 "ajax": {
+                        type: "GET",
+                        dataType:"json",
+                        data:function(){
+
+                        	var admin = $("input[name='admin']").val();
+                        
+                        	var start_time = $("input[name='start_time']").val();
+                        	var end_time = $("input[name='end_time']").val();
+                            var param;
+                            param ={
+	                            'admin':admin,
+	                            'start_time':start_time,
+	                            'end_time':end_time
+                        	};
+                            return param;
+                            
+                        },
+                        url: "<{:U('Admin/SetAuth/adminlist')}>",
+                        dataSrc: function(result) {
+
+                                        return result.data;
+                              }
+                        },
+                        columns : [
+
+                                    {data : "id"},
+                                    {data : "manager_number"},
+                                    {data : "username"},
+                                    {data : "real_name"},
+                                    {"data" : "gender","render":function(data,type){
+                                    	var html = ' ';
+                                    	if(data=='1'){
+                                    		
+                                    		html += '<span class="label radius">男</span>';
+                                    	}else if(data=='2') {
+                                    		html += '<span class="label  radius">女</span>';	
+                                    	}else{
+                                    		html += '<span class="label  radius">保密</span>';
+                                    	}
+										return html;
+                                    }},
+                                    {data : "age"},
+                                    {data : "email"},
+                                    {data : "mobile"},
+                                    {data : "organization_id"},
+                                    {data : "organization_id"},
+                                    {data : "name"},
+                                    {data : "address"},
+                                    {data : "weixin"},
+                                    {data : "qq"},
+                                    {"data": "status","render":function(data,type){
+                                    	var html = ' ';
+                                    	if(data=='1'){
+                                    		
+                                    		html += '<span class="label label-success radius">正常</span>';
+                                    	}else if(data=='0') {
+                                    		html += '<span class="label  radius">禁用</span>';	
+                                    	}
+										return html;
+                                    }},
+                                    {data : "create_time"},
+                          			{data : "last_login_time"},
+                                  	{"data":'id',"render" : function(data,type) {
+	                             			
+	                                    	var html = ' ';
+
+	                                    	html+= "<a title='编辑'' href='javascript:;'  data-id="+data+" class='ml-5 edit' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a>";
+
+	                                    	html+= ' <a title="删除" href="javascript:;" data-id='+data+' class="del ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
+	                                    	 return html;
+	                 				}},
+	                                   
+
+
+                                ]
+
+            }); //TABLE闭合标签
+
+            $('#search').click(function(){
+            	 table.ajax.reload();
+            })
+           table.on('order.dt search.dt',	//序号
+		    function() {
+		        table.column(0, {
+		            search: 'applied',
+		            order: 'applied'
+		        }).nodes().each(function(cell, i) {
+		            cell.innerHTML = i + 1;
+		        });
+		    }).draw();
+   		 $(document).on('click','.edit ',function(){
+                 var data_id  = $(this).attr('data-id');
+                 var url = "<{:U('SetAuth/adminadd')}>"+'&admin_id='+data_id;
+                 // alert(url);
+                 admin_edit('修改管理员',url,800,1000);
+                 // alert(data_id);
+            });
+   		 $(document).on('click','.del ',function(){
+                 var data_id  = $(this).attr('data-id');
+                 admin_del($(this),data_id);
+                 // alert(data_id);
+            });
+       
+    }) //jquery闭合标签
+    </script>
 <script type="text/javascript">
 /*
 	参数解释：

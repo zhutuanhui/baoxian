@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-05-31 17:35:53
+Date: 2017-06-01 17:52:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,12 +46,12 @@ INSERT INTO `add_deductions` VALUES ('10', '3', '李杨', '0', '0', '1000.00', '
 INSERT INTO `add_deductions` VALUES ('11', '2', '李杨', '0', '0', '1000.00', '1495001569');
 INSERT INTO `add_deductions` VALUES ('12', '3', '李杨', '0', '0', '1000.00', '1495001569');
 INSERT INTO `add_deductions` VALUES ('13', '4', '京冰帅', '0', '0', '2000.00', '1495001569');
-INSERT INTO `add_deductions` VALUES ('14', '7519170512', 'luzhitao', '1', '1', '10.00', '1494999296');
-INSERT INTO `add_deductions` VALUES ('15', '7519170512', 'luzhbitao', '1', '1', '8.00', '1494999296');
-INSERT INTO `add_deductions` VALUES ('16', '7521170516', 'luzhitao ', '1', '1', '20.00', '1494999296');
-INSERT INTO `add_deductions` VALUES ('17', '7521170516', 'luyzhgiotao', '0', '1', '30.00', '1494999296');
-INSERT INTO `add_deductions` VALUES ('18', '7523170516', 'luzhitao ', '0', '1', '25.00', '1494999296');
-INSERT INTO `add_deductions` VALUES ('19', '7526170516', 'luzhitao', '1', '1', '30.00', '1494999296');
+INSERT INTO `add_deductions` VALUES ('14', '7519170512', 'luzhitao', '1', '0', '10.00', '1494999296');
+INSERT INTO `add_deductions` VALUES ('15', '7519170512', 'luzhbitao', '1', '0', '8.00', '1494999296');
+INSERT INTO `add_deductions` VALUES ('16', '7521170516', 'luzhitao ', '1', '0', '20.00', '1494999296');
+INSERT INTO `add_deductions` VALUES ('17', '7521170516', 'luyzhgiotao', '0', '0', '30.00', '1494999296');
+INSERT INTO `add_deductions` VALUES ('18', '7523170516', 'luzhitao ', '0', '0', '25.00', '1494999296');
+INSERT INTO `add_deductions` VALUES ('19', '7526170516', 'luzhitao', '1', '0', '30.00', '1494999296');
 
 -- ----------------------------
 -- Table structure for at_item
@@ -167,7 +167,7 @@ CREATE TABLE `check_warning` (
   `check_time` int(11) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1040 DEFAULT CHARSET=utf8 COMMENT='考核预警表 王志强';
+) ENGINE=InnoDB AUTO_INCREMENT=1171 DEFAULT CHARSET=utf8 COMMENT='考核预警表 王志强';
 
 -- ----------------------------
 -- Records of check_warning
@@ -209,6 +209,137 @@ INSERT INTO `check_warning` VALUES ('1036', '卢旗舰经营', '2147483647', '0'
 INSERT INTO `check_warning` VALUES ('1037', '卢标筹备', '2147483647', '0', '3', '0', '100003', '2147483647', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496195466', '1496195466');
 INSERT INTO `check_warning` VALUES ('1038', '卢旗舰筹备', '2147483647', '0', '2', '0', '2147483647', '2147483647', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496195466', '1496195466');
 INSERT INTO `check_warning` VALUES ('1039', '卢旗舰观察', '2147483647', '0', '2', '-1', '100003', '2147483647', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496195466', '1496195466');
+INSERT INTO `check_warning` VALUES ('1040', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1041', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1042', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1043', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1044', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1045', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1046', '旗舰店', '132332', '0', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1047', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1048', '店铺3', '132332', '0', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1049', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1050', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1051', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1052', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1053', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1054', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1055', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281106', '1496281106');
+INSERT INTO `check_warning` VALUES ('1056', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1057', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1058', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1059', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1060', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1061', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1062', '旗舰店', '132332', '0', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1063', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1064', '店铺3', '132332', '0', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1065', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1066', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1067', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1068', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1069', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1070', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1071', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281111', '1496281111');
+INSERT INTO `check_warning` VALUES ('1072', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1073', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1074', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1075', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1076', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1077', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1078', '旗舰店', '132332', '0', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1079', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1080', '店铺3', '132332', '0', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1081', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1082', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1083', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1084', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1085', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1086', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1087', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281969', '1496281969');
+INSERT INTO `check_warning` VALUES ('1088', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1089', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1090', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1091', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1092', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1093', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1094', '旗舰店', '132332', '0', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1095', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1096', '店铺3', '132332', '0', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1097', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1098', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1099', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1100', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1101', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1102', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1103', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496281977', '1496281977');
+INSERT INTO `check_warning` VALUES ('1104', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1105', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1106', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1107', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1108', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1109', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1110', '旗舰店', '132332', '0', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1111', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1112', '店铺3', '132332', '0', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1113', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1114', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1115', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1116', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1117', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1118', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1119', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282005', '1496282005');
+INSERT INTO `check_warning` VALUES ('1120', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1121', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1122', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1123', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1124', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1125', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1126', '旗舰店', '132332', '0', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1127', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1128', '店铺3', '132332', '0', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1129', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1130', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1131', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1132', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1133', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1134', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1135', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282101', '1496282101');
+INSERT INTO `check_warning` VALUES ('1136', '旗舰店', '132332', '1', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, '1', '1496282295', '1496282295');
+INSERT INTO `check_warning` VALUES ('1137', '标准店', '1323321', '1', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, '0', '1496282295', '1496282295');
+INSERT INTO `check_warning` VALUES ('1138', '店铺3', '132332', '1', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, '0', '1496282295', '1496282295');
+INSERT INTO `check_warning` VALUES ('1139', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1140', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1141', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1142', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1143', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1144', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1145', '旗舰店', '132332', '0', '2', '0', '100001', '132332', null, null, '0', '0', null, '2', '2', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1146', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1147', '店铺3', '132332', '0', '3', '0', '123456789', '1000', null, '0', '0', '0', '0', '0', '0', null, '3', '3', '300000.00', '400.36', '-299599.64', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1148', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1149', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1150', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1151', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1152', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1153', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1154', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496282929', '1496282929');
+INSERT INTO `check_warning` VALUES ('1155', '龙门客栈', '2345', '0', '3', '-1', '3905170511', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1156', '希尔顿', '11111', '0', '2', '0', '3905170511', '2345', null, null, '0', '0', null, '0', '0', '30', '0', '-30', '60000.00', '0.00', '-60000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1157', '喜来登', '2223', '0', '3', '0', '3905170511', '235', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1158', '圆山大酒店', '2600', '0', '3', '1', '25', '1000', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '90000.00', '0.00', '-90000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1159', '同福客栈', '35', '0', '3', '0', '25', '12345678', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1160', '潇湘馆', '25', '0', '3', '0', '123456789', '123456789', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '0.00', '-150000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1161', '旗舰店', '132332', '0', '2', '1', '100001', '132332', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1162', '标准店', '1323321', '0', '3', '0', '100001', '132332', null, '0', '0', '0', '0', '0', '0', '30', '0', '-30', '150000.00', '600.12', '-149399.88', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1163', '店铺3', '132332', '0', '2', '1', '123456789', '132332', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1164', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1165', '店铺1', '12335', '0', '3', '0', '123456789', '100004', null, '0', '0', '0', '0', '0', '0', null, '0', '0', '300000.00', '0.00', '-300000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1166', '卢标经营', '7522170516', '0', '3', '1', '100003', '7518170516', null, null, '0', '0', '0', '0', '0', '0', '0', '0', '180000.00', '0.00', '-180000.00', null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1167', '卢旗舰经营', '7518170516', '0', '2', '1', '100003', '7518170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1168', '卢标筹备', '7520170244', '0', '3', '0', '100003', '7520170244', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1169', '卢旗舰筹备', '7525170516', '0', '2', '0', '3905170511', '7525170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496310035', '1496310035');
+INSERT INTO `check_warning` VALUES ('1170', '卢旗舰观察', '7527170516', '0', '2', '-1', '100003', '7527170516', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1496310035', '1496310035');
 
 -- ----------------------------
 -- Table structure for client
@@ -259,7 +390,6 @@ CREATE TABLE `coefficient_continuous` (
 -- ----------------------------
 INSERT INTO `coefficient_continuous` VALUES ('1', '0.60', '0.80', '1.05');
 INSERT INTO `coefficient_continuous` VALUES ('2', '0.85', '0.98', '1.23');
-INSERT INTO `coefficient_continuous` VALUES ('3', '0.89', '0.98', '1.23');
 
 -- ----------------------------
 -- Table structure for district
@@ -3414,11 +3544,28 @@ CREATE TABLE `insu_mem_performance` (
   `ranking_time` int(11) NOT NULL DEFAULT '0' COMMENT '排名时间',
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3389 DEFAULT CHARSET=utf8 COMMENT='lzj-会员业绩排名表';
+) ENGINE=InnoDB AUTO_INCREMENT=3632 DEFAULT CHARSET=utf8 COMMENT='lzj-会员业绩排名表';
 
 -- ----------------------------
 -- Records of insu_mem_performance
 -- ----------------------------
+INSERT INTO `insu_mem_performance` VALUES ('3615', '7519170512', '0', '0.00', '3', '1030.12', '3', '1030.12', '3', '1030.12', '0', '1', '1', '1', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3616', '111', '0', '0.00', '3', '823.04', '3', '823.04', '3', '823.04', '0', '2', '2', '2', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3617', '121321', '0', '0.00', '1', '663.72', '1', '663.72', '1', '663.72', '0', '3', '3', '3', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3618', '354321', '0', '0.00', '1', '600.78', '1', '600.78', '1', '600.78', '0', '4', '4', '4', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3619', '3', '0', '0.00', '1', '552.63', '1', '552.63', '1', '552.63', '0', '5', '5', '5', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3620', '213', '0', '0.00', '1', '500.72', '1', '500.72', '1', '500.72', '0', '6', '6', '6', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3621', '153123.', '0', '0.00', '1', '500.68', '1', '500.68', '1', '500.68', '0', '7', '7', '7', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3622', '432121', '0', '0.00', '1', '488.26', '1', '488.26', '1', '488.26', '0', '8', '8', '8', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3623', '5132', '0', '0.00', '1', '456.76', '1', '456.76', '1', '456.76', '0', '9', '10', '10', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3624', '1001', '0', '0.00', '1', '400.36', '1', '400.36', '1', '400.36', '0', '10', '11', '11', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3625', '7523170516', '0', '0.00', '3', '240.00', '6', '480.00', '6', '480.00', '0', '11', '9', '9', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3626', '7526170516', '0', '0.00', '3', '240.00', '3', '240.00', '3', '240.00', '0', '12', '12', '12', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3627', '22', '0', '0.00', '2', '150.18', '2', '150.18', '2', '150.18', '0', '13', '13', '13', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3628', '23', '0', '0.00', '2', '140.90', '2', '140.90', '2', '140.90', '0', '14', '14', '14', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3629', '7428170510', '0', '0.00', '1', '100.00', '1', '100.00', '1', '100.00', '0', '15', '15', '15', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3630', '7521170516', '0', '0.00', '1', '80.00', '1', '80.00', '1', '80.00', '0', '16', '16', '16', '1', '1496310653');
+INSERT INTO `insu_mem_performance` VALUES ('3631', '7520170516', '0', '0.00', '1', '11.00', '1', '11.00', '1', '11.00', '0', '17', '17', '17', '1', '1496310653');
 
 -- ----------------------------
 -- Table structure for insu_message
@@ -3434,7 +3581,7 @@ CREATE TABLE `insu_message` (
   `type_message` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '信息类型（1 系统发送 2人工发送）',
   `send_way` tinyint(1) unsigned DEFAULT '0' COMMENT '发送方式（1 短信 2站内信）',
   PRIMARY KEY (`notify_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='lzj-站内信消息表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='lzj-站内信消息表';
 
 -- ----------------------------
 -- Records of insu_message
@@ -3452,7 +3599,7 @@ CREATE TABLE `insu_message_text` (
   `text_content` varchar(255) NOT NULL DEFAULT '' COMMENT '消息内容',
   `add_time` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`text_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='lzj-站内消息内容表';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='lzj-站内消息内容表';
 
 -- ----------------------------
 -- Records of insu_message_text
@@ -3619,10 +3766,10 @@ CREATE TABLE `insurance` (
 -- Records of insurance
 -- ----------------------------
 INSERT INTO `insurance` VALUES ('24', '35', '1323321', '2345', '22', '22', '1494481984', '22', '20', null, '4', '1', '22', '13235431', '1', '1', '22', '1', '22.00', '405.00', '405.00', '100.00', '500.00', '0', '3', '22', '22', null, '0', '0', '0', '22', '22', '1', '22', '22', '1495604551', '1493568000', null, '1493568000', '1493568000', '1493568000', '1493568000', '-28800', '0', '0', null);
-INSERT INTO `insurance` VALUES ('25', '25', '132332', '2500', '7428170510', '1', '1494481984', '25', '20', null, '6', null, '25', '25', '1', '1', '25', '0', '25.00', '280.00', '280.00', '100.00', '400.00', '0', '3', '25', '25', null, '0', '0', '0', '25', '25', null, '25', '25', '1495418896', '1493654400', null, '1493654400', '1493654400', '1493654400', '1493654400', null, '0', '0', null);
+INSERT INTO `insurance` VALUES ('25', '25', '132332', '132332', '7428170510', '1', '1494481984', '25', '20', null, '6', null, '25', '25', '1', '1', '25', '0', '25.00', '280.00', '280.00', '100.00', '400.00', '0', '3', '25', '25', null, '0', '0', '0', '25', '25', null, '25', '25', '1495418896', '1493654400', null, '1493654400', '1493654400', '1493654400', '1493654400', null, '0', '0', null);
 INSERT INTO `insurance` VALUES ('26', '35', '1323321', '2600', '7519170512', '11', '1494491663', '26', '20', null, '5', '1', '26', '26', '1', '1', '22', '1', '26.00', '400.00', '400.00', '500.12', '500.12', '0', '5', '26', '26', null, '44', '43', '42', '26', '26', '1', '26', '26', '1495418896', '1493568000', null, '-28800', '-28800', '1493568000', '1493568000', '-28800', '0', '0', null);
 INSERT INTO `insurance` VALUES ('27', '35', '1323321', '111', '7518170512', '11', '1494491700', '11', '20', null, '3', '', '11', '11', '2', '2', '11', '0', '11.00', '420.00', null, '600.00', '600.00', '0', '11', '11', '11', null, '45', '43', '42', '11', '11', null, '', '11', '1493654400', '1493654400', null, '-28800', '-28800', '1493654400', '1493654400', '-28800', '-28800', '-28800', null);
-INSERT INTO `insurance` VALUES ('28', '35', '132332', '11111', '1001', '223', '1494492296', '22', '20', null, '3', null, '22', '22', '1', '1', '22', '1', '22.00', '280.00', null, '400.36', '400.00', '1', '22', '22', '22', null, '1576', '1574', '1573', '222', '22', null, '22', '22', '1495604551', '1493654400', null, null, null, '1493654400', '1493654400', null, '0', '0', null);
+INSERT INTO `insurance` VALUES ('28', '35', '132332', '132332', '1001', '223', '1494492296', '22', '20', null, '3', null, '22', '22', '1', '1', '22', '1', '22.00', '280.00', null, '400.36', '400.00', '1', '22', '22', '22', null, '1576', '1574', '1573', '222', '22', null, '22', '22', '1495604551', '1493654400', null, null, null, '1493654400', '1493654400', null, '0', '0', null);
 INSERT INTO `insurance` VALUES ('33', '35', '1323321', '11111', '7520170516', '333', '1494492521', '33', '33', null, null, null, '333', '333', '1', '1', '333', '1', '333.00', null, null, '11.00', '11.00', '0', '11', '11', '11', null, '0', '0', '0', '11', '11', null, '11', '11', '1493654400', null, null, null, null, null, null, null, '0', '0', null);
 INSERT INTO `insurance` VALUES ('34', '35', '2600', '1213', '111', '11', '1494492521', '33', '20', null, '6', '1', '333', '12312313', '1', '1', '312', null, null, '350.00', '350.00', '500.36', '500.00', null, '3', '12', '231', null, '0', '0', '0', '1321321', '3132', null, null, null, '1493654400', null, null, null, null, '1494522000', '1497200400', null, '0', '0', null);
 INSERT INTO `insurance` VALUES ('35', '35', '12132', '1213', '213', '213', '1494492521', '33', '20', null, '6', '1', '333', '13135', '1', '1', '123', null, null, '420.00', '420.00', '500.72', '600.00', null, '3', '12', null, null, null, null, null, null, null, null, null, null, '1493654400', null, null, null, null, '1494435600', '1494867600', null, '0', '0', null);
@@ -3705,33 +3852,33 @@ CREATE TABLE `insurance_re` (
 -- ----------------------------
 -- Records of insurance_re
 -- ----------------------------
-INSERT INTO `insurance_re` VALUES ('1', '1123', '123', '12', '111', '111', '1495162093', '13', '20', '6', '产品6', '中国人寿', '13', '1324613215', '1', '1', '13', '1', '1.00', '500.00', '300.00', '1', '1', 'aaa', '13', '1', '312', '1', '1', '123', '1459440080', '-28800', null, null, '山东省德州市平原县');
-INSERT INTO `insurance_re` VALUES ('2', '12323', '132332', '12312', '7428170510', '7428170510', '1495163096', '123', '20', '6', null, '1', '123', '461213435', '1', '1', '23', '1', '1.00', '500.00', '100.00', '1', '3', 'dad', '123', '1', '23', '1', '1', '23', '1456761700', '-28800', null, null, '内蒙古');
-INSERT INTO `insurance_re` VALUES ('3', '1123', '123', '12', '111', '111', '1494497513', '111', '20', '6', null, '1', '111', '343543434', '1', '1', '11', '1', '1.00', '500.00', '300.00', '1', '5', 'bbb', '111', '1', '111', '1', '1', '111', '1337101200', '-28800', null, null, null);
-INSERT INTO `insurance_re` VALUES ('7', '1112314', '132332', '44', '7520170516', '44342', '1494492697', '123', '20', '6', '产品6', '中国人寿', '5645', '123', '1', '1', '4686', '1', '45645.00', '500.00', '400.00', '1', '4', '45645', '45645', '1231', '1231', null, '12312', '1231', '1456761700', '-28800', null, null, null);
-INSERT INTO `insurance_re` VALUES ('9', '0', null, '1000', '1004', '22', '2017', '22', '20', '6', null, '1', '22', '2222222', '1', null, '22', '1', '22.00', '500.00', '500.00', '1', '2', '22', '22', '22', '22', '1', '22', '22', '1463331600', '1970', '1495096586', null, null);
-INSERT INTO `insurance_re` VALUES ('10', '66', '666', '666', '66', '66', '1495170727', '66', '66', null, null, null, '66', '66', '1', null, '66', '1', '66.00', '666.00', null, '1', '6', '666', '666', '666', '666', null, '66', '666', '1459440080', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('1', '1123', '123', '12', '111', '111', '1495162093', '13', '20', '6', '产品6', '中国人寿', '13', '1324613215', '0', '1', '13', '1', '1.00', '500.00', '300.00', '1', '1', 'aaa', '13', '1', '312', '1', '1', '123', '1459440080', '-28800', null, null, '山东省德州市平原县');
+INSERT INTO `insurance_re` VALUES ('2', '12323', '132332', '132332', '7428170510', '7428170510', '1495163096', '123', '20', '6', null, '1', '123', '461213435', '0', '1', '23', '1', '1.00', '500.00', '100.00', '1', '3', 'dad', '123', '1', '23', '1', '1', '23', '1456761700', '-28800', null, null, '内蒙古');
+INSERT INTO `insurance_re` VALUES ('3', '1123', '123', '12', '111', '111', '1494497513', '111', '20', '6', null, '1', '111', '343543434', '0', '1', '11', '1', '1.00', '500.00', '300.00', '1', '5', 'bbb', '111', '1', '111', '1', '1', '111', '1337101200', '-28800', null, null, null);
+INSERT INTO `insurance_re` VALUES ('7', '1112314', '132332', '132332', '7520170516', '44342', '1494492697', '123', '20', '6', '产品6', '中国人寿', '5645', '123', '0', '1', '4686', '1', '45645.00', '500.00', '400.00', '1', '4', '45645', '45645', '1231', '1231', null, '12312', '1231', '1456761700', '-28800', null, null, null);
+INSERT INTO `insurance_re` VALUES ('9', '0', null, '1000', '1004', '22', '2017', '22', '20', '6', null, '1', '22', '2222222', '0', null, '22', '1', '22.00', '500.00', '500.00', '1', '2', '22', '22', '22', '22', '1', '22', '22', '1463331600', '1970', '1495096586', null, null);
+INSERT INTO `insurance_re` VALUES ('10', '66', '666', '666', '66', '66', '1495170727', '66', '66', null, null, null, '66', '66', '0', null, '66', '1', '66.00', '666.00', null, '1', '6', '666', '666', '666', '666', null, '66', '666', '1459440080', '0', null, null, null);
 INSERT INTO `insurance_re` VALUES ('12', '777', '777', '77', '77', '77', '1495171964', '77', '77', null, null, '人寿', '77', '77', '0', null, '77', '0', '11.00', '700.00', '200.00', '0', '11', '1', '111', '1', '11', null, '1', '11', '1396281800', '0', null, null, 'beijing');
-INSERT INTO `insurance_re` VALUES ('21', '1112314', '132332', '44', '7520170516', '44342', null, null, null, null, null, null, null, null, null, null, null, null, null, '300.00', '300.00', null, null, null, null, null, null, null, null, null, '1460736000', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('22', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '27', null, null, null, '101010', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('23', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '28', null, null, null, '111111', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('24', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '29', null, null, null, '121212', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('25', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '30', null, null, null, '131313', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('26', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '27', null, null, null, '141414', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('27', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '28', null, null, null, '151515', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('28', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '28', null, null, null, '161616', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('29', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '29', null, null, null, '171717', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('30', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '30', null, null, null, '181818', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('31', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '27', null, null, null, '191919', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('32', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '29', null, null, null, '202020', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('33', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '30', null, null, null, '222222', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('34', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '27', null, null, null, '232323', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('35', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '28', null, null, null, '242424', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('36', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '29', null, null, null, '252525', '1', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('37', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '30', null, null, null, '262626', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('38', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '28', null, null, null, '272727', '1', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('21', '1112314', '132332', '132332', '7520170516', '44342', null, null, null, null, null, null, null, null, '0', null, null, null, null, '300.00', '300.00', null, null, null, null, null, null, null, null, null, '1460736000', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('22', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '27', null, null, null, '101010', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('23', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '28', null, null, null, '111111', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('24', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '29', null, null, null, '121212', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('25', '100003', '2147483647', '2147483647', '7519170512', null, null, null, null, '30', null, null, null, '131313', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('26', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '27', null, null, null, '141414', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('27', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '28', null, null, null, '151515', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('28', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '28', null, null, null, '161616', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('29', '100003', '2147483647', '2147483647', '7521170516', null, null, null, null, '29', null, null, null, '171717', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('30', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '30', null, null, null, '181818', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('31', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '27', null, null, null, '191919', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('32', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '29', null, null, null, '202020', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('33', '100003', '2147483647', '2147483647', '7523170516', null, null, null, null, '30', null, null, null, '222222', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('34', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '27', null, null, null, '232323', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('35', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '28', null, null, null, '242424', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('36', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '29', null, null, null, '252525', '0', null, '', null, '1000.00', '100.00', null, null, '5', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('37', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '30', null, null, null, '262626', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('38', '100003', '2147483647', '2147483647', '7526170516', null, null, null, null, '28', null, null, null, '272727', '0', null, '', null, '1000.00', '100.00', null, null, '10', null, null, null, null, null, null, null, '1492531200', '0', null, null, null);
 INSERT INTO `insurance_re` VALUES ('39', '1112314', '777', '77', '77', '77', '1495171964', '77', '77', null, null, '人寿', '77', '77', '0', '1', '77', '1', '11.00', '300.00', '100.00', '1', '6', '16556', '111', '1', '11', null, '66', '666', '1430409700', '0', null, null, null);
-INSERT INTO `insurance_re` VALUES ('40', '777', '77', '77', '77', '77', '1495171964', '景', '88', '6', '产品1', '人寿', '77', '77', '1', '2', '寿险', '1', '10000.00', '200.00', '200.00', '1', '1', '666', '666', '666', '666', '1', '66', '666', '1430409800', '0', null, null, null);
+INSERT INTO `insurance_re` VALUES ('40', '777', '77', '77', '77', '77', '1495171964', '景', '88', '6', '产品1', '人寿', '77', '77', '0', '2', '寿险', '1', '10000.00', '200.00', '200.00', '1', '1', '666', '666', '666', '666', '1', '66', '666', '1430409800', '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for leave_comments
@@ -3790,7 +3937,7 @@ CREATE TABLE `manager` (
   `password` char(32) NOT NULL COMMENT '密码',
   `real_name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
   `gender` tinyint(1) DEFAULT NULL COMMENT '性别:0=保密 1=男 2=女',
-  `age` tinyint(3) DEFAULT NULL COMMENT '年龄',
+  `age` int(3) DEFAULT '0' COMMENT '年龄',
   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
   `mobile` char(11) DEFAULT NULL COMMENT '手机号',
   `status` tinyint(4) DEFAULT '1' COMMENT '状态：1=正常 0=禁用 -1=删除',
@@ -3800,20 +3947,22 @@ CREATE TABLE `manager` (
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
   `weixin` varchar(50) DEFAULT NULL COMMENT '微信号',
   `qq` varchar(15) DEFAULT NULL COMMENT 'qq号',
-  `last_login_time` int(10) DEFAULT NULL COMMENT '最后登入时间',
+  `last_login_time` int(10) DEFAULT '0' COMMENT '最后登入时间',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='管理员表---赵';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='管理员表---赵';
 
 -- ----------------------------
 -- Records of manager
 -- ----------------------------
-INSERT INTO `manager` VALUES ('1', '1', 'admin', '96e79218965eb72c92a549dd5a330112', 'admin', null, '11', '123@qq.com', '18518695431', '1', '', '0', '4', '', '', '', '1496223177', '1495874302');
-INSERT INTO `manager` VALUES ('2', '2', 'admin888', '96e79218965eb72c92a549dd5a330112', 'admin888', null, '12', '54444444@qq.com', '13526565534', '0', '', '100001', '4', '', '123', '993254628', null, '1494841204');
-INSERT INTO `manager` VALUES ('3', '45', '你好', 'e10adc3949ba59abbe56e057f20f883e', 'admin', null, '0', '545464@qq.com', '13126565534', '1', '', '7676', '3', '7676', '', '', null, '1495873006');
-INSERT INTO `manager` VALUES ('4', '4546', '不知道', 'e10adc3949ba59abbe56e057f20f883e', '不知道', null, '0', '540888qq@qq.com', '13522864800', '1', '', '', '3', '', '', '', '1496212355', '1496197261');
+INSERT INTO `manager` VALUES ('1', '1', 'admin', '96e79218965eb72c92a549dd5a330112', 'admin', null, '11', '123@qq.com', '18518695431', '1', '', '0', '4', '', '', '', '1496308060', '1495874302');
+INSERT INTO `manager` VALUES ('2', '2', 'admin888', '96e79218965eb72c92a549dd5a330112', 'admin888', null, '12', '54444444@qq.com', '13526565534', '0', '', '100001', '4', '', '123', '993254628', '0', '1494841204');
+INSERT INTO `manager` VALUES ('3', '45', '你好', 'e10adc3949ba59abbe56e057f20f883e', 'admin', null, '0', '545464@qq.com', '13126565534', '1', '', '7676', '3', '7676', '', '', '0', '1495873006');
+INSERT INTO `manager` VALUES ('4', '4546', '不知道', 'e10adc3949ba59abbe56e057f20f883e', '不知道', null, '0', '540888qq@qq.com', '13522864800', '1', '', '', '3', '', '', '', '1496299993', '1496197261');
+INSERT INTO `manager` VALUES ('9', '56', '5656', 'e10adc3949ba59abbe56e057f20f883e', '5656', null, '135228648', '565@qq.com', '13522864801', '0', '', '', '3', '', '', '', '0', '1496309354');
+INSERT INTO `manager` VALUES ('10', '454', '4545', 'e10adc3949ba59abbe56e057f20f883e', '5464', null, '0', '131313@qq.com', '13522556684', '-1', '', '', '3', '', '', '', '0', '1496309394');
 
 -- ----------------------------
 -- Table structure for manager_auth_access
@@ -3828,8 +3977,9 @@ CREATE TABLE `manager_auth_access` (
 -- ----------------------------
 -- Records of manager_auth_access
 -- ----------------------------
-INSERT INTO `manager_auth_access` VALUES ('3', '1,2,5,7,9,11,12,13,14,15,16,17,18,19,20,21,22,23,26,4,10,27', '0');
+INSERT INTO `manager_auth_access` VALUES ('3', '29,30,34,35,28,32,33', '0');
 INSERT INTO `manager_auth_access` VALUES ('4', 'all', '0');
+INSERT INTO `manager_auth_access` VALUES ('5', '29,30,34,35', '0');
 
 -- ----------------------------
 -- Table structure for manager_auth_node
@@ -3847,7 +3997,7 @@ CREATE TABLE `manager_auth_node` (
   `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `authcode` text NOT NULL COMMENT '权限码(控制器+动作)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='后台权限节点表\r\n李杨';
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='后台权限节点表\r\n李杨';
 
 -- ----------------------------
 -- Records of manager_auth_node
@@ -3855,7 +4005,10 @@ CREATE TABLE `manager_auth_node` (
 INSERT INTO `manager_auth_node` VALUES ('28', '供应商管理', 'Supplier', '0', '0', '0', '0', '0', '1496216429', 'SupplierController@index');
 INSERT INTO `manager_auth_node` VALUES ('29', '添加供应商', 'Supplier', '0', '0', '0', '28', '0', '1496219103', 'SupplierController@product');
 INSERT INTO `manager_auth_node` VALUES ('30', '编辑 删除 供应商', 'Supplier', '0', '0', '0', '28', '0', '1496219192', 'SupplierController@edit,SupplierController@del');
-INSERT INTO `manager_auth_node` VALUES ('31', '协议录入', 'Agreement', '0', '0', '0', '0', '0', '1496219573', 'AgreementController@index');
+INSERT INTO `manager_auth_node` VALUES ('32', '协议录入', 'Agreement', '0', '0', '0', '0', '0', '1496288128', 'AgreementController@index');
+INSERT INTO `manager_auth_node` VALUES ('33', '订单管理', 'Order', '0', '0', '0', '0', '0', '1496297669', 'OrderController@index');
+INSERT INTO `manager_auth_node` VALUES ('34', '订单详情页', 'Order', '0', '0', '0', '33', '0', '1496297814', 'OrderController@details');
+INSERT INTO `manager_auth_node` VALUES ('35', '删除订单', 'Order', '0', '0', '0', '33', '0', '1496297842', 'OrderController@delete');
 
 -- ----------------------------
 -- Table structure for manager_auth_role
@@ -3870,13 +4023,14 @@ CREATE TABLE `manager_auth_role` (
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `edit_time` int(11) NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='后台权限角色表\r\n李杨';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='后台权限角色表\r\n李杨';
 
 -- ----------------------------
 -- Records of manager_auth_role
 -- ----------------------------
-INSERT INTO `manager_auth_role` VALUES ('3', '总编', null, '0', '只对栏目有添加审核功能', '1495866710', '0');
+INSERT INTO `manager_auth_role` VALUES ('3', '总编', null, '0', '只对栏目有添加审核功能', '1496303063', '0');
 INSERT INTO `manager_auth_role` VALUES ('4', '超级管理员', null, '0', '拥有所有权限', '1496204705', '0');
+INSERT INTO `manager_auth_role` VALUES ('5', '客服', null, '0', '服务保险', '1496298569', '0');
 
 -- ----------------------------
 -- Table structure for member
@@ -3910,8 +4064,8 @@ CREATE TABLE `member` (
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES ('1', '1001', '1001', '132332', '1000', '35', '18610415485', '10481618@qq.com', '0', '', '卢志涛', '1', '1', '200', '1', '1492654210', '0', '1492654210', '150.00', '100.00', '50.00');
-INSERT INTO `member` VALUES ('2', '1002', '1002', '1234353', '100001', '35', '15655206598', 'iyting@foxmail.com', '1111', '1', 'wang', '1', '1', '0', '1', '1492654210', '1001', '1492654210', null, null, null);
+INSERT INTO `member` VALUES ('1', '1001', '1001', '132332', '132332', '35', '18610415485', '10481618@qq.com', '0', '', '卢志涛', '1', '1', '200', '1', '1492654210', '0', '1492654210', '150.00', '100.00', '50.00');
+INSERT INTO `member` VALUES ('2', '1002', '1002', '132332', '132332', '35', '15655206598', 'iyting@foxmail.com', '1111', '1', 'wang', '1', '1', '0', '1', '1492654210', '1001', '1492654210', null, null, null);
 INSERT INTO `member` VALUES ('14', '100003', '100003', '1002', '100003', '35', '15255565696', '', 'e10adc3949ba59abbe56e057f20f883e', null, 'aa', '1', '1', '0', '1', null, '1002', '1494403097', '200.00', '100.00', '100.00');
 INSERT INTO `member` VALUES ('18', '1004', '1004', '110', '2345', '35', '15858585989', '', 'e10adc3949ba59abbe56e057f20f883e', null, 'ddgggg', '1', '0', '0', '1', null, '1002', '1494416567', null, null, null);
 INSERT INTO `member` VALUES ('19', '7428170510', '', '1323321', null, null, 'ww', '', 'e10adc3949ba59abbe56e057f20f883e', null, '哇哇哇哇哇哇哇', '1', '0', '0', '1', null, '1001', '1494416609', null, null, null);
@@ -3929,7 +4083,7 @@ INSERT INTO `member` VALUES ('30', '7521170516', '7521170516', '7520170244', '75
 INSERT INTO `member` VALUES ('31', '7522170516', '7522170516', '7522170516', '7518170516', '100003', null, null, 'e10adc3949ba59abbe56e057f20f883e', null, '标准2', '1', '2', '0', '1', null, '7520170516', null, null, null, null);
 INSERT INTO `member` VALUES ('32', '7523170516', '7523170516', '7520170516', '7518170516', '100003', null, null, 'e10adc3949ba59abbe56e057f20f883e', null, '标1推', '1', '0', '0', '1', null, '7521170516', null, null, null, null);
 INSERT INTO `member` VALUES ('33', '7524170516', '7524170516', '7520170516', '7518170516', '100003', '54552', '22323', 'e10adc3949ba59abbe56e057f20f883e', '333', '标2推', '1', '1', '44', '1', '44', '7523170516', '11', null, null, null);
-INSERT INTO `member` VALUES ('34', '7525170516', '7525170516', '7525170515', '7525170516', '100003', null, null, 'e10adc3949ba59abbe56e057f20f883e', null, '旗舰2', '1', '3', '0', '1', null, '100003', null, null, null, null);
+INSERT INTO `member` VALUES ('34', '7525170516', '7525170516', '7525170515', '7525170516', '100003', null, null, 'e10adc3949ba59abbe56e057f20f883e', null, '旗舰2', '1', '2', '0', '1', null, '100003', null, null, null, null);
 INSERT INTO `member` VALUES ('35', '7526170516', '7526170516', '7525170516', '7525170516', '100003', null, null, 'e10adc3949ba59abbe56e057f20f883e', null, '会员2', '1', '0', '0', '1', null, '7525170516', null, null, null, null);
 INSERT INTO `member` VALUES ('36', '7527170516', '7527170516', '7527170516', '7527170516', '100003', null, null, 'e10adc3949ba59abbe56e057f20f883e', null, '旗舰店3', '1', '3', '0', '1', null, '100003', null, null, null, null);
 
@@ -4292,12 +4446,12 @@ INSERT INTO `organization` VALUES ('6', '2600', '1000', '25', '圆山大酒店',
 INSERT INTO `organization` VALUES ('7', '35', '12345678', '25', '同福客栈', '3', '1', '店3', '4', '4', '0', '4', '北京', '1', '0', '15685555555', '11111', '111', '11', '1', '1', '0', '0');
 INSERT INTO `organization` VALUES ('8', '25', '123456789', '123456789', '潇湘馆', '3', '1', '店3', '4', '4', '0', '4', '北京', '1', '0', '15685555555', '11111', '111', '11', '1', '1', '0', '0');
 INSERT INTO `organization` VALUES ('15', '100001', '1015', '100001', '分公司', '1', null, '店3', '4', '4', '0', '4', '北京', '1', '0', '15685555555', '11111', '111', '11', '1', '1', '0', '0');
-INSERT INTO `organization` VALUES ('28', '132332', '132332', '100001', '旗舰店', '2', '1', null, '227', '261', '1', '265', '', null, '0', '18610415485', null, '10481618@qq.com', '10065', '1', '1494551801', '1494432000', '1494432000');
+INSERT INTO `organization` VALUES ('28', '132332', '132332', '100001', '旗舰店', '2', '1', null, '227', '261', '0', '265', '', null, '1', '18610415485', null, '10481618@qq.com', '10065', '1', '1494551801', '1494432000', '1494432000');
 INSERT INTO `organization` VALUES ('29', '1323321', '132332', '100001', '标准店', '3', '1', null, '227', '261', '0', '265', '', null, '0', '18610415485', null, '10481618@qq.com', '1008', '1', '1494556297', '1494432000', '1494432000');
 INSERT INTO `organization` VALUES ('30', '1323322', '100001', '100001', '店铺3', '3', '1', null, '227', '261', '0', '265', '', null, '0', '18610415485', null, '10481618@qq.com', '1005', '0', '1494556740', '1494432000', '1494432000');
 INSERT INTO `organization` VALUES ('31', '100003', '100003', '100003', '卢志涛分公司', '1', '1', '卢志涛分公司的门店介绍', '1', '2', '0', '3', '平安里33弄', null, '1', '17099088999', null, '10481616@qq.com', '100003', '1', '1489291932', null, null);
 INSERT INTO `organization` VALUES ('39', '3905170511', null, '3905170511', '添加机构目标表测试', '1', null, '的点点滴滴多多多', '0', '0', '0', '0', '', null, '1', 'rtg', null, '', '3905170511', '1', '1494904648', null, null);
-INSERT INTO `organization` VALUES ('82', '132332', '1000', '123456789', '店铺3', '3', '2', null, '227', '261', '1', '265', '', null, '0', '18610415485', null, '10481618@qq.com', '1001', '1', '1495437334', '1494432000', '1494432000');
+INSERT INTO `organization` VALUES ('82', '132332', '132332', '123456789', '店铺3', '2', '2', null, '227', '261', '0', '265', '', null, '1', '18610415485', null, '10481618@qq.com', '1001', '1', '1495437334', '1494432000', '1494432000');
 INSERT INTO `organization` VALUES ('84', '12335', '100004', '123456789', '店铺1', '3', '2', null, '227', '0', '0', '0', '', null, '0', '15858585989', null, '', '1004', '1', '1495438300', '-28800', '-28800');
 INSERT INTO `organization` VALUES ('89', '12335', '100004', '123456789', '店铺1', '3', '2', null, '227', '0', '0', '0', '', null, '0', '15858585989', null, '', '1004', '1', '1495438626', '-28800', '-28800');
 INSERT INTO `organization` VALUES ('91', '7522170516', '7518170516', '100003', '卢标经营', '3', '2', null, '227', '0', '0', '0', '', null, '1', '15858585989', null, '', '7522170516', '1', '1495438831', '-28800', '-28800');
@@ -4361,15 +4515,15 @@ CREATE TABLE `product` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `product_title` varchar(120) DEFAULT NULL COMMENT '产品标题',
   `product_name` varchar(60) NOT NULL COMMENT '产品名称',
-  `content` text COMMENT '产品名称',
+  `content` text COMMENT '产品简介',
   `details` text COMMENT '产品详细',
   `product_label` tinyint(1) DEFAULT NULL COMMENT '产品标识：1=>新品 2=>热销 3=>人气   4=>独家',
   `supplier_id` int(10) NOT NULL COMMENT '供应商ID',
   `fit_member` text COMMENT '适合人群',
   `initial_contract_ratio` decimal(3,2) DEFAULT NULL COMMENT '首期签约比例',
   `product_img` varchar(255) DEFAULT NULL COMMENT '产品图片',
-  `product_type` tinyint(1) NOT NULL DEFAULT '1',
-  `product_state` tinyint(1) NOT NULL DEFAULT '1',
+  `product_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '产品分类',
+  `product_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '产品类型',
   `type_id` smallint(6) DEFAULT NULL,
   `unsales_category_id` smallint(6) DEFAULT NULL COMMENT '非销售产品分类ID',
   `rate_name` varchar(255) DEFAULT NULL COMMENT '费率表名称',
@@ -4769,7 +4923,7 @@ CREATE TABLE `service_fee_calculation` (
   `month` int(11) DEFAULT NULL COMMENT '服务费计算时间  以月份为单位',
   `time` int(11) NOT NULL COMMENT '时间 ',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='服务费计算表（卢）';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='服务费计算表（卢）';
 
 -- ----------------------------
 -- Records of service_fee_calculation
@@ -4778,6 +4932,13 @@ INSERT INTO `service_fee_calculation` VALUES ('1', '2147483647', null, null, nul
 INSERT INTO `service_fee_calculation` VALUES ('2', '2147483647', null, null, null, '24.00', '155.00', '1950.00', null, null, null, '10.00', '0.00', '189.00', '1950.00', '2129.00', '189.00', null, '1', '1', '1490976000', '1496218239');
 INSERT INTO `service_fee_calculation` VALUES ('3', '2147483647', null, null, null, '192.00', '200.40', '1950.00', null, null, null, '25.00', '0.00', '417.40', '1950.00', '2342.40', '417.40', null, '1', '1', '1490976000', '1496218239');
 INSERT INTO `service_fee_calculation` VALUES ('4', '2147483647', null, null, null, '120.00', '185.50', '1950.00', null, null, null, '-30.00', '0.00', '275.50', '1950.00', '2255.50', '275.50', null, '1', '1', '1490976000', '1496218239');
+INSERT INTO `service_fee_calculation` VALUES ('5', '2147483647', null, null, null, '8.00', '160.00', '2940.00', null, null, null, '-18.00', '0.00', '150.00', '2940.00', '3108.00', '150.00', null, '1', '1', '1493568000', '1496282318');
+INSERT INTO `service_fee_calculation` VALUES ('6', '2147483647', null, null, null, '24.00', '155.00', '1950.00', null, null, null, '10.00', '0.00', '189.00', '1950.00', '2129.00', '189.00', null, '1', '1', '1493568000', '1496282318');
+INSERT INTO `service_fee_calculation` VALUES ('7', '2147483647', null, null, null, '192.00', '200.40', '1950.00', null, null, null, '25.00', '0.00', '417.40', '1950.00', '2342.40', '417.40', null, '1', '1', '1493568000', '1496282318');
+INSERT INTO `service_fee_calculation` VALUES ('8', '2147483647', null, null, null, '120.00', '185.50', '1950.00', null, null, null, '-30.00', '0.00', '275.50', '1950.00', '2255.50', '275.50', null, '1', '1', '1493568000', '1496282318');
+INSERT INTO `service_fee_calculation` VALUES ('9', '1001', null, null, null, '500.25', '123.26', '78.56', '90.23', '123.60', '15.78', null, '215.00', '212.00', '8120.00', '8115.00', '121.00', '215.00', null, null, '1493568000', '1495209600');
+INSERT INTO `service_fee_calculation` VALUES ('10', '1001', null, null, null, '1230.00', '364.52', '78.26', '99.18', '156.29', null, '-78.00', '52.00', '118.00', '2124.00', '125.00', '666.00', '78.00', null, null, '1490976000', '1492617600');
+INSERT INTO `service_fee_calculation` VALUES ('11', '1001', null, null, null, '5151.00', '811.00', '1215.00', '15.00', '8121.00', '235.00', '585.00', '456.00', '4851.00', '845.00', '182.00', '156.00', '815.00', null, null, '1485878400', '1487520000');
 
 -- ----------------------------
 -- Table structure for service_fee_config
@@ -4799,7 +4960,7 @@ CREATE TABLE `service_fee_config` (
 -- ----------------------------
 -- Records of service_fee_config
 -- ----------------------------
-INSERT INTO `service_fee_config` VALUES ('0000000001', '7', '0.50', '0.58', '0.10', '0.90', '0.65', '0.60', '0.70');
+INSERT INTO `service_fee_config` VALUES ('0000000001', '7', '0.50', '0.58', '0.50', '0.40', '0.65', '0.60', '0.70');
 
 -- ----------------------------
 -- Table structure for service_fee_policy
@@ -4814,11 +4975,182 @@ CREATE TABLE `service_fee_policy` (
   `policy_type` tinyint(1) NOT NULL COMMENT '保险类型 1:首期，2续期，3非寿',
   `time` int(11) NOT NULL COMMENT '时间 ',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='服务费于保单关系表（卢）';
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8 COMMENT='服务费于保单关系表（卢）';
 
 -- ----------------------------
 -- Records of service_fee_policy
 -- ----------------------------
+INSERT INTO `service_fee_policy` VALUES ('1', '11', '11', '11', '11.00', '11', '11');
+INSERT INTO `service_fee_policy` VALUES ('2', '5', '7519170512', '191919', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('3', '6', '7521170516', '212121', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('4', '7', '7523170516', '232323', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('5', '7', '7523170516', '242424', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('6', '7', '7523170516', '252525', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('7', '7', '7523170516', '303030', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('8', '7', '7523170516', '313131', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('9', '7', '7523170516', '323232', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('10', '8', '7526170516', '262626', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('11', '8', '7526170516', '272727', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('12', '8', '7526170516', '282828', '80.00', '1', '1496282748');
+INSERT INTO `service_fee_policy` VALUES ('13', '5', '7519170512', '191919', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('14', '6', '7521170516', '212121', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('15', '7', '7523170516', '232323', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('16', '7', '7523170516', '242424', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('17', '7', '7523170516', '252525', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('18', '7', '7523170516', '303030', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('19', '7', '7523170516', '313131', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('20', '7', '7523170516', '323232', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('21', '8', '7526170516', '262626', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('22', '8', '7526170516', '272727', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('23', '8', '7526170516', '282828', '80.00', '1', '1496284254');
+INSERT INTO `service_fee_policy` VALUES ('24', '5', '7519170512', '191919', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('25', '6', '7521170516', '212121', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('26', '7', '7523170516', '232323', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('27', '7', '7523170516', '242424', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('28', '7', '7523170516', '252525', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('29', '7', '7523170516', '303030', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('30', '7', '7523170516', '313131', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('31', '7', '7523170516', '323232', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('32', '8', '7526170516', '262626', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('33', '8', '7526170516', '272727', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('34', '8', '7526170516', '282828', '80.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('35', '5', '7519170512', '101010', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('36', '5', '7519170512', '111111', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('37', '5', '7519170512', '121212', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('38', '5', '7519170512', '131313', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('39', '6', '7521170516', '141414', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('40', '6', '7521170516', '151515', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('41', '6', '7521170516', '161616', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('42', '6', '7521170516', '171717', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('43', '7', '7523170516', '181818', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('44', '7', '7523170516', '191919', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('45', '7', '7523170516', '202020', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('46', '7', '7523170516', '222222', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('47', '8', '7526170516', '232323', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('48', '8', '7526170516', '242424', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('49', '8', '7526170516', '252525', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('50', '8', '7526170516', '262626', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('51', '8', '7526170516', '272727', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('52', '7', '7523170516', '333333', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('53', '7', '7523170516', '343434', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('54', '8', '7526170516', '353535', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('55', '8', '7526170516', '363636', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('56', '6', '7521170516', '373737', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('57', '6', '7521170516', '383838', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('58', '5', '7519170512', '393939', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('59', '5', '7519170512', '727272', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('60', '5', '7519170512', '737373', '100.00', '1', '1496284618');
+INSERT INTO `service_fee_policy` VALUES ('61', '5', '7519170512', '191919', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('62', '6', '7521170516', '212121', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('63', '7', '7523170516', '232323', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('64', '7', '7523170516', '242424', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('65', '7', '7523170516', '252525', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('66', '7', '7523170516', '303030', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('67', '7', '7523170516', '313131', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('68', '7', '7523170516', '323232', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('69', '8', '7526170516', '262626', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('70', '8', '7526170516', '272727', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('71', '8', '7526170516', '282828', '80.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('72', '5', '7519170512', '101010', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('73', '5', '7519170512', '111111', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('74', '5', '7519170512', '121212', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('75', '5', '7519170512', '131313', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('76', '6', '7521170516', '141414', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('77', '6', '7521170516', '151515', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('78', '6', '7521170516', '161616', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('79', '6', '7521170516', '171717', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('80', '7', '7523170516', '181818', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('81', '7', '7523170516', '191919', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('82', '7', '7523170516', '202020', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('83', '7', '7523170516', '222222', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('84', '8', '7526170516', '232323', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('85', '8', '7526170516', '242424', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('86', '8', '7526170516', '252525', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('87', '8', '7526170516', '262626', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('88', '8', '7526170516', '272727', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('89', '7', '7523170516', '333333', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('90', '7', '7523170516', '343434', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('91', '8', '7526170516', '353535', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('92', '8', '7526170516', '363636', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('93', '6', '7521170516', '373737', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('94', '6', '7521170516', '383838', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('95', '5', '7519170512', '393939', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('96', '5', '7519170512', '727272', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('97', '5', '7519170512', '737373', '100.00', '1', '1496284677');
+INSERT INTO `service_fee_policy` VALUES ('98', '5', '7519170512', '191919', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('99', '6', '7521170516', '212121', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('100', '7', '7523170516', '232323', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('101', '7', '7523170516', '242424', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('102', '7', '7523170516', '252525', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('103', '7', '7523170516', '303030', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('104', '7', '7523170516', '313131', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('105', '7', '7523170516', '323232', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('106', '8', '7526170516', '262626', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('107', '8', '7526170516', '272727', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('108', '8', '7526170516', '282828', '80.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('109', '5', '7519170512', '101010', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('110', '5', '7519170512', '111111', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('111', '5', '7519170512', '121212', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('112', '5', '7519170512', '131313', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('113', '6', '7521170516', '141414', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('114', '6', '7521170516', '151515', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('115', '6', '7521170516', '161616', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('116', '6', '7521170516', '171717', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('117', '7', '7523170516', '181818', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('118', '7', '7523170516', '191919', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('119', '7', '7523170516', '202020', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('120', '7', '7523170516', '222222', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('121', '8', '7526170516', '232323', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('122', '8', '7526170516', '242424', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('123', '8', '7526170516', '252525', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('124', '8', '7526170516', '262626', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('125', '8', '7526170516', '272727', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('126', '7', '7523170516', '333333', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('127', '7', '7523170516', '343434', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('128', '8', '7526170516', '353535', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('129', '8', '7526170516', '363636', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('130', '6', '7521170516', '373737', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('131', '6', '7521170516', '383838', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('132', '5', '7519170512', '393939', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('133', '5', '7519170512', '727272', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('134', '5', '7519170512', '737373', '100.00', '1', '1496285204');
+INSERT INTO `service_fee_policy` VALUES ('135', '5', '7519170512', '191919', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('136', '6', '7521170516', '212121', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('137', '7', '7523170516', '232323', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('138', '7', '7523170516', '242424', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('139', '7', '7523170516', '252525', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('140', '7', '7523170516', '303030', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('141', '7', '7523170516', '313131', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('142', '7', '7523170516', '323232', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('143', '8', '7526170516', '262626', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('144', '8', '7526170516', '272727', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('145', '8', '7526170516', '282828', '80.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('146', '5', '7519170512', '101010', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('147', '5', '7519170512', '111111', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('148', '5', '7519170512', '121212', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('149', '5', '7519170512', '131313', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('150', '6', '7521170516', '141414', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('151', '6', '7521170516', '151515', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('152', '6', '7521170516', '161616', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('153', '6', '7521170516', '171717', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('154', '7', '7523170516', '181818', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('155', '7', '7523170516', '191919', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('156', '7', '7523170516', '202020', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('157', '7', '7523170516', '222222', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('158', '8', '7526170516', '232323', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('159', '8', '7526170516', '242424', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('160', '8', '7526170516', '252525', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('161', '8', '7526170516', '262626', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('162', '8', '7526170516', '272727', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('163', '7', '7523170516', '333333', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('164', '7', '7523170516', '343434', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('165', '8', '7526170516', '353535', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('166', '8', '7526170516', '363636', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('167', '6', '7521170516', '373737', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('168', '6', '7521170516', '383838', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('169', '5', '7519170512', '393939', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('170', '5', '7519170512', '727272', '100.00', '1', '1496285427');
+INSERT INTO `service_fee_policy` VALUES ('171', '5', '7519170512', '737373', '100.00', '1', '1496285427');
 
 -- ----------------------------
 -- Table structure for settlement_initial_fee_industry_bonus_proportion
@@ -5073,7 +5405,7 @@ CREATE TABLE `shop_assess_standard` (
 -- ----------------------------
 -- Records of shop_assess_standard
 -- ----------------------------
-INSERT INTO `shop_assess_standard` VALUES ('18', '0', '150000', null, null, '30', null, null, '0.85', '1', '1');
+INSERT INTO `shop_assess_standard` VALUES ('18', '1', '150000', null, null, '30', null, null, '0.80', '1', '1');
 INSERT INTO `shop_assess_standard` VALUES ('19', '0', '90000', null, null, '30', null, null, '0.85', '1', '2');
 INSERT INTO `shop_assess_standard` VALUES ('20', '0', '60000', null, null, '30', null, null, '0.85', '1', '3');
 INSERT INTO `shop_assess_standard` VALUES ('21', '1', '300000', null, null, null, '180', null, '0.85', '2', '1');
@@ -5108,7 +5440,7 @@ CREATE TABLE `study` (
   `check_time` int(10) DEFAULT NULL COMMENT '审核时间',
   `last_update_time` int(10) DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='学习课堂表---赵\r\n';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='学习课堂表---赵\r\n';
 
 -- ----------------------------
 -- Records of study
@@ -5120,15 +5452,15 @@ INSERT INTO `study` VALUES ('4', '213123123', 'sdasdasd', '2', '1', '1', 'admin'
 INSERT INTO `study` VALUES ('5', '小白测试', '为去问问企鹅我', '4', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a921b09d11.docx', '0', null, '1494913563', null, null);
 INSERT INTO `study` VALUES ('6', '123', '123', '1', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a92cd31300.docx', '1', 'admin', '1494913741', '1495789546', null);
 INSERT INTO `study` VALUES ('7', '123', '123啊实打实的法定', '1', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a92fc282dc.docx', '1', 'admin', '1494913788', '1495789552', '1495868828');
-INSERT INTO `study` VALUES ('8', '反反复复', '12312', '3', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a931316468.docx', '0', null, '1494913811', null, null);
-INSERT INTO `study` VALUES ('9', '测试(URL)', 'a啊大苏打岁的大手大脚海关监管', '3', '1', '1', 'admin', '1', 'http://www.baoxian.com', '0', null, '0', null, '1494914213', null, null);
+INSERT INTO `study` VALUES ('8', '反反复复', '12312', '3', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a931316468.docx', '1', null, '1494913811', null, null);
+INSERT INTO `study` VALUES ('9', '测试(URL)', 'a啊大苏打岁的大手大脚海关监管', '3', '1', '1', 'admin', '1', 'http://www.baoxian.com', '0', null, '1', null, '1494914213', null, null);
 INSERT INTO `study` VALUES ('10', '测试(文件)', '阿斯顿撒旦', '1', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a95ec6c584.docx', '1', 'admin', '1494914540', '1495869603', null);
 INSERT INTO `study` VALUES ('11', '测试(文件)1', '啊实打实的', '2', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a9624db6f1.docx', '1', 'admin', '1494914596', '1495869220', null);
 INSERT INTO `study` VALUES ('12', '测试22', '啊送达司法所', '4', '1', '1', 'admin', '1', 'http://www.baoxian.com', '0', null, '1', 'admin', '1494914679', '1495789558', '1495857343');
 INSERT INTO `study` VALUES ('13', '测试(文件)3', '1啊实打实打算阿斯顿阿三', '2', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591a9677bd103.docx', '1', 'admin', '1494914803', '1494922781', '1495868300');
 INSERT INTO `study` VALUES ('14', '大飞哥', '阿斯打死', '4', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591ab76247b3b.docx', '1', 'admin', '1494923106', '1495869211', null);
-INSERT INTO `study` VALUES ('15', '哈哈岁的', '萨顶哈计算的话', '1', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591ab81f3e41e.docx', '-2', 'admin', '1494923295', '1494923295', null);
-INSERT INTO `study` VALUES ('16', '123', '123', '2', '1', '1', 'admin', '2', '', '0', 'Supplier/20170522/5922b401467c1.docx', '-2', 'admin', '1495446529', '1495446529', null);
+INSERT INTO `study` VALUES ('15', '哈哈岁的', '萨顶哈计算的话', '1', '1', '1', 'admin', '2', '', '0', 'UploadFile/20170516/591ab81f3e41e.docx', '1', 'admin', '1494923295', '1494923295', null);
+INSERT INTO `study` VALUES ('16', '123', '123', '2', '1', '1', 'admin', '2', '', '0', 'Supplier/20170522/5922b401467c1.docx', '1', 'admin', '1495446529', '1495446529', null);
 INSERT INTO `study` VALUES ('17', '实打实的', '撒旦', '2', '1', '1', 'admin', '2', '', '0', 'Supplier/20170522/5922b435744c0.docx', '1', 'admin', '1495446581', '1495446581', null);
 
 -- ----------------------------
@@ -5164,13 +5496,11 @@ CREATE TABLE `supplier` (
 -- ----------------------------
 -- Records of supplier
 -- ----------------------------
-INSERT INTO `supplier` VALUES ('20', 'DAHUTQ', '人寿', '1', '中国人寿', '河北分公司', '3', '123456789', 'undefined', '阿斯顿', '18231981027', 'https://www.baidu.com', '阿斯顿', '18231981027', '621700013000073757', '工商银行', '史蒂夫', 'where方法的用法是ThikPHP查询语言的精髓，也是ThinkPHP ORM的重要组成部分和亮点所在，可以完成包括普通查询、表达式查询、快捷查询、区间查询、组合查询在内的查询操作。where', '1494225095', '62', '63', '75');
-INSERT INTO `supplier` VALUES ('21', 'MQKOYN', '的双方各', '1', '大飞哥', '河北分公司', '2', '123456789', '/Uploads\\Supplier/2017-05-09/5911b5cfaa00e.jpg', '大飞哥', '18231981027', 'https://www.baidu.com', '双方各', '18231981027', '62164616546321', '史蒂夫', '是大法官', '双方各双方公司股份', '1494318024', '1', '2', '7');
+INSERT INTO `supplier` VALUES ('20', 'DAHUTQ', '人寿', '1', '中国人寿', '河北分公司', '3', '123456789', '/Upload\\Supplier/2017-06-01/592fb8366b748.jpg', '阿斯顿', '18231981027', 'https://www.baidu.com', '阿斯顿', '18231981027', '621700013000073757', '工商银行', '史蒂夫', 'where方法的用法是ThikPHP查询语言的精髓，也是ThinkPHP ORM的重要组成部分和亮点所在，可以完成包括普通查询、表达式查询、快捷查询、区间查询、组合查询在内的查询操作。where', '1494225095', '62', '63', '75');
+INSERT INTO `supplier` VALUES ('21', 'MQKOYN', '的双方各', '1', '大飞哥', '河北分公司', '2', '123456789', '/Upload\\Supplier/2017-06-01/592fb86c80c3a.jpg', '大飞哥', '18231981027', 'https://www.baidu.com', '双方各', '18231981027', '62164616546321', '史蒂夫', '是大法官', '双方各双方公司股份', '1494318024', '1', '2', '7');
 INSERT INTO `supplier` VALUES ('23', 'KLYPMU', '人寿', '1', '人寿', '河北分公司', '1', '123456789', '/Uploads\\Supplier/2017-05-09/5911ab80377a0.jpg', '东三省', '18231981027', 'https://www.baidu.com', '史蒂夫', '18231981027', '313246513215', '建行', '手动阀', '少时诵诗书所所所所所所所所所所所所', '1494330241', '21', '22', '26');
 INSERT INTO `supplier` VALUES ('24', 'DBKLNW', '手动阀', '1', '手动阀', '河北分公司', '1', '123456789', '/Uploads\\Supplier/2017-05-10/5912665a18155.jpg', '爽肤水', '18231981027', 'https://www.baidu.com', '手动阀', '18231981027', '62176521632165', '手动阀', '手动阀', '所得到的多多多多多多', '1494377805', '62', '63', '70');
 INSERT INTO `supplier` VALUES ('69', 'QRIYHL', '是是是', '1', '所属', '河北分公司', '1', '123456789', '/Uploads\\Supplier/2017-05-09/5911b5cfaa00e.jpg', '对对对', '18231981027', 'https://www.baidu.com', '是的是的', '18231981027', '6217000130566132', '时代大厦', '是多少', '的点点滴滴多多多多', '1494482891', '104', '125', '129');
-INSERT INTO `supplier` VALUES ('74', 'UWEPJO', '11', '1', '11', null, '3', '11', null, 'gg', '15855525457', 'http://www.baidu.com', '33', '15855525457', '2121111', '22413', 'rwerw', 'rewrwr', '1495780155', '1', '2', '3');
-INSERT INTO `supplier` VALUES ('75', 'XCWBNP', '222', '2', '222', null, '1', '432432423', 'undefined', '23442', '15811212121', 'http://www.baidu.com', '432432', '15811212121', '22', '222', '22', '', '1495782412', '21', '22', '25');
 
 -- ----------------------------
 -- Table structure for test_answer
@@ -5183,7 +5513,7 @@ CREATE TABLE `test_answer` (
   `state` varchar(50) NOT NULL DEFAULT '0',
   `create_time` int(10) DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='考试题库内容答案表---赵';
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COMMENT='考试题库内容答案表---赵';
 
 -- ----------------------------
 -- Records of test_answer
@@ -5204,6 +5534,30 @@ INSERT INTO `test_answer` VALUES ('76', '80', '阿萨德', 'A', '1495786096');
 INSERT INTO `test_answer` VALUES ('77', '80', '阿斯顿发', 'B', '1495786096');
 INSERT INTO `test_answer` VALUES ('78', '80', '阿萨德', 'C', '1495786096');
 INSERT INTO `test_answer` VALUES ('79', '80', '啊水电费 ', 'D', '1495786096');
+INSERT INTO `test_answer` VALUES ('80', '81', '72', 'A', '1496285867');
+INSERT INTO `test_answer` VALUES ('81', '81', '70', 'B', '1496285867');
+INSERT INTO `test_answer` VALUES ('82', '81', '71', 'C', '1496285867');
+INSERT INTO `test_answer` VALUES ('83', '81', '73', 'D', '1496285867');
+INSERT INTO `test_answer` VALUES ('84', '82', '32', 'A', '1496285900');
+INSERT INTO `test_answer` VALUES ('85', '82', '36', 'B', '1496285900');
+INSERT INTO `test_answer` VALUES ('86', '82', '30', 'C', '1496285900');
+INSERT INTO `test_answer` VALUES ('87', '82', '33', 'D', '1496285900');
+INSERT INTO `test_answer` VALUES ('88', '86', '2', 'A', '1496286031');
+INSERT INTO `test_answer` VALUES ('89', '86', '3', 'B', '1496286031');
+INSERT INTO `test_answer` VALUES ('90', '86', '1', 'C', '1496286031');
+INSERT INTO `test_answer` VALUES ('91', '86', '4', 'D', '1496286031');
+INSERT INTO `test_answer` VALUES ('92', '88', '3', 'A', '1496286049');
+INSERT INTO `test_answer` VALUES ('93', '88', '4', 'B', '1496286049');
+INSERT INTO `test_answer` VALUES ('94', '88', '2', 'C', '1496286049');
+INSERT INTO `test_answer` VALUES ('95', '88', '1', 'D', '1496286049');
+INSERT INTO `test_answer` VALUES ('96', '89', '1', 'A', '1496286049');
+INSERT INTO `test_answer` VALUES ('97', '89', '2', 'B', '1496286049');
+INSERT INTO `test_answer` VALUES ('98', '89', '3', 'C', '1496286049');
+INSERT INTO `test_answer` VALUES ('99', '89', '4', 'D', '1496286049');
+INSERT INTO `test_answer` VALUES ('100', '92', '4', 'A', '1496286266');
+INSERT INTO `test_answer` VALUES ('101', '92', '3', 'B', '1496286266');
+INSERT INTO `test_answer` VALUES ('102', '92', '2', 'C', '1496286266');
+INSERT INTO `test_answer` VALUES ('103', '92', '1', 'D', '1496286266');
 
 -- ----------------------------
 -- Table structure for test_cont
@@ -5216,7 +5570,7 @@ CREATE TABLE `test_cont` (
   `create_time` int(10) DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `qustion_title` (`qustion_title`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 COMMENT='考试题库表---赵';
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COMMENT='考试题库表---赵';
 
 -- ----------------------------
 -- Records of test_cont
@@ -5225,3 +5579,9 @@ INSERT INTO `test_cont` VALUES ('72', '9*9=？？？', 'C', '1495080187');
 INSERT INTO `test_cont` VALUES ('73', '2*2=？', 'B', '1495519943');
 INSERT INTO `test_cont` VALUES ('79', '11111', 'B', '1495786083');
 INSERT INTO `test_cont` VALUES ('80', '阿斯顿发', 'B', '1495786096');
+INSERT INTO `test_cont` VALUES ('81', '8*9=?', 'A', '1496285867');
+INSERT INTO `test_cont` VALUES ('82', '6*6', 'B', '1496285900');
+INSERT INTO `test_cont` VALUES ('86', '1+1', 'A', '1496286031');
+INSERT INTO `test_cont` VALUES ('88', '1+2', 'A', '1496286049');
+INSERT INTO `test_cont` VALUES ('89', '1+3', 'D', '1496286049');
+INSERT INTO `test_cont` VALUES ('92', '2+2', 'A', '1496286266');

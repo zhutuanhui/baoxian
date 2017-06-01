@@ -24,42 +24,38 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 权限管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="text-c">
+	<!-- <div class="text-c">
 		<form class="Huiform" method="post" action="" target="_self">
 			<input type="text" class="input-text" style="width:250px" placeholder="权限名称" id="" name="">
 			<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜权限节点</button>
 		</form>
-	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_permission_add('添加权限节点','<{:U('SetAuth/permissionadd')}>','','800')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+	</div> -->
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+	 <span class="l">
+	 <!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
+	  <a href="javascript:;" onclick="admin_permission_add('添加权限节点','<{:U('SetAuth/permissionadd')}>','','800')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> <span class="r"> </div>
 	<!-- <table class="table table-border table-bordered table-bg"> -->
 	<table class="table table-border table-bordered table-hover table-bg">
 		<thead>
-		
+		<tr>
+				<td scope="col" colspan="7"></td>
+			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
-				<th width="40">ID</th>
-				<th width="200">权限名称</th>
-				<th>所属分组</th>
-				<th>权限节点</th>
-				<th>创建时间</th>
-				<th width="100">操作</th>
+				<th width="30">ID</th>
+				<th width="50">权限名称</th>
+				<th width="50">所属分组</th>
+				<th width="100">权限节点</th>
+				<th width="80">创建时间</th>
+				<th width="40">操作</th>
 			</tr>
 		</thead>
 		<tbody>
-		<foreach name="datainfo" item="vo">
-			<tr class="text-c">
-				<td><input type="checkbox" value="<{$vo[id]}>" name="delss[]" class="delssd"></td>
-				<td><{$vo[id]}></td>
-				<td><{$vo[name]}></td>
-				<td>
-					<{$group[$vo['group']][name]}>
-				</td>
-				<td><{$vo[authcode]}></td>
-				<td><{$vo[create_time]|date="Y-m-d H:i:s",###}></td>
+		
+
 			
-				<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','<{:U('SetAuth/permissionadd',array('a_id'=>$vo['id']))}>','1','','800')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,<{$vo[id]}>)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-			</tr>
-		</foreach>
+
+		
 		</tbody>
 	</table>
 </div>
@@ -72,7 +68,110 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 
+ <script type="text/javascript">
+        var table;
 
+
+        $(function(){
+
+              table = $('.table').DataTable({
+                    "lengthChange": false, //是否允许用户改变表格每页显示的记录数
+                    serverSide: false, //启用服务器端分页
+                    "language": {
+                            "processing": "加载中...",
+                            "lengthMenu": "每页显示 _MENU_ 条数据",
+                            "zeroRecords": "没有匹配结果",
+                            "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                            "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                            "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                            "infoPostFix": "",
+                            "search": "搜索:",
+                            "url": "",
+                            "emptyTable": "没有匹配结果",
+                            "loadingRecords": "载入中...",
+                            "thousands": ",",
+                            "paginate": {
+                                "first": "首页",
+                                "previous": "上一页",
+                                "next": "下一页",
+                                "last": "末页"
+                            }},
+                    searching: false, //禁用原生搜索
+                    order: [], //取消默认排序查询,否则复选框一列会出现小箭头
+                    pagingType: "full_numbers", //分页样式：simple,simple_numbers,full,full_numbers
+                    "aaSorting": [
+                        [0, "desc"]
+                    ], //默认第几个排序
+                    "autoWidth": false,
+
+                    "bStateSave": false, //状态保存
+                    "aoColumnDefs": [{// 制定列不参与排序
+                        "orderable": false,
+                        "aTargets": [0,1,2,3,4,5,6]
+                    }],
+                 "ajax": {
+                        type: "GET",
+                        dataType:"json",
+                        data:function(){
+
+                            
+                        },
+                        url: "<{:U('Admin/SetAuth/permission')}>",
+                        dataSrc: function(result) {
+
+                                        return result.data;
+                              }
+                        },
+                        columns : [
+
+                                    {data : "id"},
+                                    {data : "id"},
+                                    {data : "name"},
+                                    {data : "group"},
+                                    {data : "authcode"},
+                                    {data : "create_time"},
+                                   
+                          
+
+                                  	{"data":'id',"render" : function(data,type) {
+	                             			
+	                                    	var html = ' ';
+
+	                                    	html+= "<a title='编辑'' href='javascript:;'  data-id="+data+" class='ml-5 edit' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a>";
+
+	                                    	html+= ' <a title="删除" href="javascript:;" data-id='+data+' class="del ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
+	                                    	 return html;
+	                 				}},
+	                                   
+
+
+                                ]
+
+            }); //TABLE闭合标签
+           table.on('order.dt search.dt',	//序号
+		    function() {
+		        table.column(0, {
+		            search: 'applied',
+		            order: 'applied'
+		        }).nodes().each(function(cell, i) {
+		            cell.innerHTML = i + 1;
+		        });
+		    }).draw();
+   		 $(document).on('click','.edit ',function(){
+                 var data_id  = $(this).attr('data-id');
+                 var url = "<{:U('SetAuth/permissionadd')}>"+'&a_id='+data_id;
+                 // alert(url);
+                 admin_permission_edit('修改权限',url,800,1000);
+                 // alert(data_id);
+            });
+   		 $(document).on('click','.del ',function(){
+                 var data_id  = $(this).attr('data-id');
+                 admin_permission_del($(this),data_id);
+                 // alert(data_id);
+            });
+       
+    }) //jquery闭合标签
+    </script>
 <script type="text/javascript">
 /*
 	参数解释：

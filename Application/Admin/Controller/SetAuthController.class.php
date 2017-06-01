@@ -8,15 +8,27 @@ class SetAuthController extends AdminbaseController
 	  作者：zth
 	*/
 	public function role(){
-		$data = M('manager_auth_role')->alias('a')
-									  ->join('LEFT JOIN manager_auth_access b on b.role_id=a.id')
-									  ->order('id desc')->select();
-		foreach($data as $k=>$v){
-			$where['id'] = array('in',$v['node_id']);
-			$data[$k]['auth'] = M('manager_auth_node')->field('name')->where($where)->select();
+		if(IS_AJAX){
+			$data = M('manager_auth_role')->alias('a')
+										  ->join('LEFT JOIN manager_auth_access b on b.role_id=a.id')
+										  ->order('id desc')->select();
+			foreach($data as $k=>$v){
+				$where['id'] = array('in',$v['node_id']);
+				$data[$k]['auth'] = M('manager_auth_node')->field('name')->where($where)->select();
+				$str = '';
+				foreach($data[$k]['auth'] as $v){
+					$str .= $v['name'].'&';
+				}
+				$data[$k]['auth_code'] = $str;
+				$data[$k]['create_time'] = date('Y-m-d H:i',$v['create_time']);
+			}
+			$arr['data'] = $data;
+			exit(json_encode($arr));
+		}else{
+			$this->display();
 		}
-		$this->assign('datas',$data);
-		$this->display();
+		
+		// $this->assign('datas',$data);
 	}
 	public function rolesave(){
 	
@@ -164,12 +176,26 @@ class SetAuthController extends AdminbaseController
 	*/
 	public function permission()
 	{
-		$data = M('manager_auth_node')->select();
-		$group = getAllMenu();
-		$this->assign('datainfo',$data);
-		$this->assign('group',$group);
-		$this->display();
+		if(IS_AJAX){
+			$data = M('manager_auth_node')->select();
+			$group = getAllMenu();
+			foreach($data as $k=>$v){
+				$data[$k]['create_time'] = date('Y-m-d H:i',$v['create_time']);
+				$data[$k]['group'] = $group[$v['group']]['name'];
+			}
+
+			$arr['data'] = $data;
+
+			echo json_encode($arr);
+			//$this->assign('datainfo',$data);
+			/*$this->assign('group',$group);*/
+		}else{
+			$this->display();
+		}
+		
+		
 	}
+
 
 	public function permissiondel()
 	{
@@ -296,12 +322,16 @@ class SetAuthController extends AdminbaseController
 	*/
     public function adminlist()
 	{
-		$where['a.status'] = array('neq',-1);
-		$datas = M('manager')->alias('a')->field('a.*,r.name')->where($where)
-							 ->join('LEFT JOIN manager_auth_role r on r.id=a.role_id')
-							 ->order('id')->select();
-		$this->assign('datas',$datas);
-		$this->display();
+		if(IS_AJAX){
+			
+			$model = D('Admin');
+			$data['data'] = $model->get_manager_list();
+			echo json_encode($data);
+		} else {
+			$this->display();
+		}
+		
+		
 	}
 	//添加管理员
 	public function adminadd()
@@ -359,7 +389,9 @@ class SetAuthController extends AdminbaseController
 			}else{
 				//添加管理员
 				$res = $model->where(array('manager_number'=>$datas['manager_number'],'username'=>$datas['username']))->find();
+				$resmobile = $model->where(array('mobile'=>$datas['mobile']))->find();
 				if($res){exit(json_encode(array('code'=>999,'msg'=>'该管理员已经存在')));}
+				if($resmobile){exit(json_encode(array('code'=>999,'msg'=>'该手机号已经存在')));}
 				$arr = array(
 					'manager_number'=>$datas['manager_number'],
 					'username'=>$datas['username'],

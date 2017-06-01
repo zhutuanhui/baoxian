@@ -341,16 +341,16 @@ function getMenuList($act_list){
 
 function getAllMenu(){
     return  array(
-         'Supplier' => array('name' => '供应商管理', 'icon'=>'Hui-iconfont', 'sub_menu' => array(
+         'Supplier' => array('name' => '供应商管理', 'icon'=>'&#xe72b;', 'sub_menu' => array(
                     array('name' => '供应商管理', 'act'=>'index', 'control'=>'Supplier'),
             )),
-           'Agreement' => array('name' => '协议管理', 'icon'=>'Hui-iconfont', 'sub_menu' => array(
+           'Agreement' => array('name' => '协议管理', 'icon'=>'&#xe636;', 'sub_menu' => array(
                     array('name' => '协议录入', 'act'=>'index', 'control'=>'Agreement'),
             )),
-           'Order' => array('name' => '订单管理', 'icon'=>'Hui-iconfont', 'sub_menu' => array(
-                    array('name' => '协议录入', 'act'=>'index', 'control'=>'Order'),
+           'Order' => array('name' => '订单管理', 'icon'=>'&#xe687;', 'sub_menu' => array(
+                    array('name' => '订单管理', 'act'=>'index', 'control'=>'Order'),
             )),
-            'Insurance' => array('name'=>'保单管理','icon'=>'Hui-iconfont','sub_menu'=>array(
+            'Insurance' => array('name'=>'保单管理','icon'=>'&#xe681;','sub_menu'=>array(
                     array('name'=>'首期保单管理','act'=>'index','control'=>'Insurance'),
                     array('name'=>'续期保单管理','act'=>'index','control'=>'InsuranceRe'),
                  array('name'=>'首期保单导出','act'=>'index','control'=>'InsuranceExcel'),
@@ -359,23 +359,23 @@ function getAllMenu(){
                   
             )),
            
-            'Client' => array('name'=>'客户管理','icon'=>'fa-user','sub_menu'=>array(
+            'Client' => array('name'=>'客户管理','icon'=>'&#xe660;','sub_menu'=>array(
                     array('name'=>'客户管理','act'=>'index','control'=>'Client'),
             )),
-            'EarlyWarning' => array('name' => '考核预警管理', 'icon'=>'fa-book', 'sub_menu' => array(
+            'EarlyWarning' => array('name' => '考核预警管理', 'icon'=>'&#xe662;', 'sub_menu' => array(
                     array('name' => '考核预警管理', 'act'=>'index', 'control'=>'EarlyWarning'),
                     array('name' => '考核结果-筹备期', 'act'=>'check_result_prepara', 'control'=>'EarlyWarning'),
                     array('name' => '考核结果-经营期', 'act'=>'check_result_business', 'control'=>'EarlyWarning'),
                     array('name' => '分公司考核结果查询', 'act' =>'check_branch_result', 'control' => 'EarlyWarning'),
             )),
-            'Product' => array('name' => '产品管理', 'icon'=>'fa-money', 'sub_menu' => array(
+            'Product' => array('name' => '产品管理', 'icon'=>'&#xe6c6;', 'sub_menu' => array(
                     array('name' => '产品列表', 'act'=>'index', 'control'=>'Product'),
                     array('name' => '产品销售分类列表', 'act'=>'index', 'control'=>'ProductType'),
                     array('name' => '产品非销售分类列表', 'act'=>'index', 'control'=>'ProductUnsales'),
                     array('name' => '产品报表', 'act'=>'index', 'control'=>'ProductSurface'),
                     
             )),
-            'ServiceQuestions' => array('name' => '服务中心', 'icon'=>'fa-bell', 'sub_menu' => array(
+            'ServiceQuestions' => array('name' => '服务中心', 'icon'=>'&#xe727;', 'sub_menu' => array(
                     array('name' => '题库设置', 'act'=>'index', 'control'=>'ServiceQuestions'),
                     array('name' => '考试结果', 'act'=>'test_result', 'control'=>'ServiceQuestions'),
                     array('name' => '学习课堂', 'act'=>'index', 'control'=>'ReleaseAudit'),
@@ -383,13 +383,13 @@ function getAllMenu(){
                     array('name' => '常见问题','act'=>'index', 'control'=>'CommonProblem'),
                     array('name' => '留言处理','act'=>'index', 'control'=>'MessageProcessing'),
             )),
-            'Organ' => array('name' => '机构管理', 'icon'=>'fa-flag', 'sub_menu' => array(
+            'Organ' => array('name' => '机构管理', 'icon'=>'&#xe659;', 'sub_menu' => array(
                     array('name' => '店铺申请', 'act'=>'apply', 'control'=>'Organ'),
                     array('name' => '机构列表', 'act'=>'index', 'control'=>'Organ'),
                     array('name' => '机构目标管理', 'act'=>'targe', 'control'=>'Organ'),
                     array('name' => '保监资料报送', 'act'=>'submitted', 'control'=>'Organ'),
             )),
-            'Member' => array('name' => '会员管理', 'icon'=>'fa-comments', 'sub_menu' => array(
+            'Member' => array('name' => '会员管理', 'icon'=>'&#xe62c;', 'sub_menu' => array(
                     array('name' => '会员列表', 'act'=>'index', 'control'=>'Member'),
                     array('name' => '会员异动', 'act'=>'index', 'control'=>'MemChange'),
                     array('name' => '服务费计算', 'act'=>'MemSerFee', 'control'=>'index'),
@@ -397,27 +397,27 @@ function getAllMenu(){
                     array('name' => '服务费配置', 'act'=>'index', 'control'=>'ServiceConfig'),
                     array('name' => '服务费查询', 'act'=>'select', 'control'=>'ServiceConfig'),
             )),
-            'SetAuth' => array('name' => '管理员管理', 'icon'=>'fa-weixin', 'sub_menu' => array(
+            'SetAuth' => array('name' => '管理员管理', 'icon'=>'&#xe63c;', 'sub_menu' => array(
                     array('name' => '权限管理', 'act'=>'permission', 'control'=>'SetAuth'),
                     array('name' => '角色管理', 'act'=>'role', 'control'=>'SetAuth'),
                     array('name' => '管理员列表', 'act'=>'adminlist', 'control'=>'SetAuth'),
             )),
-            'SettleAccount' => array('name' => '结算系统', 'icon'=>'fa-adjust', 'sub_menu' => array(
+            'SettleAccount' => array('name' => '结算系统', 'icon'=>'&#xe6c1;', 'sub_menu' => array(
                     array('name' => '结算列表', 'act'=>'index', 'control'=>'SettleAccount'),
                   
             )),
 
-            'Performance' => array('name' => '业绩管理', 'icon'=>'fa-plug', 'sub_menu' => array(
+            'Performance' => array('name' => '业绩管理', 'icon'=>'&#xe6bf;', 'sub_menu' => array(
                     array('name' => '团队业绩管理', 'act'=>'teamCore', 'control'=>'Performance'),
                     array('name' => '个人业绩', 'act'=>'index', 'control'=>'PersonalPerformance'),
             )),
-            'Systemcheck' => array('name' => '系统管理', 'icon'=>'fa-signal', 'sub_menu' => array(
+            'Systemcheck' => array('name' => '系统管理', 'icon'=>'&#xe62e;', 'sub_menu' => array(
                     array('name' => '考核设置', 'act'=>'index', 'control'=>'Systemcheck'),
                     array('name' => '品质系数', 'act'=>'index', 'control'=>'Continuous'),
                     array('name' => '系统时间设置', 'act'=>'index', 'control'=>'SystemTimeSetting'),
                     array('name' => '广告管理', 'act'=>'index', 'control'=>'Advertisement'),
             )),
-            'AddDeductions' => array('name' => '导入管理', 'icon'=>'fa-anchor', 'sub_menu' => array(
+            'AddDeductions' => array('name' => '导入管理', 'icon'=>'&#xe645;', 'sub_menu' => array(
                     array('name' => '新契约品质系数导入', 'act'=>'index', 'control'=>'NewContract'),
                     array('name' => '首期保单导入', 'act'=>'index', 'control'=>'InsuranceInput'),
                     array('name' => '续期保单导入', 'act'=>'index', 'control'=>'InsuranceInputRe'),
