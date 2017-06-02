@@ -97,40 +97,45 @@ var table;
 $(function(){
 	table = $(".table-sort").DataTable({
 		  "paging": true,
-                "iDisplayLength": 10, //默认每页数量
-                //"bPaginate": true, //翻页功能
-                "bLengthChange": false, //改变每页显示数据数量
-                "bFilter": true, //过滤功能
-                "bSort": true, //排序功能
-                "bInfo": true, //页脚信息
-                "bAutoWidth": false, //自动宽度
-                "bRetrieve": true,
-                "processing": true,
-                "serverSide" : false,//服务器端进行分页处理的意思
-                "bPaginate": true,
-                searching: false, //禁用原生搜索
-               //"bProcessing": true
-                  "ajax": {
-                        type: "GET",
-                        dataType:"json",
-                        data:{"m_number":"<{$m_number}>"},
-                        url: "<{:U('Admin/ServiceConfig/get_record')}>",
-                                    dataSrc: function(result) {
-                                        console.log(result);
-                                     	var returnData = {};
-		                      			returnData.data = result.data;
-		                      			//console.log(returnData);
-		                            	return returnData.data;
-                                    }
-                                },
-                                columns : [
-                                            {data : "m_number"},
-                                            {data : "name"},
-                                            {data : "money"},
-                                            {data : "date"},
-                                            {data : "status"},
-                                            {data : "account_number"}
-                                           ]
+          "iDisplayLength": 10, //默认每页数量
+          //"bPaginate": true, //翻页功能
+          "bLengthChange": false, //改变每页显示数据数量
+          "bFilter": true, //过滤功能
+          "bSort": true, //排序功能
+          "bInfo": true, //页脚信息
+          "bAutoWidth": false, //自动宽度
+          "bRetrieve": true,
+          "processing": true,
+          "serverSide" : false,//服务器端进行分页处理的意思
+          "bPaginate": true,
+          searching: false, //禁用原生搜索
+        //"bProcessing": true
+          "ajax": {
+                type: "GET",
+                dataType:"json",
+                data:{"m_number":"<{$m_number}>"},
+                url: "<{:U('Admin/ServiceConfig/get_record')}>",
+                dataSrc: function(result) {
+                  	/*判断返回结果*/
+              	 	if (result == 1) {
+                   		return false;
+                   	}else{
+                        //console.log(result);
+                       	var returnData = {};
+                  		returnData.data = result.data;
+                  		//console.log(returnData);
+                       	return returnData.data;
+                    }
+                }
+           },
+           columns : [
+                        {data : "m_number"},
+                        {data : "name"},
+                        {data : "money"},
+                        {data : "date"},
+                        {data : "status"},
+                        {data : "account_number"}
+                     ]
 	});
 });
 

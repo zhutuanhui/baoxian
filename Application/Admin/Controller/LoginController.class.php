@@ -75,9 +75,11 @@ class LoginController extends Controller
                         if(M('manager')->save($data)){
                             //获取用户权限列表
                             $acl_info = M('manager_auth_access')->where(array('role_id'=>$result['role_id']))->find();
+                            $acl_info_role = M('manager_auth_role')->where(array('id'=>$result['role_id']))->find();
                             session('act_list',$acl_info['node_id']);
                             session('adminId',$result['id']);
                             session('username',$result['username']);
+                            session('rolename',$acl_info_role['name']);
 //                          如果是分公司把分公司机构代码写入session
 							session('organization_id',$result['organization_id']);	
                             $data['info'] = '操作成功，3秒后跳到后台管理系统';

@@ -125,7 +125,7 @@ var setting = {
                         type: "GET",
                         dataType:"json",
                         data:{"sign":"<{$non_life_sign}>"},
-                        url: "__APP__/SettleAccount/get_result",
+                        url: "<{:U('Admin/SettleAccount/get_result')}>",
                                     dataSrc: function(result) {
                                         //console.log(result);
                                         //这里result和上面jquery的ajax的代码类似，也是可以得到data.json的数据，但是这样的格式，Datatables不能直接使用，这时候需要在这里处理一下

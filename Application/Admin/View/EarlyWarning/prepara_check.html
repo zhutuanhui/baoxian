@@ -307,8 +307,10 @@
             }); //TABLE闭合标签
 
         $('#search').click(function() {
+            if(table.ajax.reload()){
+                layer.msg('搜索成功',{time:500});
+            }
 
-            table.ajax.reload();
         });
           $(document).on('mouseover','#btn-success ',function(){
                 $('.btnHtml').show()
@@ -401,8 +403,35 @@
             $(document).on('click','#btn-success ',function(){
                 $('#btn-success').text($(this).text())
                 $('.btnHtml').hide()
-            })
+            });
 
+            $('.btn-primary').click(function(){ //导出
+
+
+                var branch_code   = $("select[name='branch']").val();
+                var shop_number   = $("input[name='shop_number']").val();
+
+                var shop_type   = $("select[name='shop_type'] ").val();
+                var date_scope  = $("select[name='date_scope'] ").val();
+                var part = '';
+                if(branch_code!=0){
+                    part += '&condition='+branch_code;
+                }
+                if(shop_number!=0){
+                    part += '&shop_number='+shop_number;
+                }
+                 if(shop_type!=0){
+                    part += '&shop_type='+shop_type;
+                }
+                 if(date_scope!=0){
+                    part += '&date_scope='+date_scope;
+                }
+                var url = "<{:U('Admin/SettleExcel/get_check_prepara_result')}>";
+
+                window.location.href = url+part;
+             //   window.location.href = url+'&branch='+branch_code;
+
+             });
     }) //jquery闭合标签
     </script>
 

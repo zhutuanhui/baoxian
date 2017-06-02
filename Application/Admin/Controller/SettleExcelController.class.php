@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 
 use Common\Controller\AdminbaseController;
+
 /**
 *
 */
@@ -504,6 +505,265 @@ class SettleExcelController extends AdminbaseController
             $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
             $objWriter->save('php://output');
 
+    }
+    /**
+     * 导出筹备期考核结果到excel
+     * @return [type] [description]
+     */
+    public function get_check_prepara_result(){
+        header("Content-Typ:text/html;charset=utf-8");
+        vendor('Excel.PHPExcel');
+        vendor('Excel.PHPExcel.IOFactory');
+        //设定缓存模式）
+        $cacheMethod = \PHPExcel_CachedObjectStorageFactory::cache_in_memory_serialized;
+        $cacheSettings = array();
+        \PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
+
+
+        $objPHPExcel = new \PHPExcel();
+         /*设置首页的工作sheet*/
+        $objPHPExcel ->setActiveSheetIndex(0)
+                     ->setCellValue('A1', "店铺代码")//设置列的值
+                     ->setCellValue('B1', "店铺")//设置列的值
+                     ->setCellValue('C1', "店铺阶段")//设置列的值
+                     ->setCellValue('D1', "考核类型")//设置列的值
+                     ->setCellValue('E1', "业指参考")//设置列的值
+                     ->setCellValue('F1', "达成")//设置列的值
+                     ->setCellValue('G1', "差距")//设置列的值
+                     ->setCellValue('H1', "人指参考")//设置列的值
+                     ->setCellValue('H2', "直接推荐会员")//设置列的值
+                     ->setCellValue('I2', "达成")//设置列的值
+                     ->setCellValue('J2', "差距")//设置列的值
+                     ->setCellValue('K2', "所辖会员")//设置列的值
+                     ->setCellValue('L2', "达成")//设置列的值
+                     ->setCellValue('M2', "差距")//设置列的值
+                     ->setCellValue('N2', "直接推荐标准店")//设置列的值
+                     ->setCellValue('O2', "达成")//设置列的值
+                     ->setCellValue('P2', "差距")//设置列的值
+                     ->setCellValue('Q1', "继续率参")//设置列的值
+                     ->setCellValue('R1', "达成")//设置列的值
+                     ->setCellValue('S1', "差距")//设置列的值
+                     ->setCellValue('T1', "结果");//设置列的值
+
+
+        //合并单元格
+        $objPHPExcel->getActiveSheet(0)->mergeCells('A1:A2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('B1:B2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('C1:C2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('D1:D2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('E1:E2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('F1:F2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('G1:G2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('H1:P1');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('Q1:Q2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('R1:R2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('S1:S2');
+        $objPHPExcel->getActiveSheet(0)->mergeCells('T1:T2');
+
+        //设置居中
+
+        $objPHPExcel->getDefaultStyle()->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER)->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        //设置行高
+        $objPHPExcel->getActiveSheet(0)->getRowDimension(1)->setRowHeight(30);
+        $objPHPExcel->getActiveSheet(0)->getRowDimension(2)->setRowHeight(30);
+        $objPHPExcel->getActiveSheet(0)->getDefaultStyle()->getFont()->setName("微软雅黑");//设置默认字体大小和格式
+
+        $objPHPExcel->getActiveSheet(0)->getStyle('A1:T1')->getFont()->setBold(true); //字体加粗
+        $objPHPExcel->getActiveSheet(0)->getStyle('A2:T2')->getFont()->setBold(true); //字体加粗
+         /*设置字段宽度*/
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('H') ->setWidth(18);
+        $objPHPExcel ->getActiveSheet(0) ->getColumnDimension('N') ->setWidth(18);
+        //设置单元格格式
+        $objPHPExcel->getActiveSheet(0)->getStyle('E')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+        $objPHPExcel->getActiveSheet(0)->getStyle('F')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+        $objPHPExcel->getActiveSheet(0)->getStyle('G')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+        $objPHPExcel->getActiveSheet(0)->getStyle('Q')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE);
+        $objPHPExcel->getActiveSheet(0)->getStyle('R')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE);
+        $objPHPExcel->getActiveSheet(0)->getStyle('S')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE);
+
+        //获取数据
+       // echo 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];exit;
+        $param = I('param.');
+
+
+        if($param['condition']!=0) {    //分公司
+            $condition['branch_shop_number'] =$param['condition'];
+
+        }
+
+        if($param['shop_number']!=0) {        //店铺代码
+                $condition['shop_number'] =$param['shop_number'];
+
+        }
+        if($param['shop_type']!=0) {        //店铺类型
+                $condition['shop_type'] =$param['shop_type'];
+
+
+        }else{
+            $condition['shop_type'] = array('neq',1) ; //将分公司从查询表中剔除
+        }
+
+        $condition['check_type'] = array('eq',1) ; //查询考核预警表是考核结果的数据
+        $condition['shop_stage'] = array('eq',0) ; //筹备类型店铺
+        $check_warning_obj = M('check_warning');
+        if($param['date_scope']!=0) {
+                $condition['check_time'] = array('eq',$param['date_scope']);
+
+        }else{
+                 $max_check_time = $check_warning_obj->where($condition)->max('check_time');        //查询表中考核时间最大的 即最新数据
+        }
+
+
+        if(!empty($max_check_time)){
+            $condition['check_time'] = array('eq',$max_check_time);
+        }
+
+
+        $check_warning_result = $check_warning_obj->where($condition)->select();
+
+        $data = array();
+
+        if(count($check_warning_result)){
+            foreach ($check_warning_result as $key => $value) {
+                $data[$key]['shop_number']  = $value['shop_number'];    //店铺代码
+                $data[$key]['shop_name']  = $value['shop_name'];    //店铺名称
+                switch ($value['shop_type']) {  //店铺阶段
+                    case '1':
+                        $data[$key]['shop_type']  = '分公司';
+                    break;
+                    case '2':
+                        $data[$key]['shop_type']  = '旗舰店';
+                    break;
+                    case '3':
+                        $data[$key]['shop_type']  = '标准店';
+                    break;
+                }
+                switch ($value['shop_stage']) { //考核阶段
+                    case '1':
+                        $data[$key]['shop_stage'] = '经营期';
+                        break;
+                    case '0':
+                        $data[$key]['shop_stage'] = '筹备期';
+                        break;
+                    default:
+                        $data[$key]['shop_stage'] = '观察期';
+                        break;
+                }
+
+                $data[$key]['achievement_target']  = $value['achievement_target'];//业指参考
+                $data[$key]['achievement_target_reached']  = $value['achievement_target_reached']; //达成
+                if($value['achievement_target_gap'] > 0){   //业务指标差距
+                    $data[$key]['achievement_target_gap'] = 0;
+
+                }else if($value['achievement_target_gap'] < 0){
+
+                    $data[$key]['achievement_target_gap'] = -($value['achievement_target_gap']);
+
+                }else{
+                    $data[$key]['achievement_target_gap'] = '0';
+                }
+                $data[$key]['direct_recom_people']  = $value['direct_recom_people'];//直接推荐会员
+                $data[$key]['direct_recom_people_reached']  = $value['direct_recom_people_reached'];//达成
+                if($value['direct_recom_people_gap']>0){
+                    $data[$key]['direct_recom_people_gap'] = 0;
+                }elseif($value['direct_recom_people_gap']<0){
+                    $data[$key]['direct_recom_people_gap'] = -($value['direct_recom_people_gap']);
+                }else{
+                    $data[$key]['direct_recom_people_gap'] = 0;
+                }
+
+                if($value['shop_type']==2){
+
+                    $data[$key]['sub_manpower']  = $value['sub_manpower'];//所辖会员
+                    $data[$key]['sub_manpower_reached']  = $value['sub_manpower'];//达成
+                    if($value['sub_manpower_gap']>0){
+                        $data[$key]['sub_manpower_gap'] = 0;
+                    }elseif($value['sub_manpower_gap']<0){
+                        $data[$key]['sub_manpower_gap'] = -($value['sub_manpower_gap']);
+                    }else{
+                        $data[$key]['sub_manpower_gap'] = 0;
+                    }
+
+                     $data[$key]['direct_recom_shop']  = $value['direct_recom_shop'];//直接推荐标准店
+                     $data[$key]['direct_recom_shop_reached']  = $value['direct_recom_shop_reached'];//达成
+
+                    if($value['direct_recom_shop_gap']>0){
+                        $data[$key]['direct_recom_shop_gap'] = 0;
+                    }elseif($value['direct_recom_shop_gap']<0){
+                        $data[$key]['direct_recom_shop_gap'] = -($value['direct_recom_shop_gap']);
+                    }else{
+                        $data[$key]['direct_recom_shop_gap'] = 0;
+                    }
+                }else{
+                    $data[$key]['sub_manpower']  = '--';//所辖会员
+                    $data[$key]['sub_manpower_reached']  = '--';//达成
+                    $data[$key]['sub_manpower_gap']  = '--';//达成
+                    $data[$key]['direct_recom_shop'] = '--';
+                    $data[$key]['direct_recom_shop_reached'] = '--';
+                    $data[$key]['direct_recom_shop_gap'] = '--';
+                }
+                //继续率
+
+                $data[$key]['continuation_rate']  = $value['direct_recom_shop']*100;//
+                $data[$key]['continuation_rate_rea']  = $value['continuation_rate_rea']*100;//
+                $data[$key]['continuation_rate_gap']  = $value['continuation_rate_gap']*100;//
+                if ($value['check_status']) {
+                    $data[$key]['check_status'] = '成功';
+                } else {
+                    $data[$key]['check_status'] = '失败';
+
+                }
+
+
+
+            }
+
+        }
+       // dump($data);exit;
+        $a = 3;
+        foreach ($data as $k => $v) {
+                $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$a, $v['shop_number'])
+                    ->setCellValue('B'.$a, $v['shop_name'])
+                    ->setCellValue('C'.$a, $v['shop_type'])
+                    ->setCellValue('D'.$a, $v['shop_stage'])
+                    ->setCellValue('E'.$a, $v['achievement_target'])
+                    ->setCellValue('F'.$a, $v['achievement_target_reached'])
+                    ->setCellValue('G'.$a, $v['achievement_target_gap'])
+                    ->setCellValue('H'.$a, $v['direct_recom_people'])
+                    ->setCellValue('I'.$a, $v['direct_recom_people_reached'])
+                    ->setCellValue('J'.$a, $v['direct_recom_people_gap'])
+                    ->setCellValue('K'.$a, $v['sub_manpower'])
+                    ->setCellValue('L'.$a, $v['sub_manpower_reached'])
+                    ->setCellValue('M'.$a, $v['sub_manpower_gap'])
+                    ->setCellValue('N'.$a, $v['direct_recom_shop'])
+                    ->setCellValue('O'.$a, $v['direct_recom_shop_reached'])
+                    ->setCellValue('P'.$a, $v['direct_recom_shop_gap'])
+                    ->setCellValue('Q'.$a, $v['continuation_rate'])
+                    ->setCellValue('R'.$a, $v['continuation_rate_rea'])
+                    ->setCellValue('S'.$a, $v['continuation_rate_gap'])
+                    ->setCellValue('T'.$a, $v['check_status']);
+
+
+            $a++;
+        }
+        $objPHPExcel->getActiveSheet()->getStyle('A1:T'.--$a)->getBorders()->getAllBorders()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);  //设置表格边框
+
+
+        $objPHPExcel ->getActiveSheet(0)->setTitle("筹备期考核结果");
+     /*浏览器输出*/
+        $filename = $file_name."分公司考核结果表_".time().'.xls';
+       /* header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
+        header('Cache-Control: max-age=0');
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save('php://output');*/
+
+        header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+        header("Content-Disposition: attachment;filename=".$filename);
+        header('Cache-Control: max-age=0');
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
     }
 }
 

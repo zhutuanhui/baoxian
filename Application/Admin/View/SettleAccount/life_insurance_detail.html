@@ -70,30 +70,31 @@
     <script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/DataTablesTest.js"></script>
     <script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
-        
+       var table; 
         $(function(){
             table = $('.table-sort').DataTable({
                   "paging": true,
-                                "iDisplayLength": 10, //默认每页数量
-                                //"bPaginate": true, //翻页功能
-                                "bLengthChange": false, //改变每页显示数据数量
-                                "bFilter": true, //过滤功能
-                                "bSort": true, //排序功能
-                                "bInfo": true, //页脚信息
-                                "bAutoWidth": false, //自动宽度
-                                "bRetrieve": true,
-                                "processing": true,
-                                "serverSide" : false,//服务器端进行分页处理的意思
-                                "bPaginate": true,
-                                searching: false, //禁用原生搜索
-                               //"bProcessing": true
+                "iDisplayLength": 10, //默认每页数量
+                //"bPaginate": true, //翻页功能
+                "bLengthChange": false, //改变每页显示数据数量
+                "bFilter": true, //过滤功能
+                "bSort": true, //排序功能
+                "bInfo": true, //页脚信息
+                "bAutoWidth": false, //自动宽度
+                "bRetrieve": true,
+                "processing": true,
+                "serverSide" : false,//服务器端进行分页处理的意思
+                "bPaginate": true,
+                searching: false, //禁用原生搜索
+               //"bProcessing": true
                   "ajax": {
                         type: "GET",
                         dataType:"json",
                         data:{"sign":"<{$life_sign}>"},
-                        url: "__APP__/SettleAccount/get_result",
+                        url: "<{:U('Admin/SettleAccount/get_result')}>",
                                     dataSrc: function(result) {
-                                       // console.log(result);
+                                        console.log(result);
+                                       // console.log(result.data);
                                         //这里result和上面jquery的ajax的代码类似，也是可以得到data.json的数据，但是这样的格式，Datatables不能直接使用，这时候需要在这里处理一下
                                         //直接返回Datatables需要的那部分数据即可
                                         return result.data;

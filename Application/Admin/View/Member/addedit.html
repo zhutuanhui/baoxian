@@ -61,7 +61,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证：</label>
             <div class="formControls col-xs-5 col-sm-3">
-                <input type="text" style="width: 393.5px" maxlength="18" class="input-text" value="<{$info.identity_card}>"  id="identity_card" name="identity_card">
+                <input type="text" style="width: 393.5px" maxlength="18" minlength="18"  class="input-text" value="<{$info.identity_card}>"  id="identity_card" name="identity_card">
             </div>
         </div>
         <div class="row cl">
@@ -169,7 +169,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">会员级别：</label>
             <div class="formControls col-xs-5 col-sm-3">
-                <empty name="info.member_level">
+                <notin  name="info.member_level" value="0,1,2,3">
                     <select name="member_level" class="select">
                         <option value="0" selected="selected" >普通会员</option>
                         <option value="1" >资深会员</option>
@@ -183,7 +183,7 @@
                         <case value="2">标准店店长</case>
                         <case value="3">旗舰店店长</case>
                     </switch>
-                </empty>
+                </notin>
             </div>
         </div>
         <div class="row cl">
@@ -304,7 +304,7 @@
                 },
                 identity_card:{
                     required:true,
-                    creditcard:true,
+                    //creditcard:true,
                 }
             },
             onkeyup:false,
